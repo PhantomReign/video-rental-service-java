@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="sk">
+
+    <title>Disc Galaxy</title>
+
+    <!--/*/ <th:block th:include="fragments/header-includes :: header-includes"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header-content"></th:block> /*/-->
+
+    <h2>Detail disku</h2>
+    <div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Id:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${disc.id}">Id</p></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Názov:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${disc.title}">Názov</p></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Originálny názov:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${disc.originalTitle}">Originálny názov</p></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Popis:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${disc.description}">Popis</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Typ disku:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${disc.type}">Typ disku</p></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Rok:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${disc.year}">Rok</p></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Cena:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${disc.price}">Cena</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Url obrázka:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${disc.imageUrl}">Url obrázka</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

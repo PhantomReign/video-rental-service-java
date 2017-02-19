@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="sk">
+
+</head>
+<body>
+
+
+<div class="container">
+    <div th:fragment="header-content">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" th:href="@{/}">Domov</a>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" th:href="@{/discs}">Disky</a></li>
+                        <li><a href="#" th:href="@{/disc/new}" sec:authorize="hasAuthority('ADMIN')">Nový disk</a></li>
+                        <li><a href="#" th:href="@{/login}" sec:authorize="isAnonymous()">Prihlásiť sa</a></li>
+                        <li><a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Odhlásiť sa</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="welcome">
+            <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
+        </div>
+        <div class="jumbotron">
+            <div class="row text-center">
+                <div class="">
+                    <h2>Video Požičovňa - Disc Galaxy</h2>
+
+                    <h3>Spravte si pekný večer!</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <img src="../../static/images/main.jpg" width="350"
+                     th:src="@{/images/main.jpg}"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
