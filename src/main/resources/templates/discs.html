@@ -23,8 +23,8 @@
                 <th>Cena</th>
 
                 <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Detail</th>
-                <th sec:authorize="hasAuthority('ADMIN')">Editovať</th>
-                <th sec:authorize="hasAuthority('ADMIN')">Vymazať</th>
+                <th sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">Editovať</th>
+                <th sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">Vymazať</th>
             </tr>
             <tr th:each="disc : ${discs}">
                 <td th:text="${disc.id}"><a href="/disc/${disc.id}">Id</a></td>
@@ -37,10 +37,10 @@
                 <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
                     <a th:href="${'/disc/' + disc.id}">Detail</a>
                 </td>
-                <td sec:authorize="hasAuthority('ADMIN')">
+                <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
                     <a th:href="${'/disc/edit/' + disc.id}">Editovať</a>
                 </td>
-                <td sec:authorize="hasAuthority('ADMIN')">
+                <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
                     <a th:href="${'/disc/delete/' + disc.id}">Vymazať</a>
                 </td>
 

@@ -1,6 +1,6 @@
 package com.videorentalservice.services;
 
-import com.videorentalservice.domain.Disc;
+import com.videorentalservice.models.Disc;
 import com.videorentalservice.repositories.DiscRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

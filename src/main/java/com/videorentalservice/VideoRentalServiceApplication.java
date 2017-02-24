@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan({"com.videorentalservice"})
-@EntityScan("com.videorentalservice.domain")
+@EntityScan("com.videorentalservice.models")
 @EnableJpaRepositories("com.videorentalservice.repositories")
 public class VideoRentalServiceApplication {
 

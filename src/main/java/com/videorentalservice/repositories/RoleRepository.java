@@ -1,6 +1,6 @@
 package com.videorentalservice.repositories;
 
-import com.videorentalservice.domain.Role;
+import com.videorentalservice.models.Role;
 import org.springframework.data.repository.CrudRepository;
 
 /**

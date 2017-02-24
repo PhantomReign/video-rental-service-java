@@ -1,6 +1,6 @@
 package com.videorentalservice.services;
 
-import com.videorentalservice.domain.Role;
+import com.videorentalservice.models.Role;
 import com.videorentalservice.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;

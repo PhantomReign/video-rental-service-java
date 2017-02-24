@@ -1,9 +1,9 @@
 package com.videorentalservice.loaders;
 
-import com.videorentalservice.domain.Disc;
-import com.videorentalservice.domain.Genre;
-import com.videorentalservice.domain.Role;
-import com.videorentalservice.domain.User;
+import com.videorentalservice.models.Disc;
+import com.videorentalservice.models.Genre;
+import com.videorentalservice.models.Role;
+import com.videorentalservice.models.User;
 import com.videorentalservice.repositories.DiscRepository;
 import com.videorentalservice.services.DiscService;
 import com.videorentalservice.services.GenreService;
@@ -109,15 +109,6 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
         List<Genre> genres = (List<Genre>) genreService.listAll();
         List<Disc> discs = (List<Disc>) discService.listAll();
 
-        /*Disc LK = discs.get(1);
-        Disc JW = discs.get(2);
-
-        Genre ANI = genres.get(1);
-        Genre ACN = genres.get(2);
-        Genre CMD = genres.get(3);
-*/
-
-
         genres.forEach(genre -> {
             switch (genre.getGenre()) {
                 case "Akčný":
@@ -144,21 +135,26 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     private void loadRoles() {
-        Role userRole = new Role();
-        userRole.setRole("USER");
-        roleService.saveOrUpdate(userRole);
-        log.info("Saved role" + userRole.getRole());
+        Role superAdminRole = new Role();
+        superAdminRole.setRole("SUPER_ADMIN");
+        roleService.saveOrUpdate(superAdminRole);
+        log.info("Saved role " + superAdminRole.getRole());
 
         Role adminRole = new Role();
         adminRole.setRole("ADMIN");
         roleService.saveOrUpdate(adminRole);
-        log.info("Saved role" + adminRole.getRole());
+        log.info("Saved role " + adminRole.getRole());
+
+        Role userRole = new Role();
+        userRole.setRole("USER");
+        roleService.saveOrUpdate(userRole);
+        log.info("Saved role " + userRole.getRole());
     }
 
     private void loadUsers() {
         User user1 = new User();
-        user1.setUsername("deges22");
-        user1.setPassword("password");
+        user1.setUsername("admin");
+        user1.setPassword("admin");
         userService.saveOrUpdate(user1);
 
         User user2 = new User();
@@ -167,9 +163,14 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
         userService.saveOrUpdate(user2);
 
         User user3 = new User();
-        user3.setUsername("admin");
-        user3.setPassword("admin");
+        user3.setUsername("deges22");
+        user3.setPassword("password");
         userService.saveOrUpdate(user3);
+
+        User user4 = new User();
+        user4.setUsername("user");
+        user4.setPassword("user");
+        userService.saveOrUpdate(user4);
 
     }
 
@@ -178,23 +179,35 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
         List<User> users = (List<User>) userService.listAll();
 
         roles.forEach(role -> {
-            if (role.getRole().equalsIgnoreCase("USER")) {
-                users.forEach(user -> {
-                    if (!user.getUsername().equals("admin")) {
-                        user.addRole(role);
-                        userService.saveOrUpdate(user);
-                        user.removeRole(role);
-                    }
-                });
-            }
-            else if (role.getRole().equalsIgnoreCase("ADMIN")) {
-                users.forEach(user -> {
-                    if (user.getUsername().equals("admin")) {
-                        user.addRole(role);
-                        userService.saveOrUpdate(user);
-                        user.removeRole(role);
-                    }
-                });
+            switch (role.getRole()) {
+                case "SUPER_ADMIN":
+                    users.forEach(user -> {
+                        if (user.getUsername().equals("admin")) {
+                            user.addRole(role);
+                            userService.saveOrUpdate(user);
+                            user.removeRole(role);
+                        }
+                    });
+                    break;
+                case "ADMIN":
+                    users.forEach(user -> {
+                        if (user.getUsername().equals("PiotrH")) {
+                            user.addRole(role);
+                            userService.saveOrUpdate(user);
+                            user.removeRole(role);
+                        }
+                    });
+                    break;
+                default:
+                    users.forEach(user -> {
+                        if (!user.getUsername().equals("PiotrH") &&
+                                !user.getUsername().equals("admin")) {
+                            user.addRole(role);
+                            userService.saveOrUpdate(user);
+                            user.removeRole(role);
+                        }
+                    });
+                    break;
             }
         });
         log.info("Roles assigned.");

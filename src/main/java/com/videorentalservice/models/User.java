@@ -1,4 +1,6 @@
-package com.videorentalservice.domain;
+package com.videorentalservice.models;
+
+import com.videorentalservice.models.abstracts.AbstractModelClass;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.List;
  */
 
 @Entity
-public class User extends AbstractDomainClass  {
+public class User extends AbstractModelClass {
 
     private String username;
 

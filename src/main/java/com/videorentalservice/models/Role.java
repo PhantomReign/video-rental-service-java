@@ -1,4 +1,6 @@
-package com.videorentalservice.domain;
+package com.videorentalservice.models;
+
+import com.videorentalservice.models.abstracts.AbstractModelClass;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +14,7 @@ import java.util.List;
  */
 
 @Entity
-public class Role extends AbstractDomainClass {
+public class Role extends AbstractModelClass {
 
     private String role;
 

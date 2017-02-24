@@ -1,6 +1,6 @@
 package com.videorentalservice.services.security;
 
-import com.videorentalservice.domain.User;
+import com.videorentalservice.models.User;
 import com.videorentalservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

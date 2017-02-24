@@ -1,6 +1,6 @@
 package com.videorentalservice.services;
 
-import com.videorentalservice.domain.User;
+import com.videorentalservice.models.User;
 
 /**
  * Created by Rave on 18.02.2017.

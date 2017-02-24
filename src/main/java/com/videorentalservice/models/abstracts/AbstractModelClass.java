@@ -1,4 +1,4 @@
-package com.videorentalservice.domain;
+package com.videorentalservice.models.abstracts;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,7 +8,7 @@ import java.util.Date;
  */
 
 @MappedSuperclass
-public class AbstractDomainClass implements DomainObject {
+public class AbstractModelClass implements ModelObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

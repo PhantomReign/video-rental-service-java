@@ -1,4 +1,6 @@
-package com.videorentalservice.domain;
+package com.videorentalservice.models;
+
+import com.videorentalservice.models.abstracts.AbstractModelClass;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -11,10 +13,7 @@ import java.util.List;
  * Created by Rave on 18.02.2017.
  */
 @Entity
-public class Disc {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+public class Disc extends AbstractModelClass {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable
@@ -28,15 +27,6 @@ public class Disc {
     private String imageUrl;
     private Integer year;
     private BigDecimal price;
-
-    // ID
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     // GENRES
     public List<Genre> getGenres() {

@@ -1,6 +1,6 @@
 package com.videorentalservice.converters;
 
-import com.videorentalservice.domain.User;
+import com.videorentalservice.models.User;
 import com.videorentalservice.services.security.UserDetailsImplementation;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

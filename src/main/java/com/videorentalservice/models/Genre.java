@@ -1,4 +1,6 @@
-package com.videorentalservice.domain;
+package com.videorentalservice.models;
+
+import com.videorentalservice.models.abstracts.AbstractModelClass;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,11 +10,7 @@ import java.util.List;
  * Created by Rave on 19.02.2017.
  */
 @Entity
-public class Genre {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
+public class Genre extends AbstractModelClass{
 
     private String genre;
 
