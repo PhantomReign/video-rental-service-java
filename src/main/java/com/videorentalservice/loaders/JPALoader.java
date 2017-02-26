@@ -1,14 +1,8 @@
 package com.videorentalservice.loaders;
 
-import com.videorentalservice.models.Disc;
-import com.videorentalservice.models.Genre;
-import com.videorentalservice.models.Role;
-import com.videorentalservice.models.User;
+import com.videorentalservice.models.*;
 import com.videorentalservice.repositories.DiscRepository;
-import com.videorentalservice.services.DiscService;
-import com.videorentalservice.services.GenreService;
-import com.videorentalservice.services.RoleService;
-import com.videorentalservice.services.UserService;
+import com.videorentalservice.services.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -29,6 +23,7 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
     private RoleService roleService;
     private GenreService genreService;
     private DiscService discService;
+    private BookingService bookingService;
 
     private Logger log = Logger.getLogger(JPALoader.class);
 
@@ -55,6 +50,11 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     public void setDiscService(DiscService discService) {
         this.discService = discService;
+    }
+
+    @Autowired
+    public void setBookingService(BookingService bookingService) {
+        this.bookingService = bookingService;
     }
 
     private void loadGenres() {
@@ -171,6 +171,51 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
         user4.setUsername("user");
         user4.setPassword("user");
         userService.saveOrUpdate(user4);
+    }
+
+    private void loadAndAssignBooking() {
+
+        List<Disc> discs = (List<Disc>) discService.listAll();
+        List<User> users = (List<User>) userService.listAll();
+
+        Disc jw = discService.getById(2);
+        Disc lk = discService.getById(1);
+
+        User user = userService.getById(4);
+        User deges = userService.getById(3);
+
+        Booking firstBooking = new Booking();
+        firstBooking.setCompanyName("Video-požičovňa Saturn");
+        firstBooking.setDays(7);
+        firstBooking.addUser(user);
+        firstBooking.addDisc(jw);
+        firstBooking.setTotalCost(jw.getPrice().multiply(new BigDecimal(7)));
+        bookingService.saveOrUpdate(firstBooking);
+
+        jw.setBooking(firstBooking);
+        discService.saveOrUpdate(jw);
+
+        user.setBooking(firstBooking);
+        userService.saveOrUpdate(user);
+
+        log.info("Saved booking " + firstBooking.getCompanyName() + " " + firstBooking.getDays());
+
+
+        Booking secondBooking = new Booking();
+        secondBooking.setCompanyName("Video-požičovňa Saturn");
+        secondBooking.setDays(2);
+        secondBooking.addUser(deges);
+        secondBooking.addDisc(lk);
+        secondBooking.setTotalCost(lk.getPrice().multiply(new BigDecimal(7)));
+        bookingService.saveOrUpdate(secondBooking);
+
+        lk.setBooking(secondBooking);
+        discService.saveOrUpdate(lk);
+
+        deges.setBooking(secondBooking);
+        userService.saveOrUpdate(deges);
+
+        log.info("Saved booking " + secondBooking.getCompanyName() + " " + secondBooking.getDays());
 
     }
 
@@ -225,5 +270,6 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
         loadRoles();
         loadUsers();
         assignRoles();
+        loadAndAssignBooking();
     }
 }

@@ -22,11 +22,15 @@ public class User extends AbstractModelClass {
     private String encryptedPassword;
     private Boolean enabled = true;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
     // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"),
     //     inverseJoinColumns = @joinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
+
+    @ManyToOne //(fetch = FetchType.EAGER, targetEntity=Booking.class)
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
+
     private Integer failedLoginAttempts = 0;
 
     public String getUsername() {
@@ -83,6 +87,14 @@ public class User extends AbstractModelClass {
     public void removeRole(Role role){
         this.roles.remove(role);
         role.getUsers().remove(this);
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 
     public Integer getFailedLoginAttempts() {

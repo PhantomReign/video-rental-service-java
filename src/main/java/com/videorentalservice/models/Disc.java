@@ -19,6 +19,10 @@ public class Disc extends AbstractModelClass {
     @JoinTable
     private List<Genre> genres = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity=Booking.class)
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
+
     private String title;
     private String originalTitle;
     @Size(max = 400)
@@ -50,6 +54,15 @@ public class Disc extends AbstractModelClass {
     public void removeGenre(Genre genre){
         this.genres.remove(genre);
         genre.getDiscs().remove(this);
+    }
+
+    // BOOKING
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 
     // TITLE

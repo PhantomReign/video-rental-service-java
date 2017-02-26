@@ -14,8 +14,7 @@ public class Genre extends AbstractModelClass{
 
     private String genre;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy="genres")
     private List<Disc> discs = new ArrayList<>();
 
     public String getGenre() {
