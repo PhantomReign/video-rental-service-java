@@ -2,6 +2,7 @@
 @import "../modules/sizes";
 
 .navbar {
+  height: $height-nav;
   background-color: $nav-color-bottom;
   position: relative;
   margin-bottom: 0;

@@ -54,6 +54,7 @@ html {
 }
 
 .navbar {
+  height: 100px;
   background-color: #334455;
   position: relative;
   margin-bottom: 0;
@@ -164,6 +165,7 @@ html {
 }
 
 footer {
+  height: 83px;
   background-color: #334455;
 }
 footer .footer-top {

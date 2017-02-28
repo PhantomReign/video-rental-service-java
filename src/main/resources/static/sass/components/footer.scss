@@ -2,9 +2,10 @@
 @import "../modules/sizes";
 
 footer {
+  height: $height-footer;
   background-color: $nav-color-bottom;
   .footer-top{
-    height: $height-footer;
+    height: $height-footer-top-part;
     background-color: $nav-color-top;
   }
   .container {
