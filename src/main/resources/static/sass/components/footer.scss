@@ -1,0 +1,20 @@
+@import "../modules/colors";
+@import "../modules/sizes";
+
+footer {
+  background-color: $nav-color-bottom;
+  .footer-top{
+    height: $height-footer;
+    background-color: $nav-color-top;
+  }
+  .container {
+    background-color: $nav-color-bottom;
+
+    .text-muted {
+      color: $font-color-white;
+      margin: $margin-footer;
+      padding: $padding-footer;
+      font-weight: $font-weight-footer;
+    }
+  }
+}

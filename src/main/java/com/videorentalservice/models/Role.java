@@ -18,8 +18,7 @@ public class Role extends AbstractModelClass {
 
     private String role;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
     // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "role_id"),
     //     inverseJoinColumns = @joinColumn(name = "user_id"))
     private List<User> users = new ArrayList<>();

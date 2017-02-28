@@ -2,74 +2,79 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="sk">
 
-    <title>Disc Galaxy</title>
+    <title>Saturn</title>
 
-    <!--/*/ <th:block th:include="fragments/header-includes :: header-includes"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/header/header-includes :: header-includes"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header-content"></th:block> /*/-->
 
-    <h2>Detail disku</h2>
-    <div>
-        <form class="form-horizontal" th:object="${disc}" th:action="@{/disc}" method="post">
-            <input type="hidden" th:field="*{id}"/>
+<nav th:replace="fragments/navigation/navigation"></nav>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Názov:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{title}"/>
+<div class="content-section">
+
+    <div class="container">
+        <h2>Vytvoriť/upraviť film</h2>
+        <div>
+            <form class="form-horizontal" th:object="${disc}" th:action="@{/disc}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Názov:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{title}"/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Originálny názov:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{originalTitle}"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Originálny názov:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{originalTitle}"/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Popis:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{description}"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Popis:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{description}"/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Typ disku:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{type}"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Typ disku:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{type}"/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">URL obrázka:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{imageUrl}"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">URL obrázka:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{imageUrl}"/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Rok:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{year}"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Rok:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{year}"/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Cena:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{price}"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Cena:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" th:field="*{price}"/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <button type="submit" class="btn btn-default">Submit</button>
-            </div>
-        </form>
+                <div class="row">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+<footer th:replace="fragments/footer/footer"></footer>
 
 </body>
 </html>

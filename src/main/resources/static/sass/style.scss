@@ -1,5 +1,9 @@
-body {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  color: purple;
-  background-color: #CDF;
-}
+
+@import "components/general";
+@import "components/header";
+
+@import "components/buttons";
+
+@import "components/navigation";
+
+@import "components/footer";

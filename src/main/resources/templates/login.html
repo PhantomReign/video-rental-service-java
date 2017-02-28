@@ -2,38 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="sk">
 
-    <title>Login Disc Galaxy</title>
+    <title>Login Saturn</title>
 
-    <!--/*/ <th:block th:include="fragments/header-includes :: header-includes"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/header/header-includes :: header-includes"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header-content"></th:block> /*/-->
-    <div th:if="${param.error}">
-        <label style="color:red">Nesprávne meno alebo heslo.</label>
-    </div>
-    <div th:if="${param.logout}">
-        <label>
-            Úspešne ste sa odhlásili.
-        </label>
-    </div>
 
-    <form th:action="@{/login}" method="post">
-
-        <table class="table table-striped">
-            <tr>
-                <td><label> Login : <input type="text" name="username"/> </label></td>
-            </tr>
-            <tr>
-                <td><label> Heslo : <input type="password" name="password"/> </label></td>
-            </tr>
-            <tr>
-                <td> <button type="submit" class="btn btn-default">Prihlásiť sa</button></td>
-            </tr>
-        </table>
-
-    </form>
+<nav th:replace="fragments/navigation/navigation"></nav>
+<div class="content-section">
+    <div th:replace="fragments/authentication/sign-in"></div>
 </div>
+
+<footer th:replace="fragments/footer/footer"></footer>
+
 
 </body>
 </html>

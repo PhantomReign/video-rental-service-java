@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="sk">
 
-    <title>Disc Galaxy</title>
+    <title>Saturn</title>
 
-    <!--/*/ <th:block th:include="fragments/header-includes :: header-includes"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/header/header-includes :: header-includes"></th:block> /*/-->
 </head>
 <body>
+<nav th:replace="fragments/navigation/navigation"></nav>
 
-<div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header-content"></th:block> /*/-->
-</div>
+<header th:replace="fragments/header/header"></header>
+
+<footer th:replace="fragments/footer/footer"></footer>
+
 </body>
 </html>

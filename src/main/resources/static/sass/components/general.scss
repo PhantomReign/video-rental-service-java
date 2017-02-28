@@ -1,0 +1,26 @@
+
+@import "../modules/colors";
+@import "../modules/sizes";
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  width: $full-size;
+  height: $full-size;
+  font-weight: $font-weight-normal;
+  color: $font-color-primary;
+  background-color: $bg-color-primary;
+  font-size: $font-size-normal;
+  line-height: $line-height-normal;
+}
+
+html {
+  width: $full-size;
+  height: $full-size;
+}
+
+.content-section {
+  min-height: -webkit-calc(100% - 183px);
+  min-height:    -moz-calc(100% - 183px);
+  min-height:         calc(100% - 183px);
+}
