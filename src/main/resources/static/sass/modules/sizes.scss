@@ -8,14 +8,27 @@ $font-size-small: 13px;
 $font-size-smallest: 10px;
 $line-height-normal: 1.6em;
 
+$zero-margin: 0;
+$zero-padding: 0;
+
+
 
 // footer
 $font-weight-footer: 500;
 $height-footer-top-part: 7px;
 $height-footer: 83px;
 $padding-footer: 25px;
-$margin-footer: 0;
+$margin-footer: $zero-margin;
 
 // navigation
 $height-nav: 100px;
+
+// header
+$font-weight-header: 700;
+$font-size-header: 80px;
+$max-width-header: 750px;
+$padding-header: 20px;
+$margin-header-left: auto;
+$margin-header-right: 2.5%;
+
 

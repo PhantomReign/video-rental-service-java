@@ -39,17 +39,17 @@ html {
   vertical-align: middle;
 }
 .header .header-content-inner {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(32, 47, 64, 0.71);
   padding: 20px;
   color: white;
-  max-width: 1000px;
+  max-width: 750px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 2.5%;
 }
 .header .header-content-inner h1 {
   margin: 0;
   padding: 0;
-  font-size: 4.5em;
+  font-size: 80px;
   font-weight: 700;
 }
 
@@ -75,6 +75,9 @@ html {
 .navbar .nav li a:focus, .navbar .nav li a:active {
   color: #334455;
   background: white;
+}
+.navbar .nav li a:hover {
+  background: #ffbb57;
 }
 .navbar .nav .dropdown-menu {
   border-radius: 0;

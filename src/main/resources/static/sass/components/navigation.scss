@@ -25,6 +25,11 @@
       background: $bg-color-white;
     }
 
+    &:hover {
+      background: $font-color-secondary;
+      color: $font-color-tertiary
+    }
+
   }
 
   .nav .dropdown-menu {

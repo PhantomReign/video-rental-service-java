@@ -6,6 +6,7 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 
 @Configuration
+@ComponentScan(basePackages = {"com.videorentalservice"})
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private AuthenticationProvider authenticationProvider;
