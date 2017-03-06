@@ -25,6 +25,21 @@ html {
   min-height: calc(100% - 183px);
 }
 
+#form-login-container {
+  display: table;
+  width: 100%;
+}
+#form-login-container #form-login {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0 35%;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
 .header {
   display: table;
   position: relative;
@@ -59,6 +74,10 @@ html {
   color: #ffe3ba;
 }
 
+.btn {
+  border-radius: 0;
+}
+
 .navbar {
   height: 100px;
   background-color: #334455;
@@ -88,7 +107,7 @@ html {
 }
 .navbar .nav .dropdown-menu {
   border-radius: 0;
-  margin-top: 11px;
+  margin-top: 10px;
   padding: 0;
 }
 .navbar .nav .dropdown-menu li {
@@ -112,6 +131,7 @@ html {
 .top-area {
   background-color: #ffbb57;
   list-style: none;
+  height: 30px;
 }
 .top-area div a {
   font-size: 10px;
@@ -128,7 +148,7 @@ html {
 }
 .top-area .dropdown-menu {
   border-radius: 0;
-  margin-top: 0;
+  margin-top: 2px;
   padding: 0;
 }
 .top-area .dropdown-menu li {
@@ -151,18 +171,19 @@ html {
 
 .navigation {
   background-color: #334455;
+  height: 70px;
 }
 
 .navbar-brand {
-  height: 72px;
+  height: 70px;
 }
 .navbar-brand:focus {
   outline: 0;
 }
 
 .navbar-nav {
-  margin-top: 11px;
-  margin-bottom: 11px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .navbar-toggle {

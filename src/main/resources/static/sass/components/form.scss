@@ -1,0 +1,19 @@
+@import "../modules/sizes";
+
+
+#form-login-container {
+  display: table;
+  width: $full-size;
+
+  #form-login {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding: $padding-form;
+  }
+}
+
+
+.form-control {
+  border-radius: 0;
+}

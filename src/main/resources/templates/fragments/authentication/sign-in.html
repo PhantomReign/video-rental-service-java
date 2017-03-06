@@ -5,31 +5,30 @@
 </head>
 <body>
 
-<div class="container" th:fragment="sign-in-form">
-    <div th:if="${param.error ne null}">
-        <label>Nesprávne meno alebo heslo.</label>
-    </div>
-    <div th:if="${param.logout ne null}">
-        <label>
-            Úspešne ste sa odhlásili.
-        </label>
-    </div>
+<div class="content-section" id="form-login-container" th:fragment="sign-in-form">
+    <form id="form-login" class="form" th:action="@{/login}" role="form" method="post" accept-charset="UTF-8">
+        <div th:if="${param.logout ne null}">
+            <label>
+                Úspešne ste sa odhlásili.
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="inputUsername">Meno</label>
+            <input name="username" type="text" class="form-control" id="inputUsername" placeholder="Meno" required='required'/>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="inputPassword">Heslo</label>
+            <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Heslo" required='required'/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block">Prihlásiť sa</button>
+        </div>
 
-    <form th:action="@{/login}" method="post">
-
-        <table class="table table-striped">
-            <tr>
-                <td><label> Login : <input type="text" name="username"/> </label></td>
-            </tr>
-            <tr>
-                <td><label> Heslo : <input type="password" name="password"/> </label></td>
-            </tr>
-            <tr>
-                <td> <button type="submit" class="btn btn-default">Prihlásiť sa</button></td>
-            </tr>
-        </table>
-
+        <div th:if="${param.error ne null}">
+            <label>Nesprávne meno alebo heslo.</label>
+        </div>
     </form>
+
 </div>
 
 </body>

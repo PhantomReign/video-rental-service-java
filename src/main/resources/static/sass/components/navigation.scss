@@ -34,7 +34,7 @@
 
   .nav .dropdown-menu {
     border-radius: 0;
-    margin-top: 11px;
+    margin-top: 10px;
     padding: 0;
 
     li {
@@ -61,6 +61,7 @@
 .top-area{
   background-color: $nav-color-top;
   list-style: none;
+  height: $height-nav-top;
   div a {
     font-size: $font-size-smallest;
     letter-spacing: 1px;
@@ -78,7 +79,7 @@
 
   .dropdown-menu {
     border-radius: 0;
-    margin-top: 0;
+    margin-top: 2px;
     padding: 0;
 
     li {
@@ -104,10 +105,11 @@
 
 .navigation {
   background-color: $nav-color-bottom;
+  height: $height-nav-bottom;
 }
 
 .navbar-brand {
-  height: 72px;
+  height: 70px;
 
   &:focus {
     outline: 0;
@@ -116,8 +118,8 @@
 }
 
 .navbar-nav {
-  margin-top: 11px;
-  margin-bottom: 11px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .navbar-toggle {

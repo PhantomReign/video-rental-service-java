@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-sm-2 col-md-2">
                     <a href="#" th:href="@{/login}" sec:authorize="isAnonymous()">Prihlásiť sa</a>
-                    <li class="dropdown" sec:authorize="isAuthenticated()">
+                    <div class="dropdown" sec:authorize="isAuthenticated()">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span sec:authentication="name"> </span>
                             <b class="caret"></b>
@@ -24,8 +24,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Odhlásiť sa</a></li>
                         </ul>
-                    </li>
-
+                    </div>
                 </div>
             </div>
         </div>
