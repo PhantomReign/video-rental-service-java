@@ -15,38 +15,41 @@
         <div th:if="${not #lists.isEmpty(discs)}">
             <h2>Zoznam filmov</h2>
 
-            <table class="table table-striped">
-                <tr>
-                    <th>Id</th>
-                    <th>Názov</th>
-                    <th>Popis</th>
-                    <th>Žáner</th>
-                    <th>Rok</th>
-                    <th>Cena</th>
+            <table class="table table-striped resultTable" id="movies_table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Názov</th>
+                        <th class="nosort">Popis</th>
+                        <th>Žáner</th>
+                        <th>Rok</th>
+                        <th>Cena</th>
 
-                    <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Detail</th>
-                    <th sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">Editovať</th>
-                    <th sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">Vymazať</th>
-                </tr>
-                <tr th:each="disc : ${discs}">
-                    <td th:text="${disc.id}"><a href="/disc/${disc.id}">Id</a></td>
-                    <td th:text="${disc.title}">Názov</td>
-                    <td th:text="${disc.description}">Popis</td>
-                    <td ><span th:each="genre : *{disc.genres}"><span th:text="${genre.genre}">Žáner</span> </span></td>
-                    <td th:text="${disc.year}">Rok</td>
-                    <td th:text="${disc.price}">Cena</td>
+                        <th class="nosort" sec:authorize="hasAnyAuthority('USER','ADMIN')">Detail</th>
+                        <th class="nosort" sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">Editovať</th>
+                        <th class="nosort" sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">Vymazať</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="disc : ${discs}">
+                        <td th:text="${disc.id}"><a href="/movie/${disc.id}">Id</a></td>
+                        <td th:text="${disc.title}">Názov</td>
+                        <td th:text="${disc.description}">Popis</td>
+                        <td ><span th:each="genre : *{disc.genres}"><span th:text="${genre.genre}">Žáner</span> </span></td>
+                        <td th:text="${disc.year}">Rok</td>
+                        <td th:text="${disc.price}">Cena</td>
 
-                    <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
-                        <a th:href="${'/disc/' + disc.id}">Detail</a>
-                    </td>
-                    <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
-                        <a th:href="${'/disc/edit/' + disc.id}">Editovať</a>
-                    </td>
-                    <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
-                        <a th:href="${'/disc/delete/' + disc.id}">Vymazať</a>
-                    </td>
-
-                </tr>
+                        <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                            <a th:href="${'/movie/' + disc.id}">Detail</a>
+                        </td>
+                        <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
+                            <a th:href="${'/movie/edit/' + disc.id}">Editovať</a>
+                        </td>
+                        <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
+                            <a th:href="${'/movie/delete/' + disc.id}">Vymazať</a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
 
         </div>

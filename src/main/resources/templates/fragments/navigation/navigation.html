@@ -47,21 +47,21 @@
                 <li class="active"><a href="#" th:href="@{/}">Domov</a></li>
 
 
-                <li sec:authorize="isAnonymous() or hasAuthority('USER')"><a href="#" th:href="@{/discs}">Filmy</a></li>
+                <li sec:authorize="isAnonymous() or hasAuthority('USER')"><a href="#" th:href="@{/movies}">Filmy</a></li>
 
 
                 <li class="dropdown" sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filmy <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" th:href="@{/discs}">Zoznam</a></li>
-                        <li><a href="#" th:href="@{/disc/new}">Pridaj</a></li>
+                        <li><a href="#" th:href="@{/movies}">Zoznam</a></li>
+                        <li><a href="#" th:href="@{/movie/new}">Pridaj</a></li>
                     </ul>
                 </li>
                 <li class="dropdown" sec:authorize="hasAuthority('SUPER_ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Užívatelia <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="">Zoznam</a></li>
-                        <li><a href="">Pridaj</a></li>
+                        <li><a href="" th:href="@{/users}">Zoznam</a></li>
+                        <li><a href="" th:href="@{/user/new}">Pridaj</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Kontakt</a></li>

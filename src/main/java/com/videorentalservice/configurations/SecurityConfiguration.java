@@ -23,6 +23,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @ComponentScan(basePackages = {"com.videorentalservice"})
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Autowired
     private AuthenticationProvider authenticationProvider;
 
     @Autowired
@@ -55,12 +56,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/","/discs","/disc/show/*","/console/*","/h2-console/**").permitAll()
+                .authorizeRequests().antMatchers("/","/movies","/movie/show/*","/console/*","/h2-console/**").permitAll()
+                .antMatchers("/user/**").hasRole("SUPER_ADMIN")
+                .antMatchers("/movie/**").hasAnyRole("SUPER_ADMIN", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()
-                .logout().permitAll();
+                .logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/forbidden");
 
         http.csrf().disable();
         http.headers().frameOptions().disable();

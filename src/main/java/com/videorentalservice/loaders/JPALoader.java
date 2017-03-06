@@ -136,19 +136,19 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private void loadRoles() {
         Role superAdminRole = new Role();
-        superAdminRole.setRole("SUPER_ADMIN");
+        superAdminRole.setRoleName("SUPER_ADMIN");
         roleService.saveOrUpdate(superAdminRole);
-        log.info("Saved role " + superAdminRole.getRole());
+        log.info("Saved role " + superAdminRole.getRoleName());
 
         Role adminRole = new Role();
-        adminRole.setRole("ADMIN");
+        adminRole.setRoleName("ADMIN");
         roleService.saveOrUpdate(adminRole);
-        log.info("Saved role " + adminRole.getRole());
+        log.info("Saved role " + adminRole.getRoleName());
 
         Role userRole = new Role();
-        userRole.setRole("USER");
+        userRole.setRoleName("USER");
         roleService.saveOrUpdate(userRole);
-        log.info("Saved role " + userRole.getRole());
+        log.info("Saved role " + userRole.getRoleName());
     }
 
     private void loadUsers() {
@@ -224,7 +224,7 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
         List<User> users = (List<User>) userService.listAll();
 
         roles.forEach(role -> {
-            switch (role.getRole()) {
+            switch (role.getRoleName()) {
                 case "SUPER_ADMIN":
                     users.forEach(user -> {
                         if (user.getUsername().equals("admin")) {

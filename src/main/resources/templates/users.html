@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>Saturn</title>
+
+    <!--/*/ <th:block th:include="fragments/header/header-includes :: header-includes"></th:block> /*/-->
+</head>
+<body>
+
+<nav th:replace="fragments/navigation/navigation"></nav>
+
+<div class="content-section">
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(users)}">
+            <h2>Zoznam užívateľov</h2>
+
+            <table class="table table-striped" id="user_table" sec:authorize="hasAuthority('SUPER_ADMIN')">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Meno</th>
+                    <th>Heslo</th>
+                    <th>Typ</th>
+
+                    <th>Detail</th>
+                    <th>Editovať</th>
+                    <th>Vymazať</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"><a href="/user/${user.id}">Id</a></td>
+                    <td th:text="${user.username}">Meno</td>
+                    <td th:text="${user.encryptedPassword}">Heslo</td>
+                    <td ><span th:each="role : *{user.roles}"><span th:text="${role.roleName}">Typ</span> </span></td>
+
+                    <td>
+                        <a th:href="${'/user/' + user.id}">Detail</a>
+                    </td>
+                    <td>
+                        <a th:href="${'/user/edit/' + user.id}">Editovať</a>
+                    </td>
+                    <td>
+                        <a th:href="${'/user/delete/' + user.id}">Vymazať</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<footer th:replace="fragments/footer/footer"></footer>
+
+</body>
+</html>

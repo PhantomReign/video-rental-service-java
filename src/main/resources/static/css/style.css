@@ -4,7 +4,7 @@ body {
   height: 100%;
   font-weight: 300;
   color: #404040;
-  background-color: #dddddd;
+  background-color: #fbf3e9;
   font-size: 16px;
   line-height: 1.6em;
 }
@@ -78,6 +78,7 @@ html {
 }
 .navbar .nav li a:hover {
   background: #ffbb57;
+  color: #334455;
 }
 .navbar .nav .dropdown-menu {
   border-radius: 0;

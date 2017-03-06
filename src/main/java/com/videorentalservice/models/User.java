@@ -66,7 +66,6 @@ public class User extends AbstractModelClass {
         this.enabled = enabled;
     }
 
-
     public List<Role> getRoles() {
         return roles;
     }

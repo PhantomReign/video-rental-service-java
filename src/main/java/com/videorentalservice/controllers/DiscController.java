@@ -22,44 +22,39 @@ public class DiscController {
         this.discService = discService;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(){
-        return "login";
-    }
-
-    @RequestMapping(value = "/discs", method = RequestMethod.GET)
+    @RequestMapping(value = "/movies", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("discs", discService.listAll());
         return "discs";
     }
 
-    @RequestMapping("disc/{id}")
+    @RequestMapping("movie/{id}")
     public String showDisc(@PathVariable Integer id, Model model){
         model.addAttribute("disc", discService.getById(id));
         return "disc-show";
     }
 
-    @RequestMapping("disc/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model){
+    @RequestMapping("movie/edit/{id}")
+    public String editDisc(@PathVariable Integer id, Model model){
         model.addAttribute("disc", discService.getById(id));
         return "disc-form";
     }
 
-    @RequestMapping("disc/new")
+    @RequestMapping("movie/new")
     public String newDisc(Model model){
         model.addAttribute("disc", new Disc());
         return "disc-form";
     }
 
-    @RequestMapping(value = "disc", method = RequestMethod.POST)
+    @RequestMapping(value = "movie", method = RequestMethod.POST)
     public String saveDisc(Disc disc){
         discService.saveOrUpdate(disc);
-        return "redirect:/disc/" + disc.getId();
+        return "redirect:/movie/" + disc.getId();
     }
 
-    @RequestMapping("disc/delete/{id}")
-    public String delete(@PathVariable Integer id){
+    @RequestMapping("movie/delete/{id}")
+    public String deleteDisc(@PathVariable Integer id){
         discService.delete(id);
-        return "redirect:/discs";
+        return "redirect:/movies";
     }
 }
