@@ -1,10 +1,11 @@
 
 @import "../modules/colors";
 @import "../modules/sizes";
+@import "../modules/fonts";
 
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-family-body;
   width: $full-size;
   height: $full-size;
   font-weight: $font-weight-normal;
@@ -12,6 +13,10 @@ body {
   background-color: $bg-color-primary;
   font-size: $font-size-normal;
   line-height: $line-height-normal;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: $font-family-h;
 }
 
 html {
