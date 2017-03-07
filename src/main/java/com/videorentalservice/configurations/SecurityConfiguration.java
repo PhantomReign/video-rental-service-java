@@ -57,8 +57,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests().antMatchers("/","/movies","/movie/show/*","/console/*","/h2-console/**").permitAll()
-                .antMatchers("/user/**").hasRole("SUPER_ADMIN")
-                .antMatchers("/movie/**").hasAnyRole("SUPER_ADMIN", "ADMIN")
+                .antMatchers("/user/**", "/users").hasAuthority("SUPER_ADMIN")
+                .antMatchers("/movie/**").hasAnyAuthority("SUPER_ADMIN", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

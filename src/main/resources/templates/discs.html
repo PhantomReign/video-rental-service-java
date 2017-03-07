@@ -15,40 +15,37 @@
         <div th:if="${not #lists.isEmpty(discs)}">
             <h2>Zoznam filmov</h2>
 
-            <table class="table table-striped resultTable" id="movies_table">
+            <table class="table table-striped tab" id="movies_table">
                 <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Názov</th>
-                        <th class="nosort">Popis</th>
-                        <th>Žáner</th>
-                        <th>Rok</th>
-                        <th>Cena</th>
+                <tr>
+                    <th>Id</th>
+                    <th>Názov</th>
+                    <th>Originálny názov</th>
+                    <th>Žáner</th>
+                    <th>Rok</th>
+                    <th>Cena</th>
 
-                        <th class="nosort" sec:authorize="hasAnyAuthority('USER','ADMIN')">Detail</th>
-                        <th class="nosort" sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">Editovať</th>
-                        <th class="nosort" sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">Vymazať</th>
-                    </tr>
+                    <th class="nosort" sec:authorize="hasAnyAuthority('USER','ADMIN','SUPER_ADMIN')"><em class="fa fa-info-circle"></em></th>
+                    <th class="nosort" sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')"><em class="fa fa-cog"></em></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="disc : ${discs}">
-                        <td th:text="${disc.id}"><a href="/movie/${disc.id}">Id</a></td>
-                        <td th:text="${disc.title}">Názov</td>
-                        <td th:text="${disc.description}">Popis</td>
-                        <td ><span th:each="genre : *{disc.genres}"><span th:text="${genre.genre}">Žáner</span> </span></td>
-                        <td th:text="${disc.year}">Rok</td>
-                        <td th:text="${disc.price}">Cena</td>
+                <tr th:each="disc : ${discs}">
+                    <td th:text="${disc.id}"><a href="">Id</a></td>
+                    <td th:text="${disc.title}">Názov</td>
+                    <td th:text="${disc.originalTitle}">Originálny názov</td>
+                    <td ><span th:each="genre : *{disc.genres}"><span th:text="${genre.genre}">Žáner</span> </span></td>
+                    <td th:text="${disc.year}">Rok</td>
+                    <td th:text="${disc.price}">Cena</td>
 
-                        <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
-                            <a th:href="${'/movie/' + disc.id}">Detail</a>
-                        </td>
-                        <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
-                            <a th:href="${'/movie/edit/' + disc.id}">Editovať</a>
-                        </td>
-                        <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
-                            <a th:href="${'/movie/delete/' + disc.id}">Vymazať</a>
-                        </td>
-                    </tr>
+                    <td sec:authorize="hasAnyAuthority('USER','ADMIN','SUPER_ADMIN')">
+                        <a class="btn btn-default" th:href="${'/movie/' + disc.id}"><em class="fa fa-info"></em></a>
+                    </td>
+                    <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
+                        <a class="btn btn-default" th:href="${'/movie/edit/' + disc.id}"><em class="fa fa-pencil"></em></a>
+                        <a class="btn btn-danger" th:href="${'/movie/delete/' + disc.id}"><em class="fa fa-trash"></em></a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
 

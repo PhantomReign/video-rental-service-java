@@ -23,9 +23,8 @@
                     <th>Heslo</th>
                     <th>Typ</th>
 
-                    <th>Detail</th>
-                    <th>Editovať</th>
-                    <th>Vymazať</th>
+                    <th class="nosort"><em class="fa fa-info-circle"></em></th>
+                    <th class="nosort"><em class="fa fa-cog"></em></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,13 +35,11 @@
                     <td ><span th:each="role : *{user.roles}"><span th:text="${role.roleName}">Typ</span> </span></td>
 
                     <td>
-                        <a th:href="${'/user/' + user.id}">Detail</a>
+                        <a class="btn btn-default" th:href="${'/user/' + user.id}"><em class="fa fa-info"></em></a>
                     </td>
                     <td>
-                        <a th:href="${'/user/edit/' + user.id}">Editovať</a>
-                    </td>
-                    <td>
-                        <a th:href="${'/user/delete/' + user.id}">Vymazať</a>
+                        <a class="btn btn-default" th:href="${'/user/edit/' + user.id}"><em class="fa fa-pencil"></em></a>
+                        <a class="btn btn-danger" th:href="${'/user/delete/' + user.id}"><em class="fa fa-trash"></em></a>
                     </td>
                 </tr>
                 </tbody>

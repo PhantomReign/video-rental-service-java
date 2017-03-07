@@ -1,0 +1,30 @@
+@import "../modules/colors";
+
+.table {
+  tbody, tfoot {
+    tr {
+      td, th {
+        border-top: 1px solid $border-color-dark;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  thead {
+    tr {
+      td {
+        vertical-align: middle;
+        border-top: 1px solid $border-color-dark;
+      }
+      th {
+        vertical-align: middle;
+        border-top: 1px solid $border-color-dark;
+        border-bottom: 2px solid $border-color-dark;
+      }
+    }
+  }
+}
+
+tbody {
+  background-color: $bg-color-table-body;
+}

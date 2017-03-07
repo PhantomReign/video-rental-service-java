@@ -40,6 +40,24 @@ html {
   border-radius: 0;
 }
 
+.table tbody tr td, .table tbody tr th, .table tfoot tr td, .table tfoot tr th {
+  border-top: 1px solid #202f40;
+  vertical-align: middle;
+}
+.table thead tr td {
+  vertical-align: middle;
+  border-top: 1px solid #202f40;
+}
+.table thead tr th {
+  vertical-align: middle;
+  border-top: 1px solid #202f40;
+  border-bottom: 2px solid #202f40;
+}
+
+tbody {
+  background-color: #ffd69b;
+}
+
 .header {
   display: table;
   position: relative;
