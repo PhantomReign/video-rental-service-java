@@ -167,10 +167,13 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
         user3.setPassword("password");
         userService.saveOrUpdate(user3);
 
-        User user4 = new User();
-        user4.setUsername("user");
-        user4.setPassword("user");
-        userService.saveOrUpdate(user4);
+        for (int i = 0; i < 20; i++) {
+            User user = new User();
+            user.setUsername("user " + i);
+            user.setPassword("user " + i);
+            userService.saveOrUpdate(user);
+        }
+
     }
 
     private void loadAndAssignBooking() {

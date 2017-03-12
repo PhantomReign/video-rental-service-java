@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head lang="en">
+<head lang="sk">
 
     <title>Saturn</title>
 
@@ -39,7 +39,7 @@
                     <td th:text="${disc.price}">Cena</td>
 
                     <td sec:authorize="hasAnyAuthority('USER','ADMIN','SUPER_ADMIN')">
-                        <a class="btn btn-default" th:href="${'/movie/' + disc.id}"><em class="fa fa-info"></em></a>
+                        <a class="btn btn-default" th:href="${'/movie/show/' + disc.id}"><em class="fa fa-info"></em></a>
                     </td>
                     <td sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">
                         <a class="btn btn-default" th:href="${'/movie/edit/' + disc.id}"><em class="fa fa-pencil"></em></a>

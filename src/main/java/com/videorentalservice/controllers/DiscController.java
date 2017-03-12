@@ -28,7 +28,7 @@ public class DiscController {
         return "discs";
     }
 
-    @RequestMapping("movie/{id}")
+    @RequestMapping("movie/show/{id}")
     public String showDisc(@PathVariable Integer id, Model model){
         model.addAttribute("disc", discService.getById(id));
         return "disc-show";

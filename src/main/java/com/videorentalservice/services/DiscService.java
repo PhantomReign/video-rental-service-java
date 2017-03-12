@@ -5,6 +5,6 @@ import com.videorentalservice.models.Disc;
 /**
  * Created by Rave on 18.02.2017.
  */
-public interface DiscService extends CRUDService<Disc>{
+public interface DiscService extends JpaService<Disc> {
 
 }

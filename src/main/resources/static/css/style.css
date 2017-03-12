@@ -40,6 +40,45 @@ html {
   border-radius: 0;
 }
 
+.search-form {
+  border: 1px solid #202f40;
+  border-radius: 0;
+  background-color: white;
+}
+.search-form button {
+  background: none;
+  box-shadow: none;
+  border: 0;
+  color: #334455;
+  border-left: 1px solid #202f40;
+}
+.search-form button:hover {
+  box-shadow: none;
+}
+.search-form button:focus {
+  outline: 0;
+}
+.search-form input {
+  border: 0;
+  box-shadow: none;
+}
+.search-form input:focus {
+  box-shadow: none;
+}
+
+.combo-form {
+  border: 1px solid #202f40;
+  border-radius: 0;
+  background-color: white;
+}
+.combo-form select {
+  border: 0;
+  background-color: white;
+}
+.combo-form select:focus {
+  box-shadow: none;
+}
+
 .table tbody tr td, .table tbody tr th, .table tfoot tr td, .table tfoot tr th {
   border-top: 1px solid #202f40;
   vertical-align: middle;

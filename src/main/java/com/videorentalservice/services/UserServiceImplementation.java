@@ -1,10 +1,13 @@
 package com.videorentalservice.services;
 
+import com.querydsl.core.types.Predicate;
 import com.videorentalservice.models.User;
 import com.videorentalservice.repositories.UserRepository;
 import com.videorentalservice.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +45,11 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    public Page<User> listAllByPage(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
+    @Override
     public User getById(Integer id) {
         return userRepository.findOne(id);
     }
@@ -62,5 +70,10 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public Page<User> findAll(Predicate predicate, Pageable pageable) {
+        return userRepository.findAll(predicate, pageable);
     }
 }

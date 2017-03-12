@@ -1,4 +1,5 @@
 @import "../modules/sizes";
+@import "../modules/colors";
 
 
 #form-login-container {
@@ -16,4 +17,54 @@
 
 .form-control {
   border-radius: 0;
+}
+
+
+.search-form {
+  border: 1px solid $border-color-dark;
+  border-radius: 0;
+  background-color: $bg-color-white;
+
+  button{
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: $font-color-tertiary;
+    border-left: 1px solid $border-color-dark;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  input{
+    border: 0;
+    box-shadow: none;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+}
+
+
+.combo-form {
+  border: 1px solid $border-color-dark;
+  border-radius: 0;
+  background-color: $bg-color-white;
+
+  select {
+    border: 0;
+    background-color: $bg-color-white;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
 }

@@ -4,6 +4,8 @@ import com.videorentalservice.models.Genre;
 import com.videorentalservice.repositories.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,6 +29,11 @@ public class GenreServiceImplementation implements GenreService {
         List<Genre> genres = new ArrayList<>();
         genreRepository.findAll().forEach(genres::add);
         return genres;
+    }
+
+    @Override
+    public Page<Genre> listAllByPage(Pageable pageable) {
+        return genreRepository.findAll(pageable);
     }
 
     @Override

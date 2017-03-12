@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data">
+<head lang="sk">
 
     <title>Saturn</title>
 
@@ -15,11 +16,45 @@
         <div th:if="${not #lists.isEmpty(users)}">
             <h2>Zoznam užívateľov</h2>
 
-            <table class="table table-striped" id="user_table" sec:authorize="hasAuthority('SUPER_ADMIN')">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <form name="roleForm" th:action="@{/users}" class="combo-form">
+                            <select class="form-control" name="roles" onchange="roleForm.submit()">
+                                <option value=""></option>
+                                <option th:each="role : ${roles}"
+                                        th:value="${role.id}"
+                                        th:text="${role.roleName}"
+                                        th:selected="${#httpServletRequest.getParameter('roles')} == ${role.id}">
+                                    Typ
+                                </option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 text-center">
+                    <form class="form-search form-horizontal search-form" th:action="@{/users}">
+                        <div class="input-group">
+                            <input class="form-control" th:value="${#httpServletRequest.getParameter('username')}" type="text" name="username" placeholder="Hľadať užívateľa..." />
+
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-sm-4">
+
+                </div>
+            </div>
+
+            <table class="table table-striped" id="" sec:authorize="hasAuthority('SUPER_ADMIN')">
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Meno</th>
+                    <th><a sd:pagination-sort="id">ID</a></th>
+                    <th><a sd:pagination-sort="username">Meno</a></th>
                     <th>Heslo</th>
                     <th>Typ</th>
 
@@ -29,13 +64,13 @@
                 </thead>
                 <tbody>
                 <tr th:each="user : ${users}">
-                    <td th:text="${user.id}"><a href="/user/${user.id}">Id</a></td>
+                    <td th:text="${user.id}">Id</td>
                     <td th:text="${user.username}">Meno</td>
                     <td th:text="${user.encryptedPassword}">Heslo</td>
                     <td ><span th:each="role : *{user.roles}"><span th:text="${role.roleName}">Typ</span> </span></td>
 
                     <td>
-                        <a class="btn btn-default" th:href="${'/user/' + user.id}"><em class="fa fa-info"></em></a>
+                        <a class="btn btn-default" th:href="${'/user/show/' + user.id}"><em class="fa fa-info"></em></a>
                     </td>
                     <td>
                         <a class="btn btn-default" th:href="${'/user/edit/' + user.id}"><em class="fa fa-pencil"></em></a>
@@ -44,6 +79,14 @@
                 </tr>
                 </tbody>
             </table>
+
+            <nav class="text-center">
+                <ul class="pagination" sd:pagination="full">
+                    <!-- Pagination created by the Thymeleaf Spring Data dialect, this content is just for mockup -->
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </nav>
 
         </div>
     </div>

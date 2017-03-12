@@ -3,6 +3,8 @@ package com.videorentalservice.services;
 import com.videorentalservice.models.Booking;
 import com.videorentalservice.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +28,11 @@ public class BookingServiceImplementation implements BookingService {
         List<Booking> bookings = new ArrayList<>();
         bookingRepository.findAll().forEach(bookings::add);
         return bookings;
+    }
+
+    @Override
+    public Page<Booking> listAllByPage(Pageable pageable) {
+        return bookingRepository.findAll(pageable);
     }
 
     @Override
