@@ -24,11 +24,15 @@ public class Disc extends AbstractModelClass {
     private Booking booking;
 
     private String title;
+    private String subTitle;
     private String originalTitle;
+    private String originalSubTitle;
     @Size(max = 1000)
     private String description;
     private String type;
     private String imageUrl;
+    private String imageBGUrl;
+    private String videoUrl;
     private Integer year;
     private BigDecimal price;
 
@@ -74,6 +78,15 @@ public class Disc extends AbstractModelClass {
         this.title = title;
     }
 
+    // SUBTITLE
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
     // ORIG. TITLE
     public String getOriginalTitle() {
         return originalTitle;
@@ -81,6 +94,15 @@ public class Disc extends AbstractModelClass {
 
     public void setOriginalTitle(String originalTitle) {
         this.originalTitle = originalTitle;
+    }
+
+    // ORIG. SUBTITLE
+    public String getOriginalSubTitle() {
+        return originalSubTitle;
+    }
+
+    public void setOriginalSubTitle(String originalSubTitle) {
+        this.originalSubTitle = originalSubTitle;
     }
 
     // DESCRIPTION
@@ -108,6 +130,24 @@ public class Disc extends AbstractModelClass {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    // IMG BG URL
+    public String getImageBGUrl() {
+        return imageBGUrl;
+    }
+
+    public void setImageBGUrl(String imageBGUrl) {
+        this.imageBGUrl = imageBGUrl;
+    }
+
+    // VIDEO URL
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
     }
 
     // YEAR

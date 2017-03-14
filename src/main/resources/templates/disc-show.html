@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="sk">
 
     <title>Saturn</title>
@@ -12,63 +12,52 @@
 
 <div class="content-section">
 
-    <div class="container">
-        <h2>Detail filmu</h2>
-        <div>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Id:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${disc.id}">Id</p></div>
-                </div>
+    <div class="movie-card">
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Názov:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${disc.title}">Názov</p></div>
-                </div>
+        <div class="container">
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Originálny názov:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${disc.originalTitle}">Originálny názov</p></div>
-                </div>
+            <div class="movie-header col-md-12">
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Popis:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${disc.description}">Popis</p>
+                <img src="" th:src="${disc.imageBGUrl}" alt="cover-bg" class="cover-bg" />
+
+                <div class="movie-header-details row">
+                    <div class="movie-header-title col-md-8 text-center">
+                        <div class="movie-title">
+                            <h1 th:text="${disc.subTitle} != '' ? ${disc.title} + ': ' + ${disc.subTitle} : ${disc.title}">Title</h1>
+                        </div>
+                        <div class="movie-subtitle">
+                            <h3 th:text="${disc.originalSubTitle} != '' ? ${disc.originalTitle} + ': ' + ${disc.originalSubTitle} : ${disc.originalTitle}">SubTitle</h3>
+                        </div>
+                    </div>
+                    <div class="movie-header-description col-md-4 text-center">
+                        <span th:classappend="${disc.type} == 'DVD' ? dvd-tag : blu-ray-tag"
+                              th:text="${disc.type}">Typ</span>
+                        <span class="year-tag" th:text="${disc.year}">Rok</span>
+                        <span class="price-tag" th:text="${disc.price} + ' &euro;'">Cena</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Typ disku:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${disc.type}">Typ disku</p></div>
+            <div class="movie-body col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <img src="" th:src="${disc.imageUrl}" alt="cover" class="cover" />
+                    <p class="text-center id-text" th:inline="text"
+                       sec:authorize="hasAnyAuthority('ADMIN','SUPER_ADMIN')">ID: #[[${disc.id}]]</p>
+                    <span class="tag" th:each="genre : ${disc.genres}" th:text="${genre.genre}">Genre</span>
                 </div>
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Rok:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${disc.year}">Rok</p></div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Cena:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${disc.price}">Cena</p>
+                <div class="col-lg-9 col-md-9 col-sm-6 description">
+                    <p th:text="${disc.description}">Description</p>
+                    <div class="text-center">
+                        <iframe class="movie-frame" width="560" height="315" src="" th:src="${disc.videoUrl}" allowfullscreen="">
+                        </iframe>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Url obrázka:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${disc.imageUrl}">Url obrázka</p>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
+
 <footer th:replace="fragments/footer/footer"></footer>
 
 </body>
