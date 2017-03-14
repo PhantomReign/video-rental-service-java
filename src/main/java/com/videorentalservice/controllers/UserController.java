@@ -4,6 +4,7 @@ import com.videorentalservice.models.User;
 import com.videorentalservice.services.RoleService;
 import com.videorentalservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
@@ -44,12 +45,11 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String list(Model model,
                        @QuerydslPredicate(root = User.class) Predicate predicate,
-                       @PageableDefault(sort = { "id", "username" }) Pageable pageable,
+                       @PageableDefault(sort = { "id", "username" }, value = 8) Pageable pageable,
                        @RequestParam MultiValueMap<String, String> parameters) {
 
         ServletUriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequest();
         builder.replaceQueryParam("page");
-
         model.addAttribute("users", userService.findAll(predicate, pageable));
         model.addAttribute("roles", roleService.listAll());
 

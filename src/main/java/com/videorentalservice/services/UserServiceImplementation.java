@@ -45,11 +45,6 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public Page<User> listAllByPage(Pageable pageable) {
-        return userRepository.findAll(pageable);
-    }
-
-    @Override
     public User getById(Integer id) {
         return userRepository.findOne(id);
     }

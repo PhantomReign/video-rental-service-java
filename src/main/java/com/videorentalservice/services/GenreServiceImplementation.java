@@ -1,5 +1,6 @@
 package com.videorentalservice.services;
 
+import com.querydsl.core.types.Predicate;
 import com.videorentalservice.models.Genre;
 import com.videorentalservice.repositories.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class GenreServiceImplementation implements GenreService {
     }
 
     @Override
-    public Page<Genre> listAllByPage(Pageable pageable) {
-        return genreRepository.findAll(pageable);
+    public Page<Genre> findAll(Predicate predicate, Pageable pageable) {
+        return genreRepository.findAll(predicate, pageable);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.videorentalservice.services;
 
+import com.querydsl.core.types.Predicate;
 import com.videorentalservice.models.Disc;
 import com.videorentalservice.repositories.DiscRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class DiscServiceImplementation implements DiscService {
     }
 
     @Override
-    public Page<Disc> listAllByPage(Pageable pageable) {
-        return discRepository.findAll(pageable);
+    public Page<Disc> findAll(Predicate predicate, Pageable pageable) {
+        return discRepository.findAll(predicate, pageable);
     }
 
     @Override

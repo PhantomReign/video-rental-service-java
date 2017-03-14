@@ -92,6 +92,54 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
 
         log.info("Saved disc - id: " + lionKingDisc.getId() + " - name: " + lionKingDisc.getTitle());
 
+        Disc lionKing2Disc = new Disc();
+        lionKing2Disc.setTitle("Leví kráľ 2: Simbova pýcha");
+        lionKing2Disc.setOriginalTitle("The Lion King 2: Simba's Pride");
+        lionKing2Disc.setDescription("V Serengeti pokojne vládne mierumilovný Mufasov syn Simba. Avšak za hranicami jeho kráľovstva žije vo vyhnanstve levica Zara, družka zlého Skara a pripravuje sa na svoj krvavý návrat do Simbovej ríše. Nástrojom jej pomsty a zároveň Simbovým vrahom sa má stať jej syn Kovu. Simbova krásna dcéra Kiara, budúca dedička trónu, je veľmi tvrdohlavá. Rozhodne sa tajne ujsť z domova, aby na vlastnej koži spoznala a preskúmala prísne zakázanú Vonkajšiu krajinu - zem za hranicami Simbovej ríše. Na svojej výprave sa stretne s rozmarným Kovu, ktorý ju zachráni z plameňov a zamiluje sa do nej. Kiara a Kovu poznávajú, že len oni môžu urovnať svár medzi dvoma znepriatelenými kráľovstvami a zároveň obhájiť aj svoju lásku.");
+        lionKing2Disc.setType("DVD");
+        lionKing2Disc.setImageUrl("http://pisces.bbystatic.com//image2/BestBuy_US/images/products/4798/4798922_sa.jpg");
+        lionKing2Disc.setYear(1998);
+        lionKing2Disc.setPrice(new BigDecimal("0.50"));
+        discRepository.save(lionKing2Disc);
+
+        log.info("Saved disc - id: " + lionKing2Disc.getId() + " - name: " + lionKing2Disc.getTitle());
+
+        Disc xmen = new Disc();
+        xmen.setTitle("X-Men: Apokalypsa");
+        xmen.setOriginalTitle("X-Men: Apocalypse");
+        xmen.setDescription("Od počiatku civilizácie bol uctievaný ako boh. Apocalypse, prvý a najsilnejší z mutantov marvelovského sveta X-Menov načerpal silu ostatných mutantov a stal sa tak nesmrteľným a neporaziteľným. Prebudil sa po tisíc rokoch a je rozčarovaný zo sveta, ktorý nachádza. Regrutuje tím mutantov vrátane sklamaného Magneta (Michael Fassbender) s cieľom očistiť ľudstvo a nastoliť nový svetový poriadok, ktorému chce vládnuť. Osud Krajina tak visí na vlásku. Raven (Jennifer Lawrencová) s pomocou profesora X (James McAvoy) stane v čele tíme mladých X-Menov, aby spoločne zastavili svojho najväčšieho nepriateľa a zachránili ľudstvo pred úplným zánikom.");
+        xmen.setType("DVD");
+        xmen.setImageUrl("https://images-na.ssl-images-amazon.com/images/I/61oPYII0sAL.jpg");
+        xmen.setYear(2016);
+        xmen.setPrice(new BigDecimal("0.50"));
+        discRepository.save(xmen);
+
+        log.info("Saved disc - id: " + xmen.getId() + " - name: " + xmen.getTitle());
+
+        Disc mulan = new Disc();
+        mulan.setTitle("Legenda o Mulan");
+        mulan.setOriginalTitle("Mulan");
+        mulan.setDescription("Kočovníci zo severu napadli ľudí z centrálnych plání a cisár vydáva rozkaz, aby muži nastúpili do zbrane. Mladé dievča, Mulan, osedlá koňa a odchádza za úsvitu z domu, aby bojovala v armáde Namiesto svojho chorého otca. Prestrojená za muža bojuje dlhých dvanásť rokov a spoznáva, čo je to priatelstvo, smrť na bojisku i láska. Nové filmové spracovanie tradičnej činskej legendy o dievčati Mulan, ktoré sa stalo slávnym generálom.");
+        mulan.setType("DVD");
+        mulan.setImageUrl("https://s-media-cache-ak0.pinimg.com/736x/a0/48/cc/a048cc8963e6a5548e75a4c3026581e8.jpg");
+        mulan.setYear(1998);
+        mulan.setPrice(new BigDecimal("0.50"));
+        discRepository.save(mulan);
+
+        log.info("Saved disc - id: " + mulan.getId() + " - name: " + mulan.getTitle());
+
+        Disc killbill = new Disc();
+        killbill.setTitle("Kill Bill");
+        killbill.setOriginalTitle("Kill Bill: Vol. 1");
+        killbill.setDescription("Bývalá členka špičkového zabijáckeho komanda sa rozhodne navždy skončiť s minulosťou a chce sa vydať. Jej svadobný deň sa však zmení na krvavé jatky v okamihu, keď na ňu zaútočí jej bývalý šéf Bill a pokúsi sa ju zabiť. Mladá žena však nezomrie, i keď si to všetci myslia: šťastnou náhodou vražedný útok prežije, ale upadne do kómy. Po piatich mučivo dlhých rokoch sa vracia z temného prahu smrti s jedinou myšlienkou: pomstiť sa všetkým, ktorí jej ublížili, bez ohľadu na to, čo ich k tomu viedlo. Ku všetkému odhodlaná hrdinka, ktorá si hovorí “Nevesta”, však najprv musí zistiť kto je proti nej – a tiež to, či neexistuje niekto, kto by mohol stáť na jej strane.");
+        killbill.setType("DVD");
+        killbill.setImageUrl("https://s-media-cache-ak0.pinimg.com/736x/e7/04/5a/e7045a78ea2fab2bfe42aa7406247904.jpg");
+        killbill.setYear(2003);
+        killbill.setPrice(new BigDecimal("0.50"));
+        discRepository.save(killbill);
+
+        log.info("Saved disc - id: " + mulan.getId() + " - name: " + mulan.getTitle());
+
         Disc johnWickDisc = new Disc();
         johnWickDisc.setTitle("John Wick");
         johnWickDisc.setOriginalTitle("John Wick");
@@ -103,6 +151,42 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
         discRepository.save(johnWickDisc);
 
         log.info("Saved Disc - id: " + johnWickDisc.getId() + " - name: " + johnWickDisc.getTitle());
+
+        Disc v = new Disc();
+        v.setTitle("V ako Vendetta");
+        v.setOriginalTitle("V for Vendetta");
+        v.setDescription("Príbeh sa odohráva v postkatastrofickej Británii drvenej totalitným režimom. Tajomný pomstiteľ vedie tvrdý odhodlaný boj proti totalitnej spoločnosti. Keď zachráni mladú ženu zo spárov tajnej polície, nachádza v nej nového spojenca.");
+        v.setType("Blu-Ray");
+        v.setImageUrl("https://displate.com/displates/2014-09-16/c40b36775d960f6468fae704958a6015.jpg?w=357&h=500&v=3");
+        v.setYear(2005);
+        v.setPrice(new BigDecimal("0.70"));
+        discRepository.save(v);
+
+        log.info("Saved Disc - id: " + v.getId() + " - name: " + v.getTitle());
+
+        Disc ripd = new Disc();
+        ripd.setTitle("R.I.P.D");
+        ripd.setOriginalTitle("R.I.P.D");
+        ripd.setDescription("Detektíva Nicka smrteľne zasiahnu pri jednej akcii. No na druhom svete ho už čaká policajná dôstojníčka, ktorá mu ponúkne prácu v Útvare rozhodne neživých agentov. Bude sa môcť vrátiť na Zem a likvidovať zločincov, ktorí už dávno majú byť na onom svete. Nezvyčajný tím policajtov sa ocitá pred najväčšou bezpečnostnou krízou.");
+        ripd.setType("Blu-Ray");
+        ripd.setImageUrl("http://images.desimartini.com/media/main/movie_poster_detail/68875146-2309-45b3-8699-514c848dddcc.jpg");
+        ripd.setYear(2013);
+        ripd.setPrice(new BigDecimal("0.70"));
+        discRepository.save(ripd);
+
+        log.info("Saved Disc - id: " + ripd.getId() + " - name: " + ripd.getTitle());
+
+        Disc logan = new Disc();
+        logan.setTitle("Logan: Wolverine");
+        logan.setOriginalTitle("Logan");
+        logan.setDescription("Wolverine sa vracia. Tentokrát však nie je v dokonalej kondícii. Jeho schopnosť uzdravovania pomaly vyprcháva a elánom tiež neprekypuje. Naviac je na všetko skoro sám. Z X-Menov prežíva ešte Charles Xavier, ktorý je ale vážne chorý. Stráca pamäť a trpí nebezpečnými záchvatmi ohrozujúcimi jeho okolie. Spoločne sa ukrývajú v opustenej továrni na americko-mexickej hranici. Ich utajenie skončí, keď sa objaví Laura, dievča, ktoré vyniká rovnakými schopnosťami ako Wolverine a v pätách má naviac neľútostných prenasledovateľov, ktorí se jej snažia zmocniť. A tak prichádza čas, aby Wolverine v sebe našiel silu nielen na boj, ale na to, aby Laure odovzdal svoje skúsenosti.");
+        logan.setType("DVD");
+        logan.setImageUrl("https://images-na.ssl-images-amazon.com/images/I/91vTDigUkRL._SY500_.jpg");
+        logan.setYear(2017);
+        logan.setPrice(new BigDecimal("0.70"));
+        discRepository.save(logan);
+
+        log.info("Saved Disc - id: " + logan.getId() + " - name: " + logan.getTitle());
     }
 
     private void assignGenres() {
@@ -113,7 +197,12 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
             switch (genre.getGenre()) {
                 case "Akčný":
                     discs.forEach(disc -> {
-                        if (disc.getOriginalTitle().equals("John Wick")) {
+                        if (disc.getOriginalTitle().equals("John Wick") ||
+                                disc.getOriginalTitle().equals("X-Men: Apocalypse") ||
+                                disc.getOriginalTitle().equals("Kill Bill: Vol. 1") ||
+                                disc.getOriginalTitle().equals("Logan") ||
+                                disc.getOriginalTitle().equals("V for Vendetta") ||
+                                disc.getOriginalTitle().equals("R.I.P.D")) {
                             disc.addGenre(genre);
                             discService.saveOrUpdate(disc);
                             disc.removeGenre(genre);
@@ -122,7 +211,9 @@ public class JPALoader implements ApplicationListener<ContextRefreshedEvent> {
                     break;
                 default:
                     discs.forEach(disc -> {
-                        if (disc.getOriginalTitle().equals("The Lion King")) {
+                        if (disc.getOriginalTitle().equals("The Lion King") ||
+                                disc.getOriginalTitle().equals("The Lion King 2: Simba's Pride") ||
+                                disc.getOriginalTitle().equals("Mulan")) {
                             disc.addGenre(genre);
                             discService.saveOrUpdate(disc);
                             disc.removeGenre(genre);

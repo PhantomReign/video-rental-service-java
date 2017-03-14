@@ -1,0 +1,50 @@
+@import "../modules/colors";
+@import "../modules/sizes";
+
+.card {
+  margin-top: 20px;
+}
+
+.title-header {
+  padding: 2px 4px;
+  background-color: transparent;
+}
+.title-header h3 {
+  margin: 0;
+  font-size: 21px;
+  padding-bottom: 5px;
+}
+
+.img-card {
+  width: 100%;
+  -webkit-box-shadow: 0 0 5px 3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0 0 5px 3px rgba(0,0,0,0.75);
+  box-shadow: 0 0 5px 3px rgba(0,0,0,0.75);
+
+  .btn-group {
+    display: flex;
+    .btn-block {
+      margin: 0;
+    }
+  }
+
+  p {
+    position: absolute;
+    padding: $padding-card-tag;
+    background-color: $bg-color-movie-tag;
+    font-weight: bold;
+    width: $width-card-tag;
+  }
+
+  .blu-ray-tag {
+    color: $font-color-tag-blu-ray;
+  }
+
+  .dvd-tag {
+    color: $font-color-tag-dvd;
+  }
+
+  img {
+    width: 100%;
+  }
+}

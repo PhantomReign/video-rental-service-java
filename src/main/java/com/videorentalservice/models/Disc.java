@@ -25,7 +25,7 @@ public class Disc extends AbstractModelClass {
 
     private String title;
     private String originalTitle;
-    @Size(max = 400)
+    @Size(max = 1000)
     private String description;
     private String type;
     private String imageUrl;

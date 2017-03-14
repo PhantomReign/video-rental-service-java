@@ -1,5 +1,6 @@
 package com.videorentalservice.services;
 
+import com.querydsl.core.types.Predicate;
 import com.videorentalservice.models.Booking;
 import com.videorentalservice.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,8 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
-    public Page<Booking> listAllByPage(Pageable pageable) {
-        return bookingRepository.findAll(pageable);
+    public Page<Booking> findAll(Predicate predicate, Pageable pageable) {
+        return bookingRepository.findAll(predicate, pageable);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.videorentalservice.services;
 
+import com.querydsl.core.types.Predicate;
 import com.videorentalservice.models.Role;
 import com.videorentalservice.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class RoleServiceImplementation implements RoleService {
     }
 
     @Override
-    public Page<Role> listAllByPage(Pageable pageable) {
-        return roleRepository.findAll(pageable);
+    public Page<Role> findAll(Predicate predicate, Pageable pageable) {
+        return roleRepository.findAll(predicate, pageable);
     }
 
     @Override

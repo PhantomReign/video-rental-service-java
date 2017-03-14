@@ -17,7 +17,7 @@
             <h2>Zoznam užívateľov</h2>
 
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-center">
                     <div class="form-group">
                         <form name="roleForm" th:action="@{/users}" class="combo-form">
                             <select class="form-control" name="roles" onchange="roleForm.submit()">
@@ -45,21 +45,21 @@
                     </form>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-4 text-center">
 
                 </div>
             </div>
 
-            <table class="table table-striped" id="" sec:authorize="hasAuthority('SUPER_ADMIN')">
+            <table class="table table-striped" sec:authorize="hasAuthority('SUPER_ADMIN')">
                 <thead>
                 <tr>
-                    <th><a sd:pagination-sort="id">ID</a></th>
+                    <th><a sd:pagination-sort="id">Id</a></th>
                     <th><a sd:pagination-sort="username">Meno</a></th>
                     <th>Heslo</th>
                     <th>Typ</th>
 
-                    <th class="nosort"><em class="fa fa-info-circle"></em></th>
-                    <th class="nosort"><em class="fa fa-cog"></em></th>
+                    <th><em class="fa fa-info-circle"></em></th>
+                    <th><em class="fa fa-cog"></em></th>
                 </tr>
                 </thead>
                 <tbody>
