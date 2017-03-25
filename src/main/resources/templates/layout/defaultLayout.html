@@ -21,8 +21,6 @@
     <link href="../../static/css/style.css"
           th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
 
-
-
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
     <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.js"
@@ -118,6 +116,7 @@
 
                     <li sec:authorize="hasRole('ROLE_SUPER_ADMIN')"><a href="#" th:href="@{/permissions}">Právomoci</a></li>
                     <li sec:authorize="hasRole('ROLE_USER') or isAnonymous()"><a href="#">Kontakt</a></li>
+                    <li><a href="#" th:href="@{/cart}">Košík</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

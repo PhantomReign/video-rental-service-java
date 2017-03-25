@@ -44,6 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+//                .antMatchers("/cart", "/cart/*").hasRole("ROLE_USER")
                 .antMatchers("/resources/**", "/webjars/**","/js/**", "/images/**", "/css/**").permitAll()
                 .antMatchers("/", "/movies", "/movie/show/*", "/console/*", "/h2-console/**", "/forgotPassword", "resetPassword").permitAll()
                 .anyRequest().authenticated()

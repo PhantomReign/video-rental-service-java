@@ -72,11 +72,7 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#" th:href="@{/}">Domov</a></li>
-
-
                 <li sec:authorize="isAnonymous() or hasRole('ROLE_USER')"><a href="#" th:href="@{/movies}">Filmy</a></li>
-
-
                 <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filmy <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -84,7 +80,6 @@
                         <li><a href="#" th:href="@{/movie/new}">Pridaj</a></li>
                     </ul>
                 </li>
-
                 <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Žánre <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -92,7 +87,6 @@
                         <li><a href="#" th:href="@{/genre/new}">Pridaj</a></li>
                     </ul>
                 </li>
-
                 <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategórie <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -100,7 +94,6 @@
                         <li><a href="#" th:href="@{/category/new}">Pridaj</a></li>
                     </ul>
                 </li>
-
                 <li class="dropdown" sec:authorize="hasRole('ROLE_SUPER_ADMIN')">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Užívatelia <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -115,9 +108,9 @@
                         <li><a href="" th:href="@{/role/new}">Pridaj</a></li>
                     </ul>
                 </li>
-
                 <li sec:authorize="hasRole('ROLE_SUPER_ADMIN')"><a href="#" th:href="@{/permissions}">Právomoci</a></li>
                 <li sec:authorize="hasRole('ROLE_USER') or isAnonymous()"><a href="#">Kontakt</a></li>
+                <li><a href="#" th:href="@{/cart}">Košík</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

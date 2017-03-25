@@ -82,7 +82,7 @@
                                 <img th:src="${disc.imageUrl}" th:alt="Movie + ${disc.title}"/>
                                 <div class="btn-group">
                                     <a th:href="${'/movie/show/' + disc.id}" class="btn btn-primary btn-block"><i class="fa fa-info"></i> Detail</a>
-                                    <a th:href="${'/movie/show/' + disc.id}" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Pridať</a>
+                                    <a th:href="${'/cart/add/' + disc.id}" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Pridať</a>
                                 </div>
                             </div>
                         </div>

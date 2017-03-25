@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 /**
@@ -60,11 +61,11 @@ public class DiscController {
         return "disc/discs";
     }
 
-
-
     @RequestMapping("movie/show/{id}")
     public String showDisc(@PathVariable Integer id, Model model){
         model.addAttribute("disc", discService.getById(id));
         return "disc/disc-show";
     }
+
+
 }
