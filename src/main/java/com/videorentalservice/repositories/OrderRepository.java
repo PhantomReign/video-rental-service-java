@@ -3,7 +3,6 @@ package com.videorentalservice.repositories;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringPath;
 import com.videorentalservice.models.Order;
-import com.videorentalservice.models.QBooking;
 import com.videorentalservice.models.QOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
