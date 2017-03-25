@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>403</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+    <div class="container text-center">
+        <h1>Chyba 403</h1>
+        <h2>Sem nemáte prístup!</h2>
+        <img src="../../static/images/403.png"
+             th:src="@{/images/403.png}"/>
+    </div>
+</div>
+
+</body>
+</html>

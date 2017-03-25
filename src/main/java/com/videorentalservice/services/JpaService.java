@@ -16,7 +16,9 @@ public interface JpaService<T> {
 
     T getById(Integer id);
 
-    T saveOrUpdate(T domainObject);
+    T save(T domainObject);
+
+    T update(T domainObject);
 
     void delete(Integer id);
 }

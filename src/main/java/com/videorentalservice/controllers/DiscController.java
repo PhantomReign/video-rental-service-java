@@ -2,6 +2,7 @@ package com.videorentalservice.controllers;
 
 import com.querydsl.core.types.Predicate;
 import com.videorentalservice.models.Disc;
+import com.videorentalservice.services.CategoryService;
 import com.videorentalservice.services.DiscService;
 import com.videorentalservice.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  */
 
 @Controller
+
 public class DiscController {
     private DiscService discService;
     private GenreService genreService;
+    private CategoryService categoryService;
 
     @Autowired
     public void setDiscService(DiscService discService) {
@@ -36,8 +39,13 @@ public class DiscController {
         this.genreService = genreService;
     }
 
+    @Autowired
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
     @RequestMapping(value = "/movies", method = RequestMethod.GET)
-    public String list(Model model,
+    public String listDiscs(Model model,
                        @QuerydslPredicate(root = Disc.class) Predicate predicate,
                        @PageableDefault(sort = { "title", "originalTitle" }, value = 8) Pageable pageable,
                        @RequestParam MultiValueMap<String, String> parameters) {
@@ -47,8 +55,9 @@ public class DiscController {
 
         model.addAttribute("discs", discService.findAll(predicate, pageable));
         model.addAttribute("genres", genreService.listAll());
+        model.addAttribute("categories", categoryService.listAll());
 
-        return "discs";
+        return "disc/discs";
     }
 
 
@@ -56,30 +65,6 @@ public class DiscController {
     @RequestMapping("movie/show/{id}")
     public String showDisc(@PathVariable Integer id, Model model){
         model.addAttribute("disc", discService.getById(id));
-        return "disc-show";
-    }
-
-    @RequestMapping("movie/edit/{id}")
-    public String editDisc(@PathVariable Integer id, Model model){
-        model.addAttribute("disc", discService.getById(id));
-        return "disc-form";
-    }
-
-    @RequestMapping("movie/new")
-    public String newDisc(Model model){
-        model.addAttribute("disc", new Disc());
-        return "disc-form";
-    }
-
-    @RequestMapping(value = "movie", method = RequestMethod.POST)
-    public String saveDisc(Disc disc){
-        discService.saveOrUpdate(disc);
-        return "redirect:/movie/" + disc.getId();
-    }
-
-    @RequestMapping("movie/delete/{id}")
-    public String deleteDisc(@PathVariable Integer id){
-        discService.delete(id);
-        return "redirect:/movies";
+        return "disc/disc-show";
     }
 }

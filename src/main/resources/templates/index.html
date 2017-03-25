@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/homeLayout">
 <head lang="sk">
-
-    <title>Saturn</title>
-
-    <!--/*/ <th:block th:include="fragments/header/header-includes :: header-includes"></th:block> /*/-->
+    <title></title>
 </head>
 <body>
-<nav th:replace="fragments/navigation/navigation"></nav>
 
-<header th:replace="fragments/header/header"></header>
-
-<footer th:replace="fragments/footer/footer"></footer>
+<header class="header" layout:fragment="header">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1>Videopožičovňa Saturn</h1>
+            <h2>Spravte si pekný večer!</h2>
+        </div>
+    </div>
+</header>
 
 </body>
 </html>

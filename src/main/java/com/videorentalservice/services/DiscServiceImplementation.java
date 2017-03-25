@@ -1,13 +1,17 @@
 package com.videorentalservice.services;
 
 import com.querydsl.core.types.Predicate;
+import com.videorentalservice.VRSException;
 import com.videorentalservice.models.Disc;
+import com.videorentalservice.models.Genre;
 import com.videorentalservice.repositories.DiscRepository;
+import com.videorentalservice.repositories.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +21,16 @@ import java.util.List;
 @Service
 public class DiscServiceImplementation implements DiscService {
     private DiscRepository discRepository;
+    private GenreRepository genreRepository;
 
     @Autowired
     public void setProductRepository(DiscRepository discRepository) {
         this.discRepository = discRepository;
+    }
+
+    @Autowired
+    public void setGenreRepository(GenreRepository genreRepository) {
+        this.genreRepository = genreRepository;
     }
 
     @Override
@@ -41,8 +51,26 @@ public class DiscServiceImplementation implements DiscService {
     }
 
     @Override
-    public Disc saveOrUpdate(Disc discObject) {
+    public Disc save(Disc discObject) {
+        List<Genre> persistedGenres = new ArrayList<>();
+        List<Genre> genres = discObject.getGenres();
+        if(genres != null){
+            for (Genre genre : genres) {
+                if(genre.getId() != null)
+                {
+                    persistedGenres.add(genreRepository.findOne(genre.getId()));
+                }
+            }
+        }
+
+        discObject.setGenres(persistedGenres);
         return discRepository.save(discObject);
+    }
+
+    @Override
+    public Disc update(Disc discObject) {
+        Disc persistedDisc = save(discObject);
+        return discRepository.save(persistedDisc);
     }
 
     @Override

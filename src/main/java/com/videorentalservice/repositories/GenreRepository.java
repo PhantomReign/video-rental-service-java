@@ -17,6 +17,8 @@ public interface GenreRepository extends JpaRepository<Genre, Integer>,
         QueryDslPredicateExecutor<Genre>,
         QuerydslBinderCustomizer<QGenre> {
 
+    Genre getByName(String name);
+
     @Override
     default public void customize(QuerydslBindings bindings, QGenre root) {
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);

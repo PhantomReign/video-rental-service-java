@@ -19,13 +19,13 @@ public interface UserRepository
         QueryDslPredicateExecutor<User>,
         QuerydslBinderCustomizer<QUser> {
 
-    User findByUsername(String username);
+    User getByEmail(String email);
+    User getByUserName(String userName);
 
     @Override
     default public void customize(QuerydslBindings bindings, QUser root) {
 
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
-        bindings.excluding(root.encryptedPassword);
     }
 
 }

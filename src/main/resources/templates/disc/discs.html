@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>Filmy</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(discs)}">
+            <h2>Zoznam filmov</h2>
+
+            <div class="row">
+                <div class="col-sm-3 text-center">
+                    <div class="form-group">
+                        <form name="genreForm" th:action="@{/movies}" class="combo-form">
+                            <select class="form-control" name="genres" onchange="genreForm.submit()">
+                                <option value=""></option>
+                                <option th:each="genre : ${genres}"
+                                        th:value="${genre.id}"
+                                        th:text="${genre.name}"
+                                        th:selected="${#httpServletRequest.getParameter('genres')} == ${genre.id}">
+                                    Typ
+                                </option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-3 text-center">
+                    <form class="form-search form-horizontal search-form" th:action="@{/movies}">
+                        <div class="input-group">
+                            <input class="form-control" th:value="${#httpServletRequest.getParameter('title')}" type="text" name="title" placeholder="Hľadať film..." />
+
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-sm-3 text-center">
+                    <div class="form-group">
+                        <form name="categoryForm" th:action="@{/movies}" class="combo-form">
+                            <select class="form-control" name="category" onchange="categoryForm.submit()">
+                                <option value=""></option>
+                                <option th:each="category : ${categories}"
+                                        th:value="${category.id}"
+                                        th:text="${category.name}"
+                                        th:selected="${#httpServletRequest.getParameter('category')} == ${category.id}">
+                                    Typ
+                                </option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-3 text-center">
+                    <div class="col-sm-4 text-center">
+                        <a sd:pagination-sort="title"
+                           sec:authorize="hasRole('ROLE_USER') or isAnonymous()" class="btn btn-primary btn-sort">
+                            Zoradiť: <i class="fa" th:classappend="${#httpServletRequest.getParameter('sort')} == 'title,desc' ? fa-sort-alpha-asc : fa-sort-alpha-desc"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" sec:authorize="hasRole('ROLE_USER') or isAnonymous()">
+                <div class="col-lg-3 col-md-3 col-sm-6" th:each="disc : ${discs}">
+                    <article class="card">
+                        <header class="title-header">
+                            <h3 class="text-center" th:text="${disc.title}">Názov</h3>
+                        </header>
+                        <div class="card-block">
+                            <div class="img-card">
+                                <p class="text-center" th:text="${disc.category.name}"
+                                   th:classappend="${disc.category.name} == 'DVD' ? dvd-tag : blu-ray-tag">Typ</p>
+                                <img th:src="${disc.imageUrl}" th:alt="Movie + ${disc.title}"/>
+                                <div class="btn-group">
+                                    <a th:href="${'/movie/show/' + disc.id}" class="btn btn-primary btn-block"><i class="fa fa-info"></i> Detail</a>
+                                    <a th:href="${'/movie/show/' + disc.id}" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Pridať</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <table class="table table-striped" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
+                <thead>
+                <tr>
+                    <th><a sd:pagination-sort="title">Názov</a></th>
+                    <th><a sd:pagination-sort="originalTitle">Originálny názov</a></th>
+                    <th>Rok</th>
+                    <th>Cena</th>
+
+                    <th><em class="fa fa-info-circle"></em></th>
+                    <th><em class="fa fa-cog"></em></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="disc : ${discs}">
+                    <td th:text="${disc.title}">Názov</td>
+                    <td th:text="${disc.originalTitle}">Originálny názov</td>
+                    <td th:text="${disc.year}">Rok</td>
+                    <td th:text="${disc.price}">Cena</td>
+
+                    <td sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
+                        <a class="btn btn-default" th:href="${'/movie/show/' + disc.id}"><em class="fa fa-info"></em></a>
+                    </td>
+                    <td sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
+                        <a class="btn btn-default" th:href="${'/movie/edit/' + disc.id}"><em class="fa fa-pencil"></em></a>
+                        <a class="btn btn-danger" th:href="${'/movie/delete/' + disc.id}"><em class="fa fa-trash"></em></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <nav class="text-center">
+                <ul class="pagination" sd:pagination="full">
+                    <!-- Pagination created by the Thymeleaf Spring Data dialect, this content is just for mockup -->
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

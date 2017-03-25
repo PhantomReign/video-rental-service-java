@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>Roly</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(roles)}">
+            <h2>Zoznam rôl</h2>
+
+            <div class="row table-utils">
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <form name="permissionForm" th:action="@{/roles}" class="combo-form">
+                            <select class="form-control" name="permissions" onchange="permissionForm.submit()">
+                                <option value=""></option>
+                                <option th:each="permission : ${permissions}"
+                                        th:value="${permission.id}"
+                                        th:text="${permission.name}"
+                                        th:selected="${#httpServletRequest.getParameter('permissions')} == ${permission.id}">
+                                    Typ
+                                </option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 text-center">
+                    <form class="form-search form-horizontal search-form" th:action="@{/roles}">
+                        <div class="input-group">
+                            <input class="form-control" th:value="${#httpServletRequest.getParameter('name')}" type="text" name="name" placeholder="Hľadať rolu..." />
+
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-sm-4 text-center">
+
+                </div>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><a sd:pagination-sort="id">Id</a></th>
+                    <th><a sd:pagination-sort="name">Meno</a></th>
+
+                    <th><em class="fa fa-info-circle"></em></th>
+                    <th><em class="fa fa-cog"></em></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="role : ${roles}">
+                    <td th:text="${role.id}">Id</td>
+                    <td th:text="${role.name}">Meno</td>
+
+                    <td>
+                        <a class="btn btn-default" th:href="${'/role/show/' + role.id}"><em class="fa fa-info"></em></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-default" th:href="${'/role/edit/' + role.id}"><em class="fa fa-pencil"></em></a>
+                        <a class="btn btn-danger" th:href="${'/role/delete/' + role.id}"><em class="fa fa-trash"></em></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <nav class="text-center">
+                <ul class="pagination" sd:pagination="full">
+                    <!-- Pagination created by the Thymeleaf Spring Data dialect, this content is just for mockup -->
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

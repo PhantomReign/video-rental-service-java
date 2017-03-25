@@ -16,7 +16,6 @@ import java.util.List;
  * Created by Rave on 19.02.2017.
  */
 @Service
-@Profile("springdatajpa")
 public class GenreServiceImplementation implements GenreService {
     private GenreRepository genreRepository;
 
@@ -33,6 +32,11 @@ public class GenreServiceImplementation implements GenreService {
     }
 
     @Override
+    public Genre getByName(String name) {
+        return genreRepository.getByName(name);
+    }
+
+    @Override
     public Page<Genre> findAll(Predicate predicate, Pageable pageable) {
         return genreRepository.findAll(predicate, pageable);
     }
@@ -43,7 +47,12 @@ public class GenreServiceImplementation implements GenreService {
     }
 
     @Override
-    public Genre saveOrUpdate(Genre genreObject) {
+    public Genre save(Genre genreObject) {
+        return genreRepository.save(genreObject);
+    }
+
+    @Override
+    public Genre update(Genre genreObject) {
         return genreRepository.save(genreObject);
     }
 

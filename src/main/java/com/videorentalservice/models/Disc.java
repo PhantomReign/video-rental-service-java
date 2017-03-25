@@ -1,8 +1,11 @@
 package com.videorentalservice.models;
 
 import com.videorentalservice.models.abstracts.AbstractModelClass;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,28 +16,45 @@ import java.util.List;
  * Created by Rave on 18.02.2017.
  */
 @Entity
+@Table(name="discs")
 public class Disc extends AbstractModelClass {
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable
+    @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(
+            name="disc_genre",
+            joinColumns={@JoinColumn(name="DISC_ID", referencedColumnName="ID")},
+            inverseJoinColumns={@JoinColumn(name="GENRE_ID", referencedColumnName="ID")})
     private List<Genre> genres = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity=Booking.class)
-    @JoinColumn(name = "booking_id")
-    private Booking booking;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
+    @ManyToOne
+    @JoinColumn(name="order_id")
+    private Order order;
+
+    @NotBlank
     private String title;
     private String subTitle;
+    @NotBlank
     private String originalTitle;
     private String originalSubTitle;
     @Size(max = 1000)
+    @NotBlank
     private String description;
-    private String type;
+    @NotBlank
     private String imageUrl;
+    @NotBlank
     private String imageBGUrl;
+    @NotBlank
     private String videoUrl;
+    @NotNull
     private Integer year;
+    @NotNull
     private BigDecimal price;
+
+    private Boolean available;
 
     // GENRES
     public List<Genre> getGenres() {
@@ -45,29 +65,15 @@ public class Disc extends AbstractModelClass {
         this.genres = genres;
     }
 
-    public void addGenre(Genre genre){
-        if(!this.genres.contains(genre)){
-            this.genres.add(genre);
-        }
-
-        if(!genre.getDiscs().contains(this)){
-            genre.getDiscs().add(this);
-        }
+    // Category
+    public Category getCategory() {
+        return category;
     }
 
-    public void removeGenre(Genre genre){
-        this.genres.remove(genre);
-        genre.getDiscs().remove(this);
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    // BOOKING
-    public Booking getBooking() {
-        return booking;
-    }
-
-    public void setBooking(Booking booking) {
-        this.booking = booking;
-    }
 
     // TITLE
     public String getTitle() {
@@ -114,15 +120,6 @@ public class Disc extends AbstractModelClass {
         this.description = description;
     }
 
-    // TYPE
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     // IMG URL
     public String getImageUrl() {
         return imageUrl;
@@ -166,5 +163,14 @@ public class Disc extends AbstractModelClass {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    // AVAILABILITY
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 }

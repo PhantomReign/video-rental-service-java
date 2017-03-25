@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>Detail Filmu</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+    <div class="movie-card">
+        <div class="container">
+            <div class="movie-header col-md-12">
+
+                <img src="" th:src="${disc.imageBGUrl}" alt="cover-bg" class="cover-bg" />
+
+                <div class="movie-header-details row">
+                    <div class="movie-header-title col-md-8 text-center">
+                        <div class="movie-title">
+                            <h1 th:text="${disc.subTitle} != '' ? ${disc.title} + ': ' + ${disc.subTitle} : ${disc.title}">Title</h1>
+                        </div>
+                        <div class="movie-subtitle">
+                            <h3 th:text="${disc.originalSubTitle} != '' ? ${disc.originalTitle} + ': ' + ${disc.originalSubTitle} : ${disc.originalTitle}">SubTitle</h3>
+                        </div>
+                    </div>
+                    <div class="movie-header-description col-md-4 text-center">
+                        <span th:classappend="${disc.category.name} == 'DVD' ? dvd-tag : blu-ray-tag"
+                              th:text="${disc.category.name}">Typ</span>
+                        <span class="year-tag" th:text="${disc.year}">Rok</span>
+                        <span class="price-tag" th:text="${disc.price} + ' &euro;'">Cena</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="movie-body col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <img src="" th:src="${disc.imageUrl}" alt="cover" class="cover" />
+                    <p class="text-center id-text" th:inline="text"
+                       sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">ID: #[[${disc.id}]]</p>
+                    <span class="tag" th:each="genre : ${disc.genres}" th:text="${genre.name}">Genre</span>
+                </div>
+
+                <div class="col-lg-9 col-md-9 col-sm-6 description">
+                    <p th:text="${disc.description}">Description</p>
+                    <div class="text-center">
+                        <iframe class="movie-frame" width="560" height="315" src="" th:src="@{//} + ${disc.videoUrl}" allowfullscreen="">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

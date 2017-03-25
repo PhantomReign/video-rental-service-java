@@ -9,30 +9,26 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Rave on 18.02.2017.
  */
 
 @Service("userDetailsService")
+@Transactional
 public class UserDetailsServiceImplementation implements UserDetailsService {
 
+    @Autowired
     private UserService userService;
-    private Converter<User, UserDetails> userUserDetailsConverter;
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    @Autowired
-    @Qualifier(value = "userToUserDetailsConverter")
-    public void setUserUserDetailsConverter(Converter<User, UserDetails> userUserDetailsConverter) {
-        this.userUserDetailsConverter = userUserDetailsConverter;
-    }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userUserDetailsConverter.convert(userService.findByUsername(username));
+    public UserDetails loadUserByUsername(String userName)
+            throws UsernameNotFoundException {
+        User user = userService.getByEmail(userName);
+        if(user == null){
+            throw new UsernameNotFoundException("Email "+userName+" not found");
+        }
+        return new AuthenticatedUser(user);
     }
 }

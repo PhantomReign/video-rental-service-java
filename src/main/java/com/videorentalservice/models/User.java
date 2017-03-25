@@ -1,8 +1,12 @@
 package com.videorentalservice.models;
 
 import com.videorentalservice.models.abstracts.AbstractModelClass;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,35 +15,81 @@ import java.util.List;
  */
 
 @Entity
+@Table(name="users")
 public class User extends AbstractModelClass {
 
-    private String username;
+    @Column(nullable=false)
+    @NotBlank
+    private String userName;
 
-    // transient means we don't want to save pw in text form
-    @Transient
+    @Column(nullable=false)
+    @NotBlank
+    private String firstName;
+
+    @Column(nullable=false)
+    @NotBlank
+    private String lastName;
+
+    @Column(nullable=false, unique=true)
+    @NotBlank
+    @Email
+    private String email;
+
+    @Column(nullable=false)
+    @NotBlank
+    @Size(min=8)
     private String password;
 
-    private String encryptedPassword;
-    private Boolean enabled = true;
+    @Column(nullable=false)
+    @NotBlank
+    private String phone;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable
-    // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"),
-    //     inverseJoinColumns = @joinColumn(name = "role_id"))
+    @Column(nullable=false)
+    @NotBlank
+    private String address;
+
+    private String passwordResetToken;
+
+    @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(
+            name="user_role",
+            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
+            inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
     private List<Role> roles = new ArrayList<>();
 
-    @ManyToOne //(fetch = FetchType.EAGER, targetEntity=Booking.class)
-    @JoinColumn(name = "booking_id")
-    private Booking booking;
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+    private List<Order> orders;
 
-    private Integer failedLoginAttempts = 0;
-
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -50,20 +100,28 @@ public class User extends AbstractModelClass {
         this.password = password;
     }
 
-    public String getEncryptedPassword() {
-        return encryptedPassword;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public Boolean getEnabled() {
-        return enabled;
+    public String getAddress() {
+        return address;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPasswordResetToken() {
+        return passwordResetToken;
+    }
+
+    public void setPasswordResetToken(String passwordResetToken) {
+        this.passwordResetToken = passwordResetToken;
     }
 
     public List<Role> getRoles() {
@@ -74,34 +132,11 @@ public class User extends AbstractModelClass {
         this.roles = roles;
     }
 
-    public void addRole(Role role){
-        if(!this.roles.contains(role)){
-            this.roles.add(role);
-        }
-
-        if(!role.getUsers().contains(this)){
-            role.getUsers().add(this);
-        }
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void removeRole(Role role){
-        this.roles.remove(role);
-        role.getUsers().remove(this);
-    }
-
-    public Booking getBooking() {
-        return booking;
-    }
-
-    public void setBooking(Booking booking) {
-        this.booking = booking;
-    }
-
-    public Integer getFailedLoginAttempts() {
-        return failedLoginAttempts;
-    }
-
-    public void setFailedLoginAttempts(Integer failedLoginAttempts) {
-        this.failedLoginAttempts = failedLoginAttempts;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

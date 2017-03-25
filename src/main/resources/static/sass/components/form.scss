@@ -2,11 +2,11 @@
 @import "../modules/colors";
 
 
-#form-login-container {
+.form-container {
   display: table;
   width: $full-size;
 
-  #form-login {
+  .form-this {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
@@ -52,6 +52,25 @@
 
 }
 
+.createAccount {
+  a {
+    font-size: 14px;
+  }
+}
+
+.forgotPassword {
+  padding-bottom: 15px;
+  a {
+    font-size: 14px;
+  }
+}
+
+.center-dropdown {
+  left: 50% !important;
+  right: auto !important;
+  text-align: center !important;
+  transform: translate(-50%, 0) !important;
+}
 
 .combo-form {
   border: 1px solid $border-color-dark;

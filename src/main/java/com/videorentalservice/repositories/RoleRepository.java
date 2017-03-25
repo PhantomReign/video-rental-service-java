@@ -17,6 +17,8 @@ public interface RoleRepository extends JpaRepository<Role, Integer>,
         QueryDslPredicateExecutor<Role>,
         QuerydslBinderCustomizer<QRole> {
 
+    Role getByName(String name);
+
     @Override
     default public void customize(QuerydslBindings bindings, QRole root) {
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);

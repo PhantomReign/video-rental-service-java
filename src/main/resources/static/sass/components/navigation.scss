@@ -18,7 +18,7 @@
     color: $font-color-white;
     text-transform: uppercase;
     font-weight: $font-weight-high;
-    background: transparent;
+    background: $nav-color-bottom;
 
     &:focus, &:active {
       color: $font-color-tertiary;
@@ -106,6 +106,8 @@
 .navigation {
   background-color: $nav-color-bottom;
   height: $height-nav-bottom;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .navbar-brand {
@@ -131,4 +133,19 @@
     outline: 0;
   }
 
+}
+
+@media (min-width: 768px) and (max-width: 995px) {
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+  .navbar-collapse.collapse.in {
+    display: block !important;
+  }
+  .navbar-header .collapse, .navbar-toggle {
+    display:block !important;
+  }
+  .navbar-header {
+    float:none;
+  }
 }

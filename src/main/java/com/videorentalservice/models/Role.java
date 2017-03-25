@@ -1,11 +1,10 @@
 package com.videorentalservice.models;
 
 import com.videorentalservice.models.abstracts.AbstractModelClass;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,21 +13,29 @@ import java.util.List;
  */
 
 @Entity
+@Table(name="roles")
 public class Role extends AbstractModelClass {
 
-    private String roleName;
+    @Column(nullable=false, unique=true)
+    @NotBlank
+    private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
-    // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "role_id"),
-    //     inverseJoinColumns = @joinColumn(name = "user_id"))
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "roles")
     private List<User> users = new ArrayList<>();
 
-    public String getRoleName() {
-        return roleName;
+    @ManyToMany
+    @JoinTable(
+            name="role_permission",
+            joinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")},
+            inverseJoinColumns={@JoinColumn(name="PERMISSION_ID", referencedColumnName="ID")})
+    private List<Permission> permissions = new ArrayList<>();
+
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<User> getUsers() {
@@ -39,19 +46,12 @@ public class Role extends AbstractModelClass {
         this.users = users;
     }
 
-    public void addUser(User user){
-        if(!this.users.contains(user)){
-            this.users.add(user);
-        }
-
-        if(!user.getRoles().contains(this)){
-            user.getRoles().add(this);
-        }
+    public List<Permission> getPermissions() {
+        return permissions;
     }
 
-    public void removeUser(User user){
-        this.users.remove(user);
-        user.getRoles().remove(this);
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 
 }

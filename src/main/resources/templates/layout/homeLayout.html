@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      lang="sk">
+<head>
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Saturn</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="http://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.css"
+          th:href="@{/webjars/datatables/1.10.13/css/dataTables.bootstrap.css}"
+          rel="stylesheet" media="screen" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+          th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.css}"
+          rel="stylesheet" media="screen" />
+    <link href="../../static/css/style.css"
+          th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
+
+
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <script src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.js"
+            th:src="@{/webjars/datatables/1.10.13/js/jquery.dataTables.js}"></script>
+    <script src="http://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.js"
+            th:src="@{/webjars/datatables/1.10.13/js/dataTables.bootstrap.js}"></script>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-fixed-top" role="navigation">
+    <div class="top-area">
+        <div>
+            <div class="row">
+                <div class="col-sm-8 col-md-8">
+                </div>
+                <div class="col-sm-4 col-md-4 text-center">
+                    <a href="#" th:href="@{/login}" sec:authorize="isAnonymous()">Prihlásiť sa</a>
+                    <div class="dropdown" sec:authorize="isAuthenticated()">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span sec:authentication="name"> </span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu center-dropdown">
+                            <li><a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Odhlásiť sa</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container navigation">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">
+                <img src="../../../static/images/logo.png" height="40" th:src="@{/images/logo.png}"/>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#" th:href="@{/}">Domov</a></li>
+
+
+                <li sec:authorize="isAnonymous() or hasRole('ROLE_USER')"><a href="#" th:href="@{/movies}">Filmy</a></li>
+
+
+                <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filmy <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" th:href="@{/movies}">Zoznam</a></li>
+                        <li><a href="#" th:href="@{/movie/new}">Pridaj</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Žánre <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" th:href="@{/genres}">Zoznam</a></li>
+                        <li><a href="#" th:href="@{/genre/new}">Pridaj</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategórie <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" th:href="@{/categories}">Zoznam</a></li>
+                        <li><a href="#" th:href="@{/category/new}">Pridaj</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" sec:authorize="hasRole('ROLE_SUPER_ADMIN')">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Užívatelia <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="" th:href="@{/users}">Zoznam</a></li>
+                        <li><a href="" th:href="@{/user/new}">Pridaj</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" sec:authorize="hasRole('ROLE_SUPER_ADMIN')">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Roly <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="" th:href="@{/roles}">Zoznam</a></li>
+                        <li><a href="" th:href="@{/role/new}">Pridaj</a></li>
+                    </ul>
+                </li>
+
+                <li sec:authorize="hasRole('ROLE_SUPER_ADMIN')"><a href="#" th:href="@{/permissions}">Právomoci</a></li>
+                <li sec:authorize="hasRole('ROLE_USER') or isAnonymous()"><a href="#">Kontakt</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<header class="header" layout:fragment="header">
+</header>
+
+
+<!-- Footer -->
+<footer>
+    <div class="footer-top"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <p class="text-muted">Copyright &copy; FIT VUT. Vytvorené vzornými študentmi do predmetu PIS.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

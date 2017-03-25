@@ -29,3 +29,11 @@ html {
   min-height:    -moz-calc(100% - 183px);
   min-height:         calc(100% - 183px);
 }
+
+.text-red {
+  color: $font-color-form-error !important;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+

@@ -1,6 +1,7 @@
 @import "../modules/colors";
 
 .table {
+  border: 2px solid $border-color-dark;
   tbody, tfoot {
     tr {
       td, th {
@@ -11,6 +12,7 @@
   }
 
   thead {
+    background-color: $nav-color-top;
     tr {
       td {
         vertical-align: middle;
@@ -28,3 +30,8 @@
 tbody {
   background-color: $bg-color-table-body;
 }
+
+.table-utils {
+  min-height: 51px;
+}
+

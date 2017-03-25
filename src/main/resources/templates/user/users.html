@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>Užívatelia</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(users)}">
+            <h2>Zoznam užívateľov</h2>
+
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <form name="roleForm" th:action="@{/users}" class="combo-form">
+                            <select class="form-control" name="roles" onchange="roleForm.submit()">
+                                <option value=""></option>
+                                <option th:each="role : ${roles}"
+                                        th:value="${role.id}"
+                                        th:text="${role.name}"
+                                        th:selected="${#httpServletRequest.getParameter('roles')} == ${role.id}">
+                                    Typ
+                                </option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 text-center">
+                    <form class="form-search form-horizontal search-form" th:action="@{/users}">
+                        <div class="input-group">
+                            <input class="form-control" th:value="${#httpServletRequest.getParameter('userName')}" type="text" name="userName" placeholder="Hľadať užívateľa..." />
+
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-sm-4 text-center">
+
+                </div>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><a sd:pagination-sort="id">Id</a></th>
+                    <th><a sd:pagination-sort="userName">Užívateľské meno</a></th>
+                    <th><a sd:pagination-sort="firstName">Meno</a></th>
+                    <th><a sd:pagination-sort="lastName">Priezvisko</a></th>
+                    <th>Typ</th>
+
+                    <th><em class="fa fa-info-circle"></em></th>
+                    <th><em class="fa fa-cog"></em></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}">Id</td>
+                    <td th:text="${user.userName}">Užívateľské meno</td>
+                    <td th:text="${user.firstName}">Meno</td>
+                    <td th:text="${user.lastName}">Priezvisko</td>
+                    <td ><span th:each="role : *{user.roles}"><span th:text="${role.name}">Typ</span> </span></td>
+
+                    <td>
+                        <a class="btn btn-default" th:href="${'/user/show/' + user.id}"><em class="fa fa-info"></em></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-default" th:href="${'/user/edit/' + user.id}"><em class="fa fa-pencil"></em></a>
+                        <a class="btn btn-danger" th:href="${'/user/delete/' + user.id}"><em class="fa fa-trash"></em></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <nav class="text-center">
+                <ul class="pagination" sd:pagination="full">
+                    <!-- Pagination created by the Thymeleaf Spring Data dialect, this content is just for mockup -->
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
