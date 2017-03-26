@@ -322,6 +322,14 @@ tbody {
   padding: 7px 12px;
 }
 
+.submit-create-user {
+  margin-left: 25%;
+}
+
+.btn-create-user {
+  padding: 10px 15px;
+}
+
 .navbar {
   height: 100px;
   background-color: #334455;
@@ -439,6 +447,10 @@ tbody {
 }
 .navbar-toggle:hover, .navbar-toggle:focus, .navbar-toggle:active {
   outline: 0;
+}
+
+.povinna_polozka {
+  color: #ff0000;
 }
 
 @media (min-width: 768px) and (max-width: 995px) {
