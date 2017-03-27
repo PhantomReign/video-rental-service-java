@@ -17,6 +17,9 @@ public interface DiscRepository extends JpaRepository<Disc, Integer>,
         QueryDslPredicateExecutor<Disc>,
         QuerydslBinderCustomizer<QDisc> {
 
+    Disc getByTitle(String name);
+    Disc getByOriginalTitle(String name);
+
     @Override
     default public void customize(QuerydslBindings bindings, QDisc root) {
         bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);

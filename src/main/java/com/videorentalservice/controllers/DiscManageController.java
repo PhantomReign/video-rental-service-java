@@ -5,6 +5,7 @@ import com.videorentalservice.services.CategoryService;
 import com.videorentalservice.services.DiscService;
 import com.videorentalservice.services.GenreService;
 import com.videorentalservice.utilities.SecurityUtility;
+import com.videorentalservice.validators.DiscValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,9 @@ public class DiscManageController {
     private DiscService discService;
     private CategoryService categoryService;
     private GenreService genreService;
+
+    @Autowired
+    private DiscValidator discValidator;
 
     @Autowired
     public void setDiscService(DiscService discService) {
@@ -72,6 +76,7 @@ public class DiscManageController {
     @RequestMapping(value = "/movie/new", method = RequestMethod.POST)
     public String saveDisc(@Valid @ModelAttribute("disc") Disc disc, BindingResult result,
                            RedirectAttributes redirectAttributes){
+        discValidator.validate(disc, result);
         if(result.hasErrors()){
             return "disc/disc-form-create";
         }

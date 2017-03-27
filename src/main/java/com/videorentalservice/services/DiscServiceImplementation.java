@@ -41,6 +41,16 @@ public class DiscServiceImplementation implements DiscService {
     }
 
     @Override
+    public Disc getByTitle (String name) {
+        return discRepository.getByTitle(name);
+    }
+
+    @Override
+    public Disc getByOriginalTitle (String name) {
+        return discRepository.getByOriginalTitle(name);
+    }
+
+    @Override
     public Page<Disc> findAll(Predicate predicate, Pageable pageable) {
         return discRepository.findAll(predicate, pageable);
     }
