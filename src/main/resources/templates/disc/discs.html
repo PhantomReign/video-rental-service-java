@@ -82,9 +82,10 @@
                             <div class="img-card">
                                 <p class="text-center" th:text="${disc.category.name}"
                                    th:classappend="${disc.category.name} == 'DVD' ? dvd-tag : blu-ray-tag">Typ</p>
-                                <img th:src="${disc.imageUrl}" th:alt="Movie + ${disc.title}"/>
+                                <a th:href="${'/movie/show/' + disc.id}">
+                                    <img src="" th:src="${disc.imageUrl}" th:alt="Movie + ${disc.title}"/>
+                                </a>
                                 <div class="btn-group">
-                                    <a th:href="${'/movie/show/' + disc.id}" class="btn btn-primary btn-block"><i class="fa fa-info"></i> Detail</a>
                                     <a th:href="${'/movie/show/' + disc.id}" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Pridať</a>
                                 </div>
                             </div>
