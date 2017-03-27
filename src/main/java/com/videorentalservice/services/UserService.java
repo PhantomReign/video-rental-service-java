@@ -9,6 +9,7 @@ public interface UserService extends JpaService<User> {
     User getByEmail(String email);
     User getByUserName(String userName);
     public String resetPassword(String email);
+    public User register(User userObject);
     public void updatePassword(String email, String token, String password);
     public boolean verifyPasswordResetToken(String email, String token);
 }

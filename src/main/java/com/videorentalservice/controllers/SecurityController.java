@@ -2,6 +2,7 @@ package com.videorentalservice.controllers;
 
 import com.videorentalservice.VRSException;
 import com.videorentalservice.controllers.abstracts.AbstractBaseController;
+import com.videorentalservice.models.User;
 import com.videorentalservice.services.UserService;
 import com.videorentalservice.services.common.EmailServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,17 +59,22 @@ public class SecurityController extends AbstractBaseController {
     public String handleForgotPassword(HttpServletRequest request, RedirectAttributes redirectAttributes)
     {
         String email = request.getParameter("email");
-        try
-        {
+
+        User userByEmail = userService.getByEmail(email);
+        if(userByEmail == null){
+            redirectAttributes.addFlashAttribute("error", getMessage("error.email_not_found"));
+            return "redirect:/forgotPassword";
+        }
+
+        try {
             String token = userService.resetPassword(email);
             String resetPasswordUrl = getURLWithContextPath(request)+"/resetPassword?email="+email+"&token="+token;
             this.sendForgotPasswordEmail(email, resetPasswordUrl);
-            redirectAttributes.addFlashAttribute("msg", getMessage("info.password_reset_link_sent"));
-        } catch (VRSException e)
-        {
-            redirectAttributes.addFlashAttribute("msg", e.getMessage());
+            redirectAttributes.addFlashAttribute("info", getMessage("info.password_reset_link_sent"));
+        } catch (VRSException e) {
+            redirectAttributes.addFlashAttribute("info", e.getMessage());
         }
-        return "redirect:/forgotPassword";
+        return "redirect:/login";
     }
 
     private void sendForgotPasswordEmail(String email, String resetPasswordUrl) {
@@ -98,7 +104,7 @@ public class SecurityController extends AbstractBaseController {
             model.addAttribute("token", token);
             return "security/resetPassword";
         } else {
-            redirectAttributes.addFlashAttribute("msg", getMessage("error.invalid_password_reset_request"));
+            redirectAttributes.addFlashAttribute("error", getMessage("error.invalid_password_reset_request"));
             return "redirect:/login";
         }
 
@@ -117,16 +123,15 @@ public class SecurityController extends AbstractBaseController {
             {
                 model.addAttribute("email", email);
                 model.addAttribute("token", token);
-                model.addAttribute("msg", getMessage("error.password_conf_password_mismatch"));
+                model.addAttribute("error", getMessage("error.password_conf_password_mismatch"));
                 return "security/resetPassword";
             }
             String encodedPwd = passwordEncoder.encode(password);
             userService.updatePassword(email, token, encodedPwd);
 
-            redirectAttributes.addFlashAttribute("msg", getMessage("info.password_updated_success"));
-        } catch (VRSException e)
-        {
-            redirectAttributes.addFlashAttribute("msg", getMessage("error.invalid_password_reset_request"));
+            redirectAttributes.addFlashAttribute("info", getMessage("info.password_updated_success"));
+        } catch (VRSException e) {
+            redirectAttributes.addFlashAttribute("error", getMessage("error.invalid_password_reset_request"));
         }
         return "redirect:/login";
     }
