@@ -76,6 +76,20 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    public User register(User userObject) {
+        User userByEmail = getByEmail(userObject.getEmail());
+        if(userByEmail != null){
+            throw new VRSException("Email "+userObject.getEmail()+" already in use");
+        }
+        List<Role> persistedRoles = new ArrayList<>();
+        Role role = roleRepository.getByName("ROLE_USER");
+        persistedRoles.add(roleRepository.findOne(role.getId()));
+        userObject.setRoles(persistedRoles);
+
+        return userRepository.save(userObject);
+    }
+
+    @Override
     public User update(User userObject) {
         User persistedUser = getById(userObject.getId());
         if(persistedUser == null){
@@ -97,6 +111,7 @@ public class UserServiceImplementation implements UserService {
         persistedUser.setLastName(userObject.getLastName());
         persistedUser.setAddress(userObject.getAddress());
         persistedUser.setPhone(userObject.getPhone());
+        persistedUser.setPasswordResetToken(userObject.getPasswordResetToken());
         return userRepository.save(persistedUser);
     }
 
@@ -126,6 +141,8 @@ public class UserServiceImplementation implements UserService {
         }
         String uuid = UUID.randomUUID().toString();
         user.setPasswordResetToken(uuid);
+        update(user);
+
         return uuid;
     }
 
@@ -140,6 +157,8 @@ public class UserServiceImplementation implements UserService {
         }
         user.setPassword(password);
         user.setPasswordResetToken(null);
+        update(user);
+
     }
 
     @Override

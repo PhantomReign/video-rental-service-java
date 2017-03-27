@@ -16,46 +16,49 @@
             <h2>Zoznam filmov</h2>
 
             <div class="row">
-                <div class="col-sm-3 text-center">
+                <div class="col-sm-12 text-center">
                     <div class="form-group">
-                        <form name="genreForm" th:action="@{/movies}" class="combo-form">
-                            <select class="form-control" name="genres" onchange="genreForm.submit()">
-                                <option value=""></option>
-                                <option th:each="genre : ${genres}"
-                                        th:value="${genre.id}"
-                                        th:text="${genre.name}"
-                                        th:selected="${#httpServletRequest.getParameter('genres')} == ${genre.id}">
-                                    Typ
-                                </option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
+                        <form name="filterForm" th:action="@{/movies}">
 
-                <div class="col-sm-3 text-center">
-                    <form class="form-search form-horizontal search-form" th:action="@{/movies}">
-                        <div class="input-group">
-                            <input class="form-control" th:value="${#httpServletRequest.getParameter('title')}" type="text" name="title" placeholder="Hľadať film..." />
+                            <div class="row">
+                                <div class="col-sm-4 text-center">
+                                    <div class="combo-form">
+                                        <select class="form-control" name="genres" onchange="filterForm.submit()">
+                                            <option value=""></option>
+                                            <option th:each="genre : ${genres}"
+                                                    th:value="${genre.id}"
+                                                    th:text="${genre.name}"
+                                                    th:selected="${#httpServletRequest.getParameter('genres')} == ${genre.id}">
+                                                Typ
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
+                                <div class=" col-sm-4">
+                                    <div class="form-search form-horizontal search-form input-group text-center">
+                                        <input class="form-control" th:value="${#httpServletRequest.getParameter('title')}" type="text" name="title" placeholder="Hľadať film..." />
 
-                <div class="col-sm-3 text-center">
-                    <div class="form-group">
-                        <form name="categoryForm" th:action="@{/movies}" class="combo-form">
-                            <select class="form-control" name="category" onchange="categoryForm.submit()">
-                                <option value=""></option>
-                                <option th:each="category : ${categories}"
-                                        th:value="${category.id}"
-                                        th:text="${category.name}"
-                                        th:selected="${#httpServletRequest.getParameter('category')} == ${category.id}">
-                                    Typ
-                                </option>
-                            </select>
+                                        <span class="input-group-btn">
+                                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                    </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 text-center">
+                                    <div class="combo-form">
+                                        <select class="form-control" name="category" onchange="filterForm.submit()">
+                                            <option value=""></option>
+                                            <option th:each="category : ${categories}"
+                                                    th:value="${category.id}"
+                                                    th:text="${category.name}"
+                                                    th:selected="${#httpServletRequest.getParameter('category')} == ${category.id}">
+                                                Typ
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

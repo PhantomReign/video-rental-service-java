@@ -44,17 +44,10 @@
                 <div th:if="${param.logout}" class="alert alert-info alert-dismissable" >
                     <p><i class="icon fa fa-info"></i> <span>Úspešne ste sa odhlásili.</span></p>
                 </div>
-                <div th:if="${msg!=null}" class="alert alert-warning alert-dismissable" >
-                    <p><i class="icon fa fa-warning"></i> <span th:text="${msg}"></span></p>
-                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-9">
-                <div class="createAccount">
-                    <a href="" th:href="@{/forgotPassword}">Vytvoriť účet</a>
-                </div>
-            </div>
+        <div class="createAccount">
+            <a href="" th:href="@{/register}">Vytvoriť účet</a>
         </div>
     </form>
 
