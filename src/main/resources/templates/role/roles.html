@@ -10,7 +10,7 @@
 <body>
 
 <div class="content-section" layout:fragment="content">
-    <div class="container">
+    <div class="container" >
         <div th:if="${not #lists.isEmpty(roles)}">
             <h2>Zoznam rôl</h2>
 
@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <form name="permissionForm" th:action="@{/roles}" class="combo-form">
                             <select class="form-control" name="permissions" onchange="permissionForm.submit()">
-                                <option value=""></option>
+                                <option value="" selected="selected" disabled="disabled">Hľadať podľa právomoci...</option>
                                 <option th:each="permission : ${permissions}"
                                         th:value="${permission.id}"
                                         th:text="${permission.name}"

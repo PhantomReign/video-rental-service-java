@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <form name="roleForm" th:action="@{/users}" class="combo-form">
                             <select class="form-control" name="roles" onchange="roleForm.submit()">
-                                <option value=""></option>
+                                <option value="" selected="selected" disabled="disabled">Hľadať podľa role...</option>
                                 <option th:each="role : ${roles}"
                                         th:value="${role.id}"
                                         th:text="${role.name}"
