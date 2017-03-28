@@ -14,7 +14,7 @@
     <div class="container">
         <h2 class="text-center">Registrovať užívateľa</h2>
         <div>
-            <form class="form-horizontal col-sm-offset-3 col-sm-6" th:object="${user}" th:action="@{/register}" method="post">
+            <form class="form-horizontal col-sm-offset-2 col-sm-6" th:object="${user}" th:action="@{/register}" method="post">
                 <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}" th:class="text-red">Zlé dáta</p>
 
                 <input type="hidden" th:field="*{id}"/>

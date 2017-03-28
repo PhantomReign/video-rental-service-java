@@ -12,16 +12,16 @@
 <div class="content-section" layout:fragment="content">
 
     <div class="container">
-        <h2>Vytvoriť kategóriu</h2>
+        <h2 class="text-center">Vytvoriť kategóriu</h2>
         <div>
-            <form class="form-horizontal" th:object="${category}" th:action="@{/category/new}" method="post">
+            <form class="form-horizontal col-sm-offset-2 col-sm-6" th:object="${category}" th:action="@{/category/new}" method="post">
                 <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}" th:class="text-red">Zlé dáta</p>
 
                 <input type="hidden" th:field="*{id}"/>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('name')}? 'has-error'">
-                    <label class="col-sm-2 control-label">Meno<span class="povinna_polozka">*</span></label>
-                    <div class="col-sm-3">
+                    <label class="col-sm-6 control-label">Meno<span class="povinna_polozka">*</span></label>
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" th:field="*{name}"/>
                         <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="text-red">Zlé dáta</p>
                     </div>
@@ -29,8 +29,8 @@
 
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"></label>
-                    <div class="col-sm-3">
+                    <label class="col-sm-6 control-label"></label>
+                    <div class="col-sm-6">
                         <button type="submit" class="btn btn-primary form-control">Vytvoriť</button>
                     </div>
                 </div>
