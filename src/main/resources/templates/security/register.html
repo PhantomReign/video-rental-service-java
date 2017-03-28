@@ -20,7 +20,7 @@
                 <input type="hidden" th:field="*{id}"/>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('userName')}? 'has-error'">
-                    <label class="col-sm-2 control-label">Užívateľské meno:</label>
+                    <label class="col-sm-2 control-label">Užívateľské meno<span class="povinna_polozka">*</span></label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" th:field="*{userName}"/>
                         <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" th:class="text-red">Zlé dáta</p>
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('firstName')}? 'has-error'">
-                    <label class="col-sm-2 control-label">Meno:</label>
+                    <label class="col-sm-2 control-label">Meno<span class="povinna_polozka">*</span></label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" th:field="*{firstName}"/>
                         <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:class="text-red">Zlé dáta</p>
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error'">
-                    <label class="col-sm-2 control-label">Priezvisko:</label>
+                    <label class="col-sm-2 control-label">Priezvisko<span class="povinna_polozka">*</span></label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" th:field="*{lastName}"/>
                         <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:class="text-red">Zlé dáta</p>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
-                    <label class="col-sm-2 control-label">E-mail:</label>
+                    <label class="col-sm-2 control-label">E-mail<span class="povinna_polozka">*</span></label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" th:field="*{email}"/>
                         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="text-red">Zlé dáta</p>
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
-                    <label class="col-sm-2 control-label">Heslo:</label>
+                    <label class="col-sm-2 control-label">Heslo<span class="povinna_polozka">*</span></label>
                     <div class="col-sm-3">
                         <input type="password" class="form-control" th:field="*{password}"/>
                         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="text-red">Zlé dáta</p>
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'has-error'">
-                    <label class="col-sm-2 control-label">Adresa:</label>
+                    <label class="col-sm-2 control-label">Adresa<span class="povinna_polozka">*</span></label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" th:field="*{address}"/>
                         <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" th:class="text-red">Zlé dáta</p>
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('phone')}? 'has-error'">
-                    <label class="col-sm-2 control-label">Telefónne číslo:</label>
+                    <label class="col-sm-2 control-label">Telefónne číslo<span class="povinna_polozka">*</span></label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" th:field="*{phone}"/>
                         <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" th:class="text-red">Zlé dáta</p>
