@@ -14,6 +14,10 @@ h1, h2, h3, h4, h5 {
   font-family: "Ranga", cursive;
 }
 
+.container h2 {
+  padding-left: 20px;
+}
+
 html {
   width: 100%;
   height: 100%;
@@ -103,6 +107,13 @@ html {
   box-shadow: none;
 }
 
+.form-content {
+  background: #ffbb57;
+  padding: 20px;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  margin-bottom: 20px;
+}
+
 .table {
   border: 2px solid #202f40;
 }
@@ -151,6 +162,15 @@ tbody {
   -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  opacity: 0.95;
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  -o-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+.img-card:hover {
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.9);
+  opacity: 1;
 }
 .img-card .btn-group {
   display: flex;
