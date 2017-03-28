@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.math.BigDecimal;
+
 /**
  * Created by Ladislav on 28.03.2017.
  */
@@ -28,26 +30,23 @@ public class DiscValidator implements Validator {
     public void validate(Object target, Errors errors)
     {
         Disc disc = (Disc) target;
-        String title = disc.getTitle();
-        Disc discByTitle = discService.getByTitle(title);
+        Integer year = disc.getYear();
 
-        String originalTitle = disc.getOriginalTitle();
-        Disc discByOriginalTitle = discService.getByOriginalTitle(originalTitle);
-
-        if(discByTitle != null){
+        BigDecimal price = disc.getPrice();
+        if(year < 0){
             errors.rejectValue(
-                    "title",
-                    "error.exists",
-                    new Object[]{title},
-                    "Disk s titulom "+ title +" už existuje");
+                    "year",
+                    "error.isnegative",
+                    new Object[]{year},
+                    "Zadajte prosím nezáporný rok");
         }
 
-        if(discByOriginalTitle != null){
+        if(price.signum() == -1){
             errors.rejectValue(
-                    "originalTitle",
-                    "error.exists",
-                    new Object[]{originalTitle},
-                    "Disk s originálnym titulom "+ originalTitle +" už existuje");
+                    "price",
+                    "error.isnegative",
+                    new Object[]{price},
+                    "Zadajte prosím nezápornú cenu");
         }
     }
 }
