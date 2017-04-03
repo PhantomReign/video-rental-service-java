@@ -29,6 +29,7 @@
     margin-left: $margin-header-left;
     margin-right: $margin-header-right;
     h1 {
+      text-shadow: 2px 2px $bg-color-primary-transparent;
       margin: $zero-margin;
       padding: $zero-padding;
       font-size: $font-size-header;

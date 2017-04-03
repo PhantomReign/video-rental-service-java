@@ -17,15 +17,17 @@ body {
 
 h1, h2, h3, h4, h5 {
   font-family: $font-family-h;
-}
-
-.container h2 {
-  padding-left: 20px;
+  font-variant: small-caps;
 }
 
 html {
   width: $full-size;
   height: $full-size;
+}
+
+hr {
+  max-width: 75px;
+  border: $border-hr;
 }
 
 .content-section {
@@ -39,5 +41,4 @@ html {
   font-size: 13px;
   font-weight: 400;
 }
-
 

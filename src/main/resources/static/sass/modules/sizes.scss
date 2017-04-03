@@ -1,3 +1,4 @@
+@import "colors";
 
 // general
 $full-size: 100%;
@@ -11,6 +12,8 @@ $line-height-normal: 1.6em;
 $zero-margin: 0;
 $zero-padding: 0;
 
+$border-hr: 2px solid $nav-color-bottom;
+
 
 
 // footer
@@ -22,7 +25,7 @@ $margin-footer: $zero-margin;
 
 // navigation
 $height-nav: 100px;
-$height-nav-top: 30px;
+$height-nav-top: 29px;
 $height-nav-bottom: 70px;
 
 
