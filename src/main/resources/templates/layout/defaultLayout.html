@@ -105,7 +105,6 @@
 
                     <li sec:authorize="hasRole('ROLE_SUPER_ADMIN')"><a href="#" th:href="@{/permissions}">Právomoci</a></li>
                     <li sec:authorize="hasRole('ROLE_USER') or isAnonymous()"><a href="#" th:href="@{/contact}">Kontakt</a></li>
-                    <li sec:authorize="hasRole('ROLE_USER') or isAnonymous()"><a href="#">Kontakt</a></li>
                     <li><a href="#" th:href="@{/cart}">Košík</a></li>
                 </ul>
             </div>
