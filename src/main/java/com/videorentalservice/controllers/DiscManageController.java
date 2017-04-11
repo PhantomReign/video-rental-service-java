@@ -105,5 +105,4 @@ public class DiscManageController {
         redirectAttributes.addFlashAttribute("info", "Disk bol úspešne vymazaný.");
         return "redirect:/movies";
     }
-
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>Filmy</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(cart)}">
+            <h2>Zoznam položiek v košíku</h2>
+
+            <div class="row">
+                <a th:href="${'/order/checkout/'}">
+                    <button class="btn btn-success btn-block">Objednať</button>
+                </a>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6" th:each="disc : ${cart}">
+                    <article class="card">
+                        <header class="title-header">
+                            <h3 class="text-center" th:text="${disc.title}">Názov</h3>
+                        </header>
+                        <div class="card-block">
+                            <div class="img-card">
+                                <p class="text-center" th:text="${disc.category.name}"
+                                   th:classappend="${disc.category.name} == 'DVD' ? dvd-tag : blu-ray-tag">Typ</p>
+                                <a th:href="${'/movie/show/' + disc.id}">
+                                    <img th:src="${disc.imageUrl}" th:alt="Movie + ${disc.title}"/>
+                                </a>
+                                <div class="btn-group">
+                                    <a th:href="${'/cart/remove/' + disc.id}" class="btn btn-danger btn-block">
+                                        <i class="fa fa-minus"></i> Odstrániť z košíka
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div th:if="${#lists.isEmpty(cart)}">
+            <h2>V košíku nemáte žiadne položky</h2>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
