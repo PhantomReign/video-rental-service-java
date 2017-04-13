@@ -79,7 +79,22 @@ public class DiscServiceImplementation implements DiscService {
 
     @Override
     public Disc update(Disc discObject) {
-        Disc persistedDisc = save(discObject);
+        Disc persistedDisc = getById(discObject.getId());
+        if(persistedDisc == null){
+            throw new VRSException("Disc "+discObject.getId()+" doesn't exist");
+        }
+        persistedDisc.setTitle(discObject.getTitle());
+        persistedDisc.setSubTitle(discObject.getSubTitle());
+        persistedDisc.setOriginalTitle(discObject.getOriginalTitle());
+        persistedDisc.setOriginalSubTitle(discObject.getOriginalSubTitle());
+        persistedDisc.setDescription(discObject.getDescription());
+        persistedDisc.setPrice(discObject.getPrice());
+        persistedDisc.setYear(discObject.getYear());
+        persistedDisc.setGenres(discObject.getGenres());
+        persistedDisc.setCategory(discObject.getCategory());
+        persistedDisc.setImageBGUrl(discObject.getImageBGUrl());
+        persistedDisc.setImageUrl(discObject.getImageUrl());
+        persistedDisc.setVideoUrl(discObject.getVideoUrl());
         return discRepository.save(persistedDisc);
     }
 

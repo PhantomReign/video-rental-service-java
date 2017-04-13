@@ -41,7 +41,7 @@ public class GenreManageController extends AbstractBaseController {
         this.genreService = genreService;
     }
 
-    @RequestMapping(value = "/genres", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/genres", method = RequestMethod.GET)
     public String listCategories(Model model,
                                  @QuerydslPredicate(root = Genre.class) Predicate predicate,
                                  @PageableDefault(sort = { "id", "name" }, value = 10) Pageable pageable,
@@ -49,31 +49,30 @@ public class GenreManageController extends AbstractBaseController {
 
         ServletUriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequest();
         builder.replaceQueryParam("page");
-
         model.addAttribute("genres", genreService.findAll(predicate, pageable));
         return "genre/genres";
     }
 
 
-    @RequestMapping("genre/show/{id}")
+    @RequestMapping("admin/genre/show/{id}")
     public String showGenre(@PathVariable Integer id, Model model){
         model.addAttribute("genre", genreService.getById(id));
         return "genre/genre-show";
     }
 
-    @RequestMapping("genre/edit/{id}")
+    @RequestMapping("admin/genre/edit/{id}")
     public String editGenre(@PathVariable Integer id, Model model){
         model.addAttribute("genre", genreService.getById(id));
         return "genre/genre-form-update";
     }
 
-    @RequestMapping("genre/new")
+    @RequestMapping("admin/genre/new")
     public String newGenre(Model model){
         model.addAttribute("genre", new Genre());
         return "genre/genre-form-create";
     }
 
-    @RequestMapping(value = "/genre/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/genre/new", method = RequestMethod.POST)
     public String saveGenre(@Valid @ModelAttribute("genre") Genre genre, BindingResult result,
                            RedirectAttributes redirectAttributes){
 
@@ -83,23 +82,23 @@ public class GenreManageController extends AbstractBaseController {
         }
         genreService.save(genre);
         redirectAttributes.addFlashAttribute("info", "Žáner bol úspešne vytvorený.");
-        return "redirect:/genres";
+        return "redirect:/admin/genres";
     }
 
-    @RequestMapping(value="/genre/edit/{id}", method=RequestMethod.POST)
+    @RequestMapping(value="/admin/genre/edit/{id}", method=RequestMethod.POST)
     public String updateGenre(@ModelAttribute("genre") Genre genre,
                              RedirectAttributes redirectAttributes){
 
         genreService.update(genre);
         redirectAttributes.addFlashAttribute("info", "Žáner bol úspešne upravený.");
-        return "redirect:/genres";
+        return "redirect:/admin/genres";
     }
 
-    @RequestMapping("genre/delete/{id}")
+    @RequestMapping("admin/genre/delete/{id}")
     public String deleteGenre(@PathVariable Integer id,
                              RedirectAttributes redirectAttributes){
         genreService.delete(id);
         redirectAttributes.addFlashAttribute("info", "Žáner bol úspešne vymazaný.");
-        return "redirect:/genres";
+        return "redirect:/admin/genres";
     }
 }

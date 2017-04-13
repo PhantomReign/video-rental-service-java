@@ -1,0 +1,261 @@
+.card {
+  margin-top: 20px;
+}
+
+.title-header {
+  padding: 2px 4px;
+  background-color: transparent;
+}
+
+.title-header h3 {
+  margin: 0;
+  font-size: 21px;
+  padding-bottom: 5px;
+}
+
+.img-card {
+  width: 100%;
+  background-color: #404040;
+  -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  opacity: 0.95;
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  -o-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+.img-card:hover {
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.9);
+  opacity: 1;
+}
+.img-card .btn-group {
+  display: flex;
+}
+.img-card .btn-group .btn-block {
+  margin: 0;
+}
+.img-card p {
+  position: absolute;
+  padding: 2px 6px;
+  background-color: rgba(5, 5, 17, 0.9);
+  font-weight: bold;
+  width: 70px;
+}
+.img-card img {
+  width: 100%;
+}
+
+.blu-ray-tag {
+  color: #0096d5;
+}
+
+.dvd-tag {
+  color: #cddc39;
+}
+
+.year-tag {
+  color: #e91e63;
+}
+
+.price-tag {
+  color: #ffc107;
+}
+
+.cover-bg {
+  width: 100%;
+}
+
+.movie-card {
+  color: #A9A8A3;
+  padding: 20px 0;
+}
+
+.movie-header {
+  margin: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cover {
+  z-index: 2;
+  -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  width: 100%;
+}
+
+.movie-header-details {
+  background-color: #2a2929;
+}
+.movie-header-details .movie-header-title {
+  padding: 5px 10px;
+}
+.movie-header-details .movie-header-title .movie-title {
+  color: white;
+  z-index: 3;
+}
+.movie-header-details .movie-header-title .movie-title h1 {
+  margin: 0;
+  padding: 0;
+}
+.movie-header-details .movie-header-title .movie-subtitle {
+  color: #C7C1BA;
+  z-index: 3;
+  font-weight: 300;
+}
+.movie-header-details .movie-header-title .movie-subtitle h3 {
+  margin: 0;
+  padding: 0;
+}
+.movie-header-details .movie-header-description {
+  margin-top: 18px;
+}
+.movie-header-details .movie-header-description span {
+  padding: 5px 10px;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.movie-body {
+  margin-top: 20px;
+}
+.movie-body .id-text {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px 0 0 0;
+  color: #2a2929;
+}
+
+.description {
+  color: #2a2929;
+}
+.description p {
+  margin: 0 0 35px;
+  text-align: justify;
+}
+
+.tag {
+  display: inline-block;
+  background: #2a2929;
+  padding: 5px 8px;
+  font-size: 14px;
+  color: white;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.movie-frame {
+  border: 2px solid #2a2929;
+  width: 75%;
+  height: 315px;
+}
+
+form .row {
+  margin: 0;
+}
+
+.form-container {
+  display: table;
+  width: 100%;
+}
+.form-container .form-this {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0 35%;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.search-form {
+  border: 1px solid #d2d6de;
+  border-radius: 0;
+  background-color: white;
+}
+.search-form button {
+  background: none;
+  box-shadow: none;
+  border: 0;
+  color: #555555;
+}
+.search-form button:hover {
+  box-shadow: none;
+}
+.search-form button:focus {
+  outline: 0;
+}
+.search-form input {
+  border: 0;
+  box-shadow: none;
+}
+.search-form input:focus {
+  box-shadow: none;
+}
+
+.createAccount a {
+  font-size: 14px;
+}
+
+.forgotPassword {
+  padding-bottom: 15px;
+}
+.forgotPassword a {
+  font-size: 14px;
+}
+
+.combo-form {
+  border: 1px solid #d2d6de;
+  border-radius: 0;
+  background-color: white;
+}
+.combo-form select {
+  border: 0;
+  background-color: white;
+}
+.combo-form select:focus {
+  box-shadow: none;
+}
+
+.form-content {
+  background: #ffbb57;
+  padding: 20px;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  margin-bottom: 20px;
+}
+
+.btn {
+  border-radius: 0 !important;
+}
+
+.btn-sort {
+  padding: 7px 12px;
+}
+
+.table tbody tr td, .table tbody tr th, .table tfoot tr td, .table tfoot tr th {
+  vertical-align: middle;
+}
+.table tbody tr th:last-child,
+.table tbody tr td:last-child,
+.table tbody tr th:nth-last-child(2),
+.table tbody tr td:nth-last-child(2), .table tfoot tr th:last-child,
+.table tfoot tr td:last-child,
+.table tfoot tr th:nth-last-child(2),
+.table tfoot tr td:nth-last-child(2) {
+  text-align: center;
+}
+.table thead tr td {
+  vertical-align: middle;
+}
+.table thead tr th {
+  vertical-align: middle;
+}
+.table thead tr th:last-child,
+.table thead tr td:last-child,
+.table thead tr th:nth-last-child(2),
+.table thead tr td:nth-last-child(2) {
+  text-align: center;
+}

@@ -34,7 +34,7 @@ public class PermissionManageController extends AbstractBaseController {
         this.permissionService = permissionService;
     }
 
-    @RequestMapping(value = "/permissions", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/permissions", method = RequestMethod.GET)
     public String listPermissions(Model model,
                        @QuerydslPredicate(root = Permission.class) Predicate predicate,
                        @PageableDefault(sort = { "id", "name" }, value = 10) Pageable pageable,

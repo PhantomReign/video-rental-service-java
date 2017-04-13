@@ -3,90 +3,77 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:sd="http://www.thymeleaf.org/spring-data"
       xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorator="layout/defaultLayout">
+      layout:decorator="layout/adminLayout">
 <head lang="sk">
     <title>Detail užívateľa</title>
 </head>
 <body>
 
-<div class="content-section" layout:fragment="content">
+<div layout:fragment="content">
 
-    <div class="container">
-        <h2 class="text-center">Detail užívateľa</h2>
-        <div>
-            <form class="form-horizontal col-sm-offset-2 col-sm-6">
+    <div class="box box-warning">
+        <div class="box-header with-border">
+            <h3 class="box-title">Detail užívateľa</h3>
+        </div>
+        <div class="box-body">
+            <form class="form-horizontal col-sm-offset-3 col-sm-6">
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Id:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.id}">Id</p></div>
+                    <label class="control-label">Id:</label>
+                    <p class="form-control-static" th:text="${user.id}">Id</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Užívateľské meno:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.userName}">U.Meno</p></div>
+                    <label class="control-label">Užívateľské meno:</label>
+                    <p class="form-control-static" th:text="${user.userName}">U.Meno</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Meno:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.firstName}">Meno</p></div>
+                    <label class="control-label">Meno:</label>
+                    <p class="form-control-static" th:text="${user.firstName}">Meno</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Priezvisko:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.lastName}">Priezvisko</p></div>
+                    <label class="control-label">Priezvisko:</label>
+                    <p class="form-control-static" th:text="${user.lastName}">Priezvisko</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">E-mail:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.email}">Email</p></div>
+                    <label class="control-label">E-mail:</label>
+                    <p class="form-control-static" th:text="${user.email}">Email</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Heslo:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static">Heslo</p></div>
+                    <label class="control-label">Heslo:</label>
+                    <p class="form-control-static">********</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Adresa:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.address}">Adresa</p></div>
+                    <label class="control-label">Adresa:</label>
+                    <p class="form-control-static" th:text="${user.address}">Adresa</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Telefónne číslo:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.phone}">Telefónne číslo</p></div>
+                    <label class="control-label">Telefónne číslo:</label>
+                    <p class="form-control-static" th:text="${user.phone}">Telefónne číslo</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Roly:</label>
-                    <div class="col-sm-6">
-                        <div th:each="role : ${user.roles}">
-                            <p class="form-control-static" th:text="${role.name}">Typ</p>
-                        </div>
+                    <label class="control-label">Roly:</label>
+                    <div th:each="role : ${user.roles}">
+                        <p class="form-control-static" th:text="${role.name}">Typ</p>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Čas vytvorenia:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.dateCreated}">Cena</p>
-                    </div>
+                    <label class="control-label">Čas vytvorenia:</label>
+                    <p class="form-control-static" th:text="${user.dateCreated}">Cena</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-6 control-label">Čas poslednej zmeny:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.lastUpdated}">Cena</p>
-                    </div>
+                    <label class="control-label">Čas poslednej zmeny:</label>
+                    <p class="form-control-static" th:text="${user.lastUpdated}">Cena</p>
                 </div>
             </form>
-
         </div>
     </div>
 </div>

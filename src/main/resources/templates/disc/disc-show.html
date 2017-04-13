@@ -37,8 +37,6 @@
             <div class="movie-body col-lg-12 col-md-12 col-sm-12">
                 <div class="col-lg-3 col-md-3 col-sm-6">
                     <img src="" th:src="${disc.imageUrl}" alt="cover" class="cover" />
-                    <p class="text-center id-text" th:inline="text"
-                       sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">ID: #[[${disc.id}]]</p>
                     <span class="tag" th:each="genre : ${disc.genres}" th:text="${genre.name}">Genre</span>
                 </div>
 

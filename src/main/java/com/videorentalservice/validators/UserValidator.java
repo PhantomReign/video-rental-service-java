@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.util.Objects;
+
 /**
  * Created by Rave on 24.03.2017.
  */
@@ -31,6 +33,8 @@ public class UserValidator implements Validator {
         User user = (User) target;
         String email = user.getEmail();
         String userName = user.getUserName();
+        String password = user.getPassword();
+
         User userByEmail = userService.getByEmail(email);
         User userByUserName = userService.getByUserName(userName);
 
@@ -44,6 +48,11 @@ public class UserValidator implements Validator {
                     "error.exists",
                     new Object[]{email},
                     "Email "+email+" sa už používa");
+        }
+
+        if(Objects.equals(password, "password")){
+            errors.rejectValue("password",
+                    "error.uniquepw");
         }
 
         if (userByUserName != null) {
@@ -81,13 +90,6 @@ public class UserValidator implements Validator {
                         new Object[]{phone},
                         "Telefónne číslo " + phone + " nie je v správnom formáte");
             }
-        }
-
-        if(!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,6}$")) {
-            errors.rejectValue("email",
-                    "error.invalid",
-                    new Object[]{email},
-                    "Email " + email + " nie je v správnom formáte");
         }
     }
 }

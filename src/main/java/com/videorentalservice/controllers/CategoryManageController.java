@@ -39,7 +39,7 @@ public class CategoryManageController extends AbstractBaseController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping(value = "/categories", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/categories", method = RequestMethod.GET)
     public String listCategories(Model model,
                             @QuerydslPredicate(root = Category.class) Predicate predicate,
                             @PageableDefault(sort = { "id", "name" }, value = 10) Pageable pageable,
@@ -52,25 +52,25 @@ public class CategoryManageController extends AbstractBaseController {
         return "category/categories";
     }
 
-    @RequestMapping("category/show/{id}")
+    @RequestMapping("admin/category/show/{id}")
     public String showCategory(@PathVariable Integer id, Model model){
         model.addAttribute("category", categoryService.getById(id));
         return "category/category-show";
     }
 
-    @RequestMapping("category/edit/{id}")
+    @RequestMapping("admin/category/edit/{id}")
     public String editCategory(@PathVariable Integer id, Model model){
         model.addAttribute("category", categoryService.getById(id));
         return "category/category-form-update";
     }
 
-    @RequestMapping("category/new")
+    @RequestMapping("admin/category/new")
     public String newCategory(Model model){
         model.addAttribute("category", new Category());
         return "category/category-form-create";
     }
 
-    @RequestMapping(value = "/category/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/category/new", method = RequestMethod.POST)
     public String saveCategory(@Valid @ModelAttribute("category") Category category,
                            BindingResult result,
                            RedirectAttributes redirectAttributes){
@@ -81,23 +81,23 @@ public class CategoryManageController extends AbstractBaseController {
         }
         categoryService.save(category);
         redirectAttributes.addFlashAttribute("info", "Kategória bola úspešne vytvorená.");
-        return "redirect:/categories";
+        return "redirect:/admin/categories";
     }
 
-    @RequestMapping(value="/category/edit/{id}", method=RequestMethod.POST)
+    @RequestMapping(value="/admin/category/edit/{id}", method=RequestMethod.POST)
     public String updateCategory(@ModelAttribute("category") Category category,
                              RedirectAttributes redirectAttributes){
 
         categoryService.update(category);
         redirectAttributes.addFlashAttribute("info", "Kategória bola úspešne upravená.");
-        return "redirect:/categories";
+        return "redirect:/admin/categories";
     }
 
-    @RequestMapping("category/delete/{id}")
+    @RequestMapping("admin/category/delete/{id}")
     public String deleteCategory(@PathVariable Integer id,
                              RedirectAttributes redirectAttributes){
         categoryService.delete(id);
         redirectAttributes.addFlashAttribute("info", "Kategória bola úspešne vymazaná.");
-        return "redirect:/categories";
+        return "redirect:/admin/categories";
     }
 }

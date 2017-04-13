@@ -33,7 +33,8 @@ public class DiscValidator implements Validator {
         Integer year = disc.getYear();
 
         BigDecimal price = disc.getPrice();
-        if(year < 0){
+
+        if(year != null && year < 0){
             errors.rejectValue(
                     "year",
                     "error.isnegative",
@@ -41,7 +42,7 @@ public class DiscValidator implements Validator {
                     "Zadajte prosím nezáporný rok");
         }
 
-        if(price.signum() == -1){
+        if(price != null && price.signum() == -1){
             errors.rejectValue(
                     "price",
                     "error.isnegative",

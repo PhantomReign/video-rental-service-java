@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/adminLayout">
+<head lang="sk">
+    <title>Filmy</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Zoznam filmov</h3>
+                    <div class="box-tools">
+                        <div class="input-group">
+                            <a class="btn btn-sm btn-default" th:href="@{/admin/movie/new}"><i
+                                    class="fa fa-plus-circle"></i> Nový film</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <div class="form-group">
+                            <form name="filterForm" th:action="@{/admin/movies}">
+
+                                <div class="row">
+                                    <div class="col-sm-4 text-center">
+                                        <div class="combo-form">
+                                            <select class="form-control" name="genres" onchange="filterForm.submit()">
+                                                <option value="" selected="selected" disabled="disabled">Hľadať podľa žánru...</option>
+                                                <option th:each="genre : ${genres}"
+                                                        th:value="${genre.id}"
+                                                        th:text="${genre.name}"
+                                                        th:selected="${#httpServletRequest.getParameter('genres')} == ${genre.id}">
+                                                    Typ
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-sm-4">
+                                        <div class="form-search form-horizontal search-form input-group text-center">
+                                            <input class="form-control" th:value="${#httpServletRequest.getParameter('title')}" type="text" name="title" placeholder="Hľadať film..." />
+
+                                            <span class="input-group-btn">
+                                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                    </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4 text-center">
+                                        <div class="combo-form">
+                                            <select class="form-control" name="category" onchange="filterForm.submit()">
+                                                <option value="" selected="selected" disabled="disabled">Hľadať podľa kategórie...</option>
+                                                <option th:each="category : ${categories}"
+                                                        th:value="${category.id}"
+                                                        th:text="${category.name}"
+                                                        th:selected="${#httpServletRequest.getParameter('category')} == ${category.id}">
+                                                    Typ
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><a sd:pagination-sort="title">Názov</a></th>
+                            <th><a sd:pagination-sort="originalTitle">Originálny názov</a></th>
+                            <th>Rok</th>
+                            <th>Cena</th>
+
+                            <th><em class="fa fa-info-circle"></em></th>
+                            <th><em class="fa fa-cog"></em></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="disc : ${discs}">
+                            <td th:text="${disc.title}">Názov</td>
+                            <td th:text="${disc.originalTitle}">Originálny názov</td>
+                            <td th:text="${disc.year}">Rok</td>
+                            <td th:text="${disc.price}">Cena</td>
+                            <td>
+                                <a class="btn btn-default" th:href="${'/admin/movie/show/' + disc.id}"><em class="fa fa-info"></em></a>
+                            </td>
+                            <td>
+                                <a class="btn btn-default" th:href="${'/admin/movie/edit/' + disc.id}"><em class="fa fa-pencil"></em></a>
+                                <a class="btn btn-danger" th:href="${'/admin/movie/delete/' + disc.id}"><em class="fa fa-trash"></em></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <nav class="text-center">
+                        <ul class="pagination" sd:pagination="full">
+                            <!-- Pagination created by the Thymeleaf Spring Data dialect, this content is just for mockup -->
+                            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

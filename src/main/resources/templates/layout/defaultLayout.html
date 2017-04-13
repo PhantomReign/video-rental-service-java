@@ -6,6 +6,7 @@
       lang="sk">
 <head>
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Saturn</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
@@ -23,6 +24,12 @@
     <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.js"
             th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -38,7 +45,9 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Odhlásiť sa</a></li>
+                            <li><a href="#" th:href="@{/admin}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">Administrovať</a></li>
+                            <li><a href="#" th:href="@{/account}">Profil</a></li>
+                            <li><a href="#" th:href="@{/logout}">Odhlásiť sa</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,52 +68,8 @@
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#" th:href="@{/}">Domov</a></li>
-
-
-                    <li sec:authorize="isAnonymous() or hasRole('ROLE_USER')"><a href="#" th:href="@{/movies}">Filmy</a></li>
-
-
-                    <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filmy <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" th:href="@{/movies}">Zoznam</a></li>
-                            <li><a href="#" th:href="@{/movie/new}">Pridaj</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Žánre <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" th:href="@{/genres}">Zoznam</a></li>
-                            <li><a href="#" th:href="@{/genre/new}">Pridaj</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategórie <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" th:href="@{/categories}">Zoznam</a></li>
-                            <li><a href="#" th:href="@{/category/new}">Pridaj</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown" sec:authorize="hasRole('ROLE_SUPER_ADMIN')">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Užívatelia <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="" th:href="@{/users}">Zoznam</a></li>
-                            <li><a href="" th:href="@{/user/new}">Pridaj</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" sec:authorize="hasRole('ROLE_SUPER_ADMIN')">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Roly <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="" th:href="@{/roles}">Zoznam</a></li>
-                            <li><a href="" th:href="@{/role/new}">Pridaj</a></li>
-                        </ul>
-                    </li>
-
-                    <li sec:authorize="hasRole('ROLE_SUPER_ADMIN')"><a href="#" th:href="@{/permissions}">Právomoci</a></li>
-                    <li sec:authorize="hasRole('ROLE_USER') or isAnonymous()"><a href="#" th:href="@{/contact}">Kontakt</a></li>
+                    <li><a href="#" th:href="@{/movies}">Filmy</a></li>
+                    <li><a href="#" th:href="@{/contact}">Kontakt</a></li>
                     <li><a href="#" th:href="@{/cart}">Košík</a></li>
                 </ul>
             </div>
@@ -124,7 +89,11 @@
             <p><i class="icon fa fa-ban"></i> <span th:text="${error}">Error</span></p>
         </div>
     </div>
-    <div class="content-section" layout:fragment="content">
+
+    <header th:if="${#httpServletRequest.getRequestURI() == '/'}" class="header" layout:fragment="header">
+    </header>
+
+    <div th:if="${#httpServletRequest.getRequestURI() != '/'}" class="content-section" layout:fragment="content">
     </div>
 
 
@@ -134,7 +103,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <p class="text-muted">Copyright &copy; FIT VUT. Vytvorené vzornými študentmi do predmetu PIS.</p>
+                    <p class="text-muted">Copyright &copy; 2017 VUT Brno. Vytvorené vzornými študentmi do predmetu PIS.</p>
                 </div>
             </div>
         </div>

@@ -54,7 +54,7 @@ public class RoleManageController extends AbstractBaseController{
     }
 
 
-    @RequestMapping(value = "/roles", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/roles", method = RequestMethod.GET)
     public String listRoles(Model model,
                        @QuerydslPredicate(root = Role.class) Predicate predicate,
                        @PageableDefault(sort = { "id", "name" }, value = 10) Pageable pageable,
@@ -69,25 +69,25 @@ public class RoleManageController extends AbstractBaseController{
         return "role/roles";
     }
 
-    @RequestMapping("role/show/{id}")
+    @RequestMapping("admin/role/show/{id}")
     public String showRole(@PathVariable Integer id, Model model){
         model.addAttribute("role", roleService.getById(id));
         return "role/role-show";
     }
 
-    @RequestMapping("role/edit/{id}")
+    @RequestMapping("admin/role/edit/{id}")
     public String editRole(@PathVariable Integer id, Model model){
         model.addAttribute("role", roleService.getById(id));
         return "role/role-form-update";
     }
 
-    @RequestMapping("role/new")
+    @RequestMapping("admin/role/new")
     public String newRole(Model model){
         model.addAttribute("role", new Role());
         return "role/role-form-create";
     }
 
-    @RequestMapping(value = "/role/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/role/new", method = RequestMethod.POST)
     public String saveRole(@Valid @ModelAttribute("role") Role role, BindingResult result,
                            RedirectAttributes redirectAttributes){
 
@@ -97,24 +97,24 @@ public class RoleManageController extends AbstractBaseController{
         }
         roleService.save(role);
         redirectAttributes.addFlashAttribute("info", "Rola bola úspešne vytvorená.");
-        return "redirect:/roles";
+        return "redirect:/admin/roles";
     }
 
-    @RequestMapping(value="/role/edit/{id}", method=RequestMethod.POST)
+    @RequestMapping(value="/admin/role/edit/{id}", method=RequestMethod.POST)
     public String updateRole(@ModelAttribute("role") Role role,
                              RedirectAttributes redirectAttributes){
 
         roleService.update(role);
         redirectAttributes.addFlashAttribute("info", "Rola bola úspešne upravená.");
-        return "redirect:/roles";
+        return "redirect:/admin/roles";
     }
 
-    @RequestMapping("role/delete/{id}")
+    @RequestMapping("admin/role/delete/{id}")
     public String deleteRole(@PathVariable Integer id,
                              RedirectAttributes redirectAttributes){
         roleService.delete(id);
         redirectAttributes.addFlashAttribute("info", "Rola bola úspešne vymazaná.");
-        return "redirect:/roles";
+        return "redirect:/admin/roles";
     }
 
 }

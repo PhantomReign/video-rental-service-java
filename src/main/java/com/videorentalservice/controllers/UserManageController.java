@@ -60,7 +60,7 @@ public class UserManageController extends AbstractBaseController {
 
 
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String listUsers(Model model,
                        @QuerydslPredicate(root = User.class) Predicate predicate,
                        @PageableDefault(sort = { "id", "userName", "firstName", "lastName" },
@@ -75,27 +75,27 @@ public class UserManageController extends AbstractBaseController {
         return "user/users";
     }
 
-    @RequestMapping("user/show/{id}")
+    @RequestMapping("admin/user/show/{id}")
     public String showUser(@PathVariable Integer id, Model model){
         model.addAttribute("user", userService.getById(id));
         return "user/user-show";
     }
 
-    @RequestMapping("user/edit/{id}")
+    @RequestMapping("admin/user/edit/{id}")
     public String editUser(@PathVariable Integer id, Model model){
         model.addAttribute("user", userService.getById(id));
         model.addAttribute("allRoles", roleService.listAll());
         return "user/user-form-update";
     }
 
-    @RequestMapping("user/new")
+    @RequestMapping("admin/user/new")
     public String newUser(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("allRoles", roleService.listAll());
         return "user/user-form-create";
     }
 
-    @RequestMapping(value = "/user/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/user/new", method = RequestMethod.POST)
     public String saveUser(@Valid @ModelAttribute("user") User user,
                            BindingResult result,
                            RedirectAttributes redirectAttributes){
@@ -106,28 +106,26 @@ public class UserManageController extends AbstractBaseController {
         }
         userService.save(user);
         redirectAttributes.addFlashAttribute("info", "Užívateľ bol úspešne vytvorený.");
-        return "redirect:/users";
+        return "redirect:/admin/users";
     }
 
-    @RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/user/edit/{id}", method = RequestMethod.POST)
     public String updateUser(@Valid @ModelAttribute("user") User user,
                              BindingResult result,
                              RedirectAttributes redirectAttributes){
-
         if(result.hasErrors()){
             return "user/user-form-update";
         }
-
         userService.update(user);
         redirectAttributes.addFlashAttribute("info", "Užívateľ bol úspešne upravený.");
-        return "redirect:/users";
+        return "redirect:/admin/users";
     }
 
-    @RequestMapping("user/delete/{id}")
+    @RequestMapping("admin/user/delete/{id}")
     public String deleteUser(@PathVariable Integer id,
                              RedirectAttributes redirectAttributes){
         userService.delete(id);
         redirectAttributes.addFlashAttribute("info", "Užívateľ bol úspešne vymazaný.");
-        return "redirect:/users";
+        return "redirect:/admin/users";
     }
 }

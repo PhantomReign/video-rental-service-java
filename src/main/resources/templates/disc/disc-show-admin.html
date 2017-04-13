@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/adminLayout">
+<head lang="sk">
+    <title>Detail filmu</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="box box-warning">
+        <div class="box-header with-border">
+            <h3 class="box-title">Detail filmu</h3>
+        </div>
+        <div class="box-body">
+            <form class="form-horizontal col-sm-offset-3 col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Id:</label>
+                    <p class="form-control-static" th:text="${disc.id}">Id</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Celý názov:</label>
+                    <p class="form-control-static" th:text="${disc.subTitle} != '' ? ${disc.title} + ': ' + ${disc.subTitle} : ${disc.title}">Názov</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Pôvodný názov:</label>
+                    <p class="form-control-static" th:text="${disc.originalSubTitle} != '' ? ${disc.originalTitle} + ': ' + ${disc.originalSubTitle} : ${disc.originalTitle}">Originál</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Kategória:</label>
+                    <p class="form-control-static" th:text="${disc.category.name}">Kategória</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Popis:</label>
+                    <p class="form-control-static" th:text="${disc.description}">Popis</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Rok:</label>
+                    <p class="form-control-static" th:text="${disc.year}">Rok</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Cena:</label>
+                    <p class="form-control-static" th:text="${disc.price} + ' &euro;'">Cena</p>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label">URL pozadia:</label>
+                    <p class="form-control-static" th:text="${disc.imageBGUrl}">URL pozadia</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">URL obalu:</label>
+                    <p class="form-control-static" th:text="${disc.imageUrl}">URL obalu</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">URL videa:</label>
+                    <p class="form-control-static" th:text="${disc.videoUrl}">URL videa</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Tagy:</label>
+                    <br/>
+                    <span class="tag" th:each="genre : ${disc.genres}" th:text="${genre.name}">Genre</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Čas vytvorenia:</label>
+                    <p class="form-control-static" th:text="${disc.dateCreated}">Čas vytvorenia</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Čas poslednej zmeny:</label>
+                    <p class="form-control-static" th:text="${disc.lastUpdated}">Čas zmeny</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

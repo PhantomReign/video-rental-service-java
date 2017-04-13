@@ -37,8 +37,6 @@ public abstract class AbstractBaseController {
         if (principal instanceof AuthenticatedUser) {
             return ((AuthenticatedUser) principal);
         }
-        // principal object is either null or represents anonymous user -
-        // neither of which our domain User object can represent - so return null
         return null;
     }
 

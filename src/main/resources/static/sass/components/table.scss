@@ -1,37 +1,36 @@
 @import "../modules/colors";
 
 .table {
-  border: 2px solid $border-color-dark;
   tbody, tfoot {
     tr {
       td, th {
-        border-top: 1px solid $border-color-dark;
         vertical-align: middle;
+      }
+      th:last-child,
+      td:last-child,
+      th:nth-last-child(2),
+      td:nth-last-child(2) {
+        text-align: center;
       }
     }
   }
 
   thead {
-    background-color: $nav-color-top;
     tr {
       td {
         vertical-align: middle;
-        border-top: 1px solid $border-color-dark;
       }
       th {
         vertical-align: middle;
-        border-top: 1px solid $border-color-dark;
-        border-bottom: 2px solid $border-color-dark;
+      }
+      th:last-child,
+      td:last-child,
+      th:nth-last-child(2),
+      td:nth-last-child(2) {
+        text-align: center;
       }
     }
   }
 }
 
-tbody {
-  background-color: $bg-color-table-body;
-}
-
-.table-utils {
-  min-height: 51px;
-}
 

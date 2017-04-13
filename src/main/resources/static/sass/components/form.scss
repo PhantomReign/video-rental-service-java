@@ -2,6 +2,12 @@
 @import "../modules/colors";
 
 
+form {
+  .row {
+    margin: 0;
+  }
+}
+
 .form-container {
   display: table;
   width: $full-size;
@@ -21,7 +27,7 @@
 
 
 .search-form {
-  border: 1px solid $border-color-dark;
+  border: 1px solid $border-color-grey;
   border-radius: 0;
   background-color: $bg-color-white;
 
@@ -29,8 +35,7 @@
     background: none;
     box-shadow: none;
     border: 0;
-    color: $font-color-tertiary;
-    border-left: 1px solid $border-color-dark;
+    color: $font-color-primary-light;
 
     &:hover {
       box-shadow: none;
@@ -66,7 +71,7 @@
 }
 
 .combo-form {
-  border: 1px solid $border-color-dark;
+  border: 1px solid $border-color-grey;
   border-radius: 0;
   background-color: $bg-color-white;
 
