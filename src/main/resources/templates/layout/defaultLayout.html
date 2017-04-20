@@ -7,7 +7,6 @@
 <head>
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Saturn</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -19,11 +18,6 @@
     <link href="../../static/css/style.css"
           th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-    <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.js"
-            th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,12 +27,14 @@
 </head>
 
 <body>
-
+    <div class="se-pre-con"></div>
     <nav class="navbar navbar-fixed-top" role="navigation">
         <div class="top-area">
             <div class="container">
                 <div class="text-right">
-                    <a href="#" th:href="@{/login}" sec:authorize="isAnonymous()">Prihlásiť sa</a>
+                    <a href="#" th:href="@{/login}" sec:authorize="isAnonymous()">
+                        <span><i class="fa fa-user" aria-hidden="true"></i> Prihlásiť sa</span>
+                    </a>
                     <div class="dropdown" sec:authorize="isAuthenticated()">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span sec:authentication="name"> </span>
@@ -109,6 +105,9 @@
         </div>
     </footer>
 
+    <script th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/loader.js}"></script>
 
 </body>
 </html>

@@ -28,8 +28,8 @@ INSERT INTO roles (id, name, date_Created, last_Updated) VALUES
 INSERT INTO users (id, email, password, user_Name, first_Name, last_Name, phone, address, date_Created, last_Updated) VALUES
 
 (1, 'superadmin@gmail.com', '$2a$06$ucnRvG91hj54lMYDhFS.Y.fay.Raee.aJMVkEsV4cLsRnwITYgI/S', 'Super Admin', 'Derek', 'Jones', '+421 955 489 777', 'Jehodova 6, 563 34 Brno', now(), now()),
-(2, 'admin@gmail.com', '$2a$06$76k9I2FSGwpwM5JHV8Q9Vevn9K./3Ke9NUb.ji/Vf/l1jZkPWRRau', 'Admin', 'Eric', 'Ulbricht', '+421 955 489 222', 'Sarvbova 55, 733 34 Praha', now(), now()),
-(3, 'user@gmail.com', '$2a$06$aJLUgPwSZof/i/ylEipaleuIUBS7ZT6.SwYiWuSOdrxpmc2Ddy9iS', 'User', 'Piotr', 'Jones', '+421 333 444 777', 'Uhova 12, 563 34 Brno', now(), now());
+(2, 'admin@gmail.com', '$2a$06$qdOIAvv.1zCemX0BFWAphuJ1.QBANNvt1lxaaiI.Yj9YjWZrgc4Ne', 'Admin', 'Eric', 'Ulbricht', '+421 955 489 222', 'Sarvbova 55, 733 34 Praha', now(), now()),
+(3, 'user@gmail.com', '$2a$06$qo3pINOAgrgO4LNjfyeI1uRa.rQGazzdoMkVmEFa2cDWDP8frLm/u', 'User', 'Piotr', 'Jones', '+421 333 444 777', 'Uhova 12, 563 34 Brno', now(), now());
 
 insert into role_permission(role_id, permission_id) values
 (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),

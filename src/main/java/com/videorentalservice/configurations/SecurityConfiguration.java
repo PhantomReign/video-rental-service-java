@@ -10,9 +10,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 /**
  * Created by Rave on 16.02.2017.
@@ -32,6 +35,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -45,19 +53,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
 //                .antMatchers("/cart", "/cart/*").hasRole("ROLE_USER")
-                .antMatchers("/resources/**", "/webjars/**","/js/**", "/images/**", "/css/**").permitAll()
-                .antMatchers("/", "/movies", "/movie/show/*", "/console/*", "/h2-console/**", "/forgotPassword", "/resetPassword", "/register", "/contact").permitAll()
+                .antMatchers("/resources/**", "/webjars/**", "/js/**", "/images/**", "/css/**").permitAll()
+                .antMatchers("/", "/movies","/login", "/logout", "/movie/show/*", "/console/*", "/h2-console/**", "/forgotPassword", "/resetPassword", "/register", "/contact").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").permitAll()
+                .formLogin().loginPage("/login")
                 .and()
-                .logout().permitAll()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").deleteCookies("JSESSIONID")
                 .and()
                 .exceptionHandling().accessDeniedPage("/forbidden");
 
+        http.sessionManagement()
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true)
+                .expiredUrl("/login?expired");
+
         http.csrf().disable();
         http.headers().frameOptions().disable();
+
     }
 
-
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
 }

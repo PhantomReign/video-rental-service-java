@@ -24,7 +24,7 @@
                                 <div class="col-sm-4 text-center">
                                     <div class="combo-form">
                                         <select class="form-control" name="genres" onchange="filterForm.submit()">
-                                            <option value="" selected="selected" disabled="disabled">Hľadať podľa žánru...</option>
+                                            <option value="" selected="selected">Všetky žánre</option>
                                             <option th:each="genre : ${genres}"
                                                     th:value="${genre.id}"
                                                     th:text="${genre.name}"
@@ -48,7 +48,7 @@
                                 <div class="col-sm-4 text-center">
                                     <div class="combo-form">
                                         <select class="form-control" name="category" onchange="filterForm.submit()">
-                                            <option value="" selected="selected" disabled="disabled">Hľadať podľa kategórie...</option>
+                                            <option value="" selected="selected">Všetky kategórie</option>
                                             <option th:each="category : ${categories}"
                                                     th:value="${category.id}"
                                                     th:text="${category.name}"

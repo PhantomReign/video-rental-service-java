@@ -7,6 +7,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Saturn Admin</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -45,7 +46,7 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs" sec:authentication="name">Užívateľ </span>
+                            <span sec:authentication="name">Užívateľ </span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
@@ -110,7 +111,6 @@
 
 
 </div>
-
 
 <script th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>

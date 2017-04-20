@@ -1,6 +1,5 @@
 package com.videorentalservice.configurations;
 
-import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,8 +27,4 @@ public class CommonBeanConfiguration {
         return templateEngine;
     }
 
-    @Bean
-    public StrongPasswordEncryptor strongEncryptor(){
-        return new StrongPasswordEncryptor();
-    }
 }

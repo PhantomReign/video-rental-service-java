@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <form name="permissionForm" th:action="@{/admin/roles}" class="combo-form">
                                 <select class="form-control" name="permissions" onchange="permissionForm.submit()">
-                                    <option value="" selected="selected" disabled="disabled">Hľadať podľa právomoci...</option>
+                                    <option value="" selected="selected">Všetky právomoci</option>
                                     <option th:each="permission : ${permissions}"
                                             th:value="${permission.id}"
                                             th:text="${permission.name}"
