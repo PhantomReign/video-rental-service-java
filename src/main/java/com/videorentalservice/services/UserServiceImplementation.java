@@ -89,8 +89,8 @@ public class UserServiceImplementation implements UserService {
         return userRepository.save(userObject);
     }
 
-    @Override
-    public User update(User userObject) {
+    private User updateFunction(User userObject, Boolean updatePassword,
+                               Boolean updatePersonalInfo, Boolean updateContactInfo) {
         User persistedUser = getById(userObject.getId());
         if(persistedUser == null){
             throw new VRSException("User "+userObject.getId()+" doesn't exist");
@@ -106,15 +106,48 @@ public class UserServiceImplementation implements UserService {
                 }
             }
         }
+
+        if (updatePassword) {
+            persistedUser.setPassword(userObject.getPassword());
+            persistedUser.setPasswordResetToken(userObject.getPasswordResetToken());
+        }
+
+        if (updatePersonalInfo) {
+            persistedUser.setFirstName(userObject.getFirstName());
+            persistedUser.setLastName(userObject.getLastName());
+        }
+
+        if (updateContactInfo) {
+            persistedUser.setAddress(userObject.getAddress());
+            persistedUser.setPhone(userObject.getPhone());
+        }
+
         persistedUser.setRoles(updatedRoles);
-        persistedUser.setFirstName(userObject.getFirstName());
-        persistedUser.setLastName(userObject.getLastName());
-        persistedUser.setAddress(userObject.getAddress());
-        persistedUser.setPhone(userObject.getPhone());
-        persistedUser.setPasswordResetToken(userObject.getPasswordResetToken());
-        return userRepository.save(persistedUser);
+        return persistedUser;
     }
 
+    @Override
+    public User update(User userObject) {
+        return userRepository.save(updateFunction(userObject,true,true,true));
+    }
+
+    @Override
+    public User updateOnlyPassword(User userObject) {
+        return userRepository.save(updateFunction(userObject,true,false,false));
+
+    }
+
+    @Override
+    public User updateOnlyPersonalInfo(User userObject) {
+        return userRepository.save(updateFunction(userObject,false,true,false));
+
+    }
+
+    @Override
+    public User updateOnlyContactInfo(User userObject) {
+        return userRepository.save(updateFunction(userObject,false,false,true));
+
+    }
 
 
     @Override
@@ -157,8 +190,7 @@ public class UserServiceImplementation implements UserService {
         }
         user.setPassword(password);
         user.setPasswordResetToken(null);
-        update(user);
-
+        updateOnlyPassword(user);
     }
 
     @Override

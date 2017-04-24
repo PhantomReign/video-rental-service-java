@@ -104,6 +104,12 @@
                         </tbody>
                     </table>
 
+                    <div class="text-center" th:if="${#lists.toList(discs).isEmpty()}">
+                        <h5>
+                            Žiaden film nie je k dispozícii.
+                        </h5>
+                    </div>
+
                     <nav class="text-center">
                         <ul class="pagination" sd:pagination="full">
                             <!-- Pagination created by the Thymeleaf Spring Data dialect, this content is just for mockup -->

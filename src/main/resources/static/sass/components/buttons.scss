@@ -7,4 +7,15 @@
 
 .btn-sort {
   padding: 7px 12px;
+  background-color: $nav-color-bottom;
+
+  &:focus, &:active {
+    color: $font-color-secondary;
+    background: $font-color-tertiary;
+  }
+
+  &:hover {
+    background: $font-color-secondary-lighter;
+    color: $font-color-tertiary-lighter;
+  }
 }

@@ -14,11 +14,11 @@
 }
 
 .img-card {
-  width: 100%;
+  width: 80%;
   background-color: #404040;
-  -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
-  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.45);
   opacity: 0.95;
   -webkit-transition: all 0.15s ease-out;
   -moz-transition: all 0.15s ease-out;
@@ -172,7 +172,7 @@ form .row {
 }
 
 .search-form {
-  border: 1px solid #d2d6de;
+  border: 1px solid #202f40;
   border-radius: 0;
   background-color: white;
 }
@@ -208,7 +208,7 @@ form .row {
 }
 
 .combo-form {
-  border: 1px solid #d2d6de;
+  border: 1px solid #202f40;
   border-radius: 0;
   background-color: white;
 }
@@ -227,12 +227,25 @@ form .row {
   margin-bottom: 20px;
 }
 
+.form-control {
+  height: 33px;
+}
+
 .btn {
   border-radius: 0 !important;
 }
 
 .btn-sort {
   padding: 7px 12px;
+  background-color: #334455;
+}
+.btn-sort:focus, .btn-sort:active {
+  color: #d5c789;
+  background: #334455;
+}
+.btn-sort:hover {
+  background: #ffe3ba;
+  color: #4d6072;
 }
 
 .table tbody tr td, .table tbody tr th, .table tfoot tr td, .table tfoot tr th {

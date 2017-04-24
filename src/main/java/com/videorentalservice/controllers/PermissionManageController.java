@@ -30,7 +30,7 @@ public class PermissionManageController extends AbstractBaseController {
     private PermissionService permissionService;
 
     @Autowired
-    public void setDiscService(PermissionService permissionService) {
+    public void setPermissionService(PermissionService permissionService) {
         this.permissionService = permissionService;
     }
 

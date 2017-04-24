@@ -16,11 +16,11 @@
 }
 
 .img-card {
-  width: 100%;
+  width: 80%;
   background-color: $font-color-primary;
-  -webkit-box-shadow: 0 0 5px 3px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0 0 5px 3px rgba(0,0,0,0.75);
-  box-shadow: 0 0 5px 3px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0 0 5px 3px rgba(0,0,0,0.45);
+  -moz-box-shadow: 0 0 5px 3px rgba(0,0,0,0.45);
+  box-shadow: 0 0 5px 3px rgba(0,0,0,0.45);
   opacity: 0.95;
   -webkit-transition: all 0.15s ease-out;
   -moz-transition: all 0.15s ease-out;

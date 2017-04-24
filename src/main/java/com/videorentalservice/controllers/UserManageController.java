@@ -43,7 +43,7 @@ public class UserManageController extends AbstractBaseController {
     private UserValidator userValidator;
 
     @Autowired
-    public void setDiscService(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
@@ -62,10 +62,10 @@ public class UserManageController extends AbstractBaseController {
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String listUsers(Model model,
-                       @QuerydslPredicate(root = User.class) Predicate predicate,
-                       @PageableDefault(sort = { "id", "userName", "firstName", "lastName" },
-                               value = 8) Pageable pageable,
-                       @RequestParam MultiValueMap<String, String> parameters) {
+                            @QuerydslPredicate(root = User.class) Predicate predicate,
+                            @PageableDefault(sort = { "id", "userName", "firstName", "lastName" },
+                                    value = 8) Pageable pageable,
+                            @RequestParam MultiValueMap<String, String> parameters) {
 
         ServletUriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequest();
         builder.replaceQueryParam("page");

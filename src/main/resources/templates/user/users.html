@@ -26,32 +26,38 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-4 text-center">
+                    <div class="col-sm-12 text-center">
                         <div class="form-group">
-                            <form name="roleForm" th:action="@{/admin/users}" class="combo-form">
-                                <select class="form-control" name="roles" onchange="roleForm.submit()">
-                                    <option value="" selected="selected">Všetky roly</option>
-                                    <option th:each="role : ${roles}"
-                                            th:value="${role.id}"
-                                            th:text="${role.name}"
-                                            th:selected="${#httpServletRequest.getParameter('roles')} == ${role.id}">
-                                        Typ
-                                    </option>
-                                </select>
+                            <form name="filterForm" th:action="@{/admin/users}">
+
+                                <div class="row">
+                                    <div class="col-sm-4 text-center">
+                                        <div class="combo-form">
+                                            <select class="form-control" name="roles" onchange="filterForm.submit()">
+                                                <option value="" selected="selected">Všetky roly</option>
+                                                <option th:each="role : ${roles}"
+                                                        th:value="${role.id}"
+                                                        th:text="${role.name}"
+                                                        th:selected="${#httpServletRequest.getParameter('roles')} == ${role.id}">
+                                                    Typ
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-4">
+                                        <div class="form-search form-horizontal search-form input-group text-center">
+                                            <input class="form-control" th:value="${#httpServletRequest.getParameter('userName')}" type="text" name="userName" placeholder="Hľadať užívateľa..." />
+
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
-                    </div>
-
-                    <div class="col-sm-4 text-center">
-                        <form class="form-search form-horizontal search-form" th:action="@{/admin/users}">
-                            <div class="input-group">
-                                <input class="form-control" th:value="${#httpServletRequest.getParameter('userName')}" type="text" name="userName" placeholder="Hľadať užívateľa..." />
-
-                                <span class="input-group-btn">
-                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-                            </span>
-                            </div>
-                        </form>
                     </div>
                 </div>
 
@@ -87,6 +93,12 @@
                         </tr>
                         </tbody>
                     </table>
+
+                    <div class="text-center" th:if="${#lists.toList(users).isEmpty()}">
+                        <h5>
+                            Žiaden užívateľ nie je k dispozícii.
+                        </h5>
+                    </div>
 
                     <nav class="text-center">
                         <ul class="pagination" sd:pagination="full">

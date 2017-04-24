@@ -31,7 +31,7 @@ public class UserCreateController extends AbstractBaseController {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public void setDiscService(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 

@@ -118,8 +118,7 @@ public class SecurityController extends AbstractBaseController {
     @RequestMapping(value="/resetPassword", method=RequestMethod.POST)
     public String handleResetPassword(HttpServletRequest request, Model model, RedirectAttributes redirectAttributes)
     {
-        try
-        {
+        try {
             String email = request.getParameter("email");
             String token = request.getParameter("token");
             String password = request.getParameter("password");

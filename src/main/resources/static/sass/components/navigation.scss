@@ -21,13 +21,13 @@
     background: $nav-color-bottom;
 
     &:focus, &:active {
-      color: $font-color-tertiary;
-      background: $bg-color-white;
+      color: $font-color-secondary;
+      background: $font-color-tertiary;
     }
 
     &:hover {
-      background: $font-color-secondary;
-      color: $font-color-tertiary
+      background: $font-color-secondary-lighter;
+      color: $font-color-tertiary-lighter;
     }
 
   }
@@ -50,7 +50,7 @@
         outline: 0;
         text-align: center;
         &:hover {
-          background: $font-color-secondary;
+          background: $font-color-secondary-lighter;
         }
       }
     }
@@ -69,13 +69,13 @@
   div a {
     font-size: $font-size-smallest;
     letter-spacing: 1px;
-    color: $font-color-tertiary-lighter;
+    color: $font-color-white;
     text-transform: uppercase;
     font-weight: $font-weight-high;
     background: transparent;
 
     &:hover, &:active, &:focus {
-      color: $font-color-tertiary;
+      color: $font-color-secondary-lighter;
       text-decoration: none;
       outline: 0;
     }
@@ -100,7 +100,7 @@
         text-align: center;
 
         &:hover {
-          background: $font-color-secondary;
+          background: $font-color-secondary-lighter;
         }
       }
     }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>Zmena hesla</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+
+    <div class="container">
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Zmeniť heslo</h3>
+            </div>
+            <div class="box-body">
+                <form class="form-horizontal col-sm-offset-3 col-sm-6" th:object="${user}" th:action="@{/account/password}" method="post">
+                    <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}" th:class="text-red">Zlé dáta</p>
+
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{userName}"/>
+                    <input type="hidden" th:field="*{firstName}"/>
+                    <input type="hidden" th:field="*{lastName}"/>
+                    <input type="hidden" th:field="*{email}"/>
+                    <input type="hidden" th:field="*{password}"/>
+                    <input type="hidden" th:field="*{address}"/>
+                    <input type="hidden" th:field="*{phone}"/>
+
+                    <div class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
+                        <label class="control-label">Heslo<span class="povinna_polozka">*</span></label>
+                        <input type="password" class="form-control" th:field="*{passwordToConfirm}"/>
+                    </div>
+
+                    <div class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
+                        <label class="control-label">Potvrdenie hesla<span class="povinna_polozka">*</span></label>
+                        <input type="password" class="form-control" th:field="*{confirmedPassword}"/>
+                    </div>
+
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="text-red">Zlé dáta</p>
+
+                    <div class="box-footer text-center">
+                        <button type="submit" class="btn btn-primary">Zmeniť</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

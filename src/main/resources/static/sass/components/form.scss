@@ -27,7 +27,7 @@ form {
 
 
 .search-form {
-  border: 1px solid $border-color-grey;
+  border: 1px solid $border-color-dark;
   border-radius: 0;
   background-color: $bg-color-white;
 
@@ -71,7 +71,7 @@ form {
 }
 
 .combo-form {
-  border: 1px solid $border-color-grey;
+  border: 1px solid $border-color-dark;
   border-radius: 0;
   background-color: $bg-color-white;
 
@@ -91,4 +91,8 @@ form {
   padding: 20px;
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);
   margin-bottom: 20px;
+}
+
+.form-control {
+  height: 33px;
 }

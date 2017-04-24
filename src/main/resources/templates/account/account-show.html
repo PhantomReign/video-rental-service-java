@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>Profil</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+
+    <div class="container">
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Osobné informácie</h3>
+            </div>
+            <div class="box-body">
+                <form class="form-horizontal col-sm-offset-3 col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Užívateľské meno:</label>
+                        <p class="form-control-static text-center" th:text="${user.userName}">U.Meno</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Meno:</label>
+                        <p class="form-control-static text-center" th:text="${user.firstName}">Meno</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Priezvisko:</label>
+                        <p class="form-control-static text-center" th:text="${user.lastName}">Priezvisko</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">E-mail:</label>
+                        <p class="form-control-static text-center" th:text="${user.email}">Email</p>
+                    </div>
+                    <div class="text-center">
+                        <a class="btn btn-default" th:href="${'/account/personal'}"><em class="fa fa-pencil"> </em>Upraviť</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Bezpečnosť</h3>
+            </div>
+            <div class="box-body">
+                <form class="form-horizontal col-sm-offset-3 col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Heslo:</label>
+                        <p class="form-control-static text-center">********</p>
+                    </div>
+                    <div class="text-center">
+                        <a class="btn btn-default" th:href="${'/account/password'}"><em class="fa fa-pencil"> </em>Zmeniť</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Kontaktné informácie</h3>
+            </div>
+            <div class="box-body">
+                <form class="form-horizontal col-sm-offset-3 col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Adresa:</label>
+                        <p class="form-control-static text-center" th:text="${user.address}">Adresa</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Telefónne číslo:</label>
+                        <p class="form-control-static text-center" th:text="${user.phone}">Tel. číslo</p>
+                    </div>
+                    <div class="text-center">
+                        <a class="btn btn-default" th:href="${'/account/contact'}"><em class="fa fa-pencil"> </em>Upraviť</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

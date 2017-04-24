@@ -3,8 +3,6 @@ package com.videorentalservice.models;
 import com.videorentalservice.models.abstracts.AbstractModelClass;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -37,8 +35,14 @@ public class User extends AbstractModelClass {
 
     @Column(nullable=false)
     @NotBlank
-    @Size(min=8)
+    @Size(min=8, max = 60)
     private String password;
+
+    @Transient
+    private String passwordToConfirm;
+    @Transient
+    private String confirmedPassword;
+
 
     @Column(nullable=false)
     @NotBlank
@@ -98,6 +102,22 @@ public class User extends AbstractModelClass {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordToConfirm() {
+        return passwordToConfirm;
+    }
+
+    public void setPasswordToConfirm(String passwordToConfirm) {
+        this.passwordToConfirm = passwordToConfirm;
+    }
+
+    public String getConfirmedPassword() {
+        return confirmedPassword;
+    }
+
+    public void setConfirmedPassword(String confirmedPassword) {
+        this.confirmedPassword = confirmedPassword;
     }
 
     public String getPhone() {

@@ -12,14 +12,15 @@
 
 <div class="content-section" layout:fragment="content">
     <div class="container">
-        <div th:if="${not #lists.isEmpty(discs)}">
-            <h2>Zoznam filmov</h2>
+        <div class="box">
+            <div class="box-header text-center">
+                <h3 class="box-title">Zoznam filmov</h3>
+            </div>
 
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <div class="form-group">
                         <form name="filterForm" th:action="@{/movies}">
-
                             <div class="row">
                                 <div class="col-sm-4 text-center">
                                     <div class="combo-form">
@@ -71,14 +72,14 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="box-body table-responsive no-padding">
                 <div class="col-lg-3 col-md-3 col-sm-6" th:each="disc : ${discs}">
                     <article class="card">
                         <header class="title-header">
-                            <h3 class="text-center" th:text="${disc.title}">Názov</h3>
+                            <h4 class="text-center" th:text="${disc.title}">Názov</h4>
                         </header>
                         <div class="card-block">
-                            <div class="img-card">
+                            <div class="img-card center-block">
                                 <p class="text-center" th:text="${disc.category.name}"
                                    th:classappend="${disc.category.name} == 'DVD' ? dvd-tag : blu-ray-tag">Typ</p>
                                 <a th:href="${'/movie/show/' + disc.id}">
@@ -91,6 +92,12 @@
                         </div>
                     </article>
                 </div>
+            </div>
+
+            <div class="row text-center" th:if="${#lists.toList(discs).isEmpty()}">
+                <h4>
+                    Žiaden film nie je k dispozícii.
+                </h4>
             </div>
 
             <nav class="text-center">
