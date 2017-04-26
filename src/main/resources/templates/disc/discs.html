@@ -86,7 +86,8 @@
                                     <img src="" th:src="${disc.imageUrl}" th:alt="Movie + ${disc.title}"/>
                                 </a>
                                 <div class="btn-group">
-                                    <a th:href="${'/cart/add/' + disc.id}" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Pridať</a>
+                                    <a th:if="${disc.getAvailable()}" th:href="${'/cart/add/' + disc.id}" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Pridať</a>
+                                    <a th:if="${not disc.getAvailable()}" class="btn btn-warning btn-block"><i class="fa"></i> Nedostupné</a>
                                 </div>
                             </div>
                         </div>

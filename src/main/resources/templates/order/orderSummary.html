@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>Filmy</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+    <div class="container">
+        <div th:if="${order}">
+            <h2>Vaša objednávka bola zaevidovaná</h2>
+
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Meno</th>
+                        <th>Priezvisko</th>
+                        <th>Adresa</th>
+                        <th>Telefón</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                        <td th:text="${order.user.firstName}">Meno</td>
+                        <td th:text="${order.user.lastName}">Priezvisko</td>
+                        <td th:text="${order.user.address}">Adresa</td>
+                        <td th:text="${order.user.phone}">Telefón</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Názov</th>
+                        <th>Originálny názov</th>
+                        <th>Rok</th>
+                        <th>Cena</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="disc : ${order.getDiscs()}">
+                        <td th:text="${disc.title}">Názov</td>
+                        <td th:text="${disc.originalTitle}">Originálny názov</td>
+                        <td th:text="${disc.year}">Rok</td>
+                        <td th:text="${disc.price}">Cena</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Dátum od</th>
+                        <th>Dátum do</th>
+                        <th>Počet dní</th>
+                        <th>Počet vypožičaných titulov</th>
+                        <th>Celková cena</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${order.getFromDate()}"></td>
+                        <td th:text="${order.getToDate()}"></td>
+                        <td>
+                            <span th:text="${order.total_days}"></span>
+                        </td>
+                        <td th:text="${order.getTotalDiscs()}"></td>
+                        <td th:text="${order.price}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="row">
+                <a th:href="${'order/downloadPdf/' + order.id}">
+                    <button class="btn btn-success btn-block">Stiahnuť pdf</button>
+                </a>
+            </div>
+
+        </div>
+        <!--<div th:if="${not order}">-->
+            <!--<h2>Nemáte aktívnu žiadnu objednávku</h2>-->
+        <!--</div>-->
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

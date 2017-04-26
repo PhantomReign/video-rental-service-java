@@ -1,7 +1,9 @@
 package com.videorentalservice.services;
 
 import com.querydsl.core.types.Predicate;
+import com.videorentalservice.models.Disc;
 import com.videorentalservice.models.Order;
+import com.videorentalservice.repositories.DiscRepository;
 import com.videorentalservice.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,10 +20,16 @@ import java.util.List;
 public class OrderServiceImplementation implements OrderService {
 
     private OrderRepository orderRepository;
+    private DiscRepository discRepository;
 
     @Autowired
     public void setOrderRepository(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
+    }
+
+    @Autowired
+    public void setDiscRepository(DiscRepository discRepository) {
+        this.discRepository = discRepository;
     }
 
     @Override
@@ -43,6 +51,15 @@ public class OrderServiceImplementation implements OrderService {
 
     @Override
     public Order save(Order orderObject) {
+
+        List<Disc> discs = orderObject.getDiscs();
+        List<Disc> persistentDiscs = new ArrayList<>();;
+        for (Disc d : discs) {
+            persistentDiscs.add(discRepository.getOne(d.getId()));
+        }
+
+        orderObject.setDiscs(persistentDiscs);
+
         return orderRepository.save(orderObject);
     }
 

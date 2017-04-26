@@ -54,6 +54,9 @@ public class Disc extends AbstractModelClass {
     @NotNull
     private BigDecimal price;
 
+    @NotNull
+    private BigDecimal itemCount;
+
     private Boolean available;
 
     // GENRES
@@ -167,10 +170,19 @@ public class Disc extends AbstractModelClass {
 
     // AVAILABILITY
     public Boolean getAvailable() {
-        return available;
+        return itemCount.intValue() > 0;
+//        return true;
     }
 
     public void setAvailable(Boolean available) {
         this.available = available;
+    }
+
+    public BigDecimal getItemCount() {
+        return itemCount;
+    }
+
+    public void setItemCount(BigDecimal itemCount) {
+        this.itemCount = itemCount;
     }
 }

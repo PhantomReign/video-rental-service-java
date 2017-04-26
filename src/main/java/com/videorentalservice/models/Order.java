@@ -4,9 +4,13 @@ import com.videorentalservice.models.abstracts.AbstractModelClass;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,23 +29,22 @@ public class Order extends AbstractModelClass {
     @Column(nullable=false, unique=true)
     private String orderNumber;
     @Column(nullable=false)
-    @NotEmpty
+//    @NotEmpty
     private BigDecimal price;
 
     private BigDecimal penalty;
 
-    @Column(nullable=false)
-    @NotEmpty
-    private Date fromDate;
-    @Column(nullable=false)
-    @NotEmpty
-    private Date toDate;
+    private BigDecimal total_days;
 
+    @Column(nullable=false)
+    private Date fromDate;
+
+    @Column(nullable=false)
+    private Date toDate;
 
     @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name="user_id")
     private User user;
-
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="order")
     private List<Disc> discs;
@@ -56,6 +59,11 @@ public class Order extends AbstractModelClass {
 
     public String getOrderNumber() {
         return orderNumber;
+    }
+
+    public int getTotalDiscs()
+    {
+        return discs.size();
     }
 
     public void setOrderNumber(String orderNumber) {
@@ -86,20 +94,36 @@ public class Order extends AbstractModelClass {
         this.discs = discs;
     }
 
-    public Date getFromDate() {
-        return fromDate;
+    public String getFromDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(fromDate);
     }
 
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+    public void setFromDate(String date) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date from = null;
+        try {
+            from = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.fromDate = from;
     }
 
-    public Date getToDate() {
-        return toDate;
+    public String getToDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(toDate);
     }
 
-    public void setToDate(Date toDate) {
-        this.toDate = toDate;
+    public void setToDate(String date) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date to = null;
+        try {
+            to = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.toDate = to;
     }
 
     public User getUser() {
@@ -110,5 +134,11 @@ public class Order extends AbstractModelClass {
         this.user = user;
     }
 
+    public BigDecimal getTotal_days() {
+        return total_days;
+    }
 
+    public void setTotal_days(BigDecimal total_days) {
+        this.total_days = total_days;
+    }
 }
