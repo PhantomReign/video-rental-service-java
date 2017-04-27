@@ -14,6 +14,7 @@
 }
 
 .img-card {
+  position: relative;
   width: 80%;
   background-color: #404040;
   -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.45);
@@ -46,12 +47,29 @@
   width: 100%;
 }
 
+.discs-remaining {
+  right: 0;
+  width: 30px;
+}
+
+.glyphicon {
+  top: 2px !important;
+}
+
+.available-tag {
+  color: #9ddc16;
+}
+
+.not-available-tag {
+  color: #e92a3e;
+}
+
 .blu-ray-tag {
   color: #0096d5;
 }
 
 .dvd-tag {
-  color: #cddc39;
+  color: #dcdc53;
 }
 
 .year-tag {
@@ -160,12 +178,6 @@ form .row {
   display: table;
   width: 100%;
 }
-.form-container .form-this {
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  padding: 0 35%;
-}
 
 .form-control {
   border-radius: 0;
@@ -229,6 +241,14 @@ form .row {
 
 .form-control {
   height: 33px;
+}
+
+.alert {
+  border-radius: 0 !important;
+}
+
+.box-auth {
+  margin-top: 150px !important;
 }
 
 .btn {

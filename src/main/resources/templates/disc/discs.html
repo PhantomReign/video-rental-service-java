@@ -80,9 +80,13 @@
                         </header>
                         <div class="card-block">
                             <div class="img-card center-block">
-                                <p class="text-center" th:text="${disc.category.name}"
-                                   th:classappend="${disc.category.name} == 'DVD' ? dvd-tag : blu-ray-tag">Typ</p>
                                 <a th:href="${'/movie/show/' + disc.id}">
+                                    <p class="text-center" th:text="${disc.category.name}"
+                                       th:classappend="${disc.category.name} == 'DVD' ? dvd-tag : blu-ray-tag">Typ</p>
+                                    <p class="text-center discs-remaining" th:classappend="${disc.getAvailable()} ? available-tag : not-available-tag">
+                                        <span class="glyphicon glyphicon-cd"></span>
+                                        <span th:text="${disc.itemCount}" th:remove="tag">Počet</span>
+                                    </p>
                                     <img src="" th:src="${disc.imageUrl}" th:alt="Movie + ${disc.title}"/>
                                 </a>
                                 <div class="btn-group">

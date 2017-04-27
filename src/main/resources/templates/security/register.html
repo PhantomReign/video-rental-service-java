@@ -10,80 +10,72 @@
 <body>
 
 <div class="content-section" layout:fragment="content">
-
     <div class="container">
-        <h2 class="text-center">Registrovať užívateľa</h2>
-        <div>
-            <form class="form-horizontal col-sm-offset-2 col-sm-6" th:object="${user}" th:action="@{/register}" method="post">
-                <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}" th:class="text-red">Zlé dáta</p>
-
-                <input type="hidden" th:field="*{id}"/>
-
-                <div class="form-group" th:classappend="${#fields.hasErrors('userName')}? 'has-error'">
-                    <label class="col-sm-6 control-label">Užívateľské meno<span class="povinna_polozka">*</span></label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" th:field="*{userName}"/>
-                        <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" th:class="text-red">Zlé dáta</p>
-                    </div>
+        <div class="col-lg-6 col-sm-6 col-lg-offset-3 col-sm-offset-3">
+            <div class="box">
+                <div class="box-header text-center">
+                    <h3 class="box-title">Registrovať užívateľa</h3>
                 </div>
 
-                <div class="form-group" th:classappend="${#fields.hasErrors('firstName')}? 'has-error'">
-                    <label class="col-sm-6 control-label">Meno<span class="povinna_polozka">*</span></label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" th:field="*{firstName}"/>
-                        <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:class="text-red">Zlé dáta</p>
-                    </div>
-                </div>
+                <div class="box-body table-responsive no-padding">
 
-                <div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error'">
-                    <label class="col-sm-6 control-label">Priezvisko<span class="povinna_polozka">*</span></label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" th:field="*{lastName}"/>
-                        <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:class="text-red">Zlé dáta</p>
-                    </div>
-                </div>
+                    <form class="form" th:object="${user}" th:action="@{/register}" method="post">
+                        <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}" th:class="text-red">Zlé dáta</p>
 
-                <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
-                    <label class="col-sm-6 control-label">E-mail<span class="povinna_polozka">*</span></label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" th:field="*{email}"/>
-                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="text-red">Zlé dáta</p>
-                    </div>
-                </div>
+                        <input type="hidden" th:field="*{id}"/>
 
-                <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
-                    <label class="col-sm-6 control-label">Heslo<span class="povinna_polozka">*</span></label>
-                    <div class="col-sm-6">
-                        <input type="password" class="form-control" th:field="*{password}"/>
-                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="text-red">Zlé dáta</p>
-                    </div>
-                </div>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('userName')}? 'has-error'">
+                            <label class="control-label">Užívateľské meno<span class="povinna_polozka">*</span></label>
+                            <input type="text" class="form-control" th:field="*{userName}"/>
+                            <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" th:class="text-red">Zlé dáta</p>
+                        </div>
 
-                <div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'has-error'">
-                    <label class="col-sm-6 control-label">Adresa<span class="povinna_polozka">*</span></label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" th:field="*{address}"/>
-                        <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" th:class="text-red">Zlé dáta</p>
-                    </div>
-                </div>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('firstName')}? 'has-error'">
+                            <label class="control-label">Meno<span class="povinna_polozka">*</span></label>
+                            <input type="text" class="form-control" th:field="*{firstName}"/>
+                            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:class="text-red">Zlé dáta</p>
+                        </div>
 
-                <div class="form-group" th:classappend="${#fields.hasErrors('phone')}? 'has-error'">
-                    <label class="col-sm-6 control-label">Telefónne číslo<span class="povinna_polozka">*</span></label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" th:field="*{phone}"/>
-                        <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" th:class="text-red">Zlé dáta</p>
-                    </div>
-                </div>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error'">
+                            <label class="control-label">Priezvisko<span class="povinna_polozka">*</span></label>
+                            <input type="text" class="form-control" th:field="*{lastName}"/>
+                            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:class="text-red">Zlé dáta</p>
+                        </div>
 
-                <div class="form-group">
-                    <label class="col-sm-6 control-label"></label>
-                    <div class="col-sm-6">
-                        <button type="submit" class="btn btn-primary form-control">Registrovať</button>
-                    </div>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+                            <label class="control-label">E-mail<span class="povinna_polozka">*</span></label>
+                            <input type="text" class="form-control" th:field="*{email}"/>
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="text-red">Zlé dáta</p>
+                        </div>
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+                            <label class="control-label">Heslo<span class="povinna_polozka">*</span></label>
+                            <input type="password" class="form-control" th:field="*{password}"/>
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="text-red">Zlé dáta</p>
+                        </div>
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('address')}? 'has-error'">
+                            <label class="control-label">Adresa<span class="povinna_polozka">*</span></label>
+                            <input type="text" class="form-control" th:field="*{address}"/>
+                            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" th:class="text-red">Zlé dáta</p>
+                        </div>
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('phone')}? 'has-error'">
+                            <label class="control-label">Telefónne číslo<span class="povinna_polozka">*</span></label>
+                            <input type="text" class="form-control" th:field="*{phone}"/>
+                            <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" th:class="text-red">Zlé dáta</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                            <button type="submit" class="btn btn-primary form-control">Registrovať sa</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
+
 </div>
 
 </body>

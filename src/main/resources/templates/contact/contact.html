@@ -10,66 +10,92 @@
 <body>
 
 <div class="content-section" layout:fragment="content">
-
     <div class="container">
-        <div class="row text-center">
-            <div class="col-lg-6 col-sm-6">
-                <div>
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h2>Mapa</h2>
-                            <hr/>
-                        </div>
-                    </div>
+        <div class="col-lg-6 col-sm-6">
+            <div class="box contact-height">
+                <div class="box-header text-center">
+                    <h3 class="box-title">Mapa</h3>
                 </div>
-                <iframe class="contact-inner"
-                        width="100%" height="100%"
-                        frameborder="0" scrolling="no"
-                        marginheight="0" marginwidth="0"
-                        src="http://www.citymaps.ie/create-google-map/map.php?width=720&amp;height=600&amp;hl=en&amp;q=%C4%8Ceskoslovenskej%20brig%C3%A1dy%2C%20013%2024%20Stre%C4%8Dno%2C%20Slovensko+(Videopo%C5%BEi%C4%8Dov%C5%88a%20Saturn)&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=A&amp;output=embed">
-                </iframe>
+
+                <div class="box-body table-responsive no-padding">
+                    <div id="googleMap"></div>
+                </div>
             </div>
-            <div class="col-lg-6 col-sm-6">
-                <div>
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h2>Kontaktujte nás</h2>
-                            <hr/>
+        </div>
+
+        <div class="col-lg-6 col-sm-6">
+            <div class="box contact-height">
+                <div class="box-header text-center">
+                    <h3 class="box-title">Kontaktujte nás</h3>
+                </div>
+
+                <div class="box-body table-responsive no-padding">
+                    <form name="sentMessage" id="contactForm">
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12">
+                                <input type="text" class="form-control" placeholder="Meno"/>
+                                <p class="help-block text-danger"></p>
+                            </div>
                         </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12">
+                                <input type="email" class="form-control" placeholder="Email"/>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12">
+                                <input type="text" class="form-control" placeholder="Predmet"/>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <textarea rows="10" class="form-control" placeholder="Správa"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12 contact-send-button">
+                                <button type="submit" class="btn btn-primary col-xs-12">Poslať</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 col-lg-offset-3 col-sm-offset-3">
+            <div class="box">
+                <div class="box-header text-center">
+                    <h3 class="box-title">Doplňujúce informácie</h3>
+                </div>
+
+                <div class="box-body table-responsive no-padding">
+                    <div class="form-group">
+                        <label class="control-label">Telefónne číslo:</label>
+                        <p class="form-control-static text-center">+421 940 696 969</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Otváracie hodiny:</label>
+                        <ul class="list-unstyled">
+                            <li>Pondelok <span class="pull-right">9:00-20:00</span></li>
+                            <li>Utorok <span class="pull-right">9:00-20:00</span></li>
+                            <li>Streda <span class="pull-right">9:00-20:00</span></li>
+                            <li>Štvrtok <span class="pull-right">9:00-20:00</span></li>
+                            <li>Piatok <span class="pull-right">9:00-17:00</span></li>
+                            <li>Sobota <span class="pull-right">Zatvorené</span></li>
+                            <li>Nedeľa <span class="pull-right">Zatvorené</span></li>
+                        </ul>
                     </div>
                 </div>
-                <form name="sentMessage" id="contactForm">
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12">
-                            <input type="text" class="form-control" placeholder="Meno"/>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12">
-                            <input type="email" class="form-control" placeholder="Email"/>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12">
-                            <input type="text" class="form-control" placeholder="Predmet"/>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <textarea rows="10" class="form-control" placeholder="Správa"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-xs-12 contact-send-button">
-                            <button type="submit" class="btn btn-primary col-xs-12">Poslať</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 </div>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/maps.js}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-6v6m5pgCNPvgb5_13k_Oiz7I0mIyw8k&amp;callback=googleMapInit"></script>
+</th:block>
 
 </body>
 </html>

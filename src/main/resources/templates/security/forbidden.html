@@ -10,11 +10,13 @@
 <body>
 
 <div class="content-section" layout:fragment="content">
-    <div class="container text-center">
-        <h1>Chyba 403</h1>
-        <h2>Sem nemáte prístup!</h2>
-        <img src="../../static/images/403.png"
-             th:src="@{/images/403.png}"/>
+    <div class="container text-center box-auth">
+        <div class="box-auth">
+            <h1>Chyba 403</h1>
+            <h2>Prístup zamietnutý!</h2>
+            <img src="../../static/images/403.png"
+                 th:src="@{/images/403.png}"/>
+        </div>
     </div>
 </div>
 

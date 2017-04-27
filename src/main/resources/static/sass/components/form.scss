@@ -11,13 +11,6 @@ form {
 .form-container {
   display: table;
   width: $full-size;
-
-  .form-this {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    padding: $padding-form;
-  }
 }
 
 
@@ -95,4 +88,12 @@ form {
 
 .form-control {
   height: 33px;
+}
+
+.alert {
+  border-radius: 0 !important;
+}
+
+.box-auth {
+  margin-top: 150px !important;;
 }

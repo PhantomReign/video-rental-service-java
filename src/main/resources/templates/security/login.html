@@ -8,61 +8,65 @@
 </head>
 <body>
 
+
 <div class="content-section form-container" layout:fragment="content">
-    <form id="form-login" class="form form-this" th:action="@{/login}" role="form" method="post" accept-charset="UTF-8">
+    <div class="container">
+        <div class="col-lg-6 col-sm-6 col-lg-offset-3 col-sm-offset-3">
+            <div class="box box-auth">
+                <div class="box-header text-center">
+                    <h3 class="box-title">Prihlásiť sa</h3>
+                </div>
 
-        <div class="row">
-            <div class="col-xs-12">
-                <h3>Prihlásiť sa</h3>
-                <div class="forgotPassword">
-                    <a href="" th:href="@{/forgotPassword}">Zabudol som heslo</a>
+                <div class="box-body table-responsive no-padding">
+                    <div class="col-xs-12 text-center">
+                        <div th:if="${param.error}" class="alert alert-danger alert-dismissable" >
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <p><i class="icon fa fa-ban"></i> <span th:text="#{error.login_failed}">Nesprávne.</span></p>
+                        </div>
+                        <div th:if="${param.expired}" class="alert alert-warning alert-dismissable" >
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <p><i class="icon fa fa-info"></i> <span th:text="#{warning.logout_expired}">Neaktivita.</span></p>
+                        </div>
+                        <div th:if="${param.logout}" class="alert alert-info alert-dismissable" >
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <p><i class="icon fa fa-info"></i> <span th:text="#{info.logout_success}">Odhlásenie.</span></p>
+                        </div>
+                    </div>
+
+                    <div class="forgotPassword text-center">
+                        <a href="" th:href="@{/forgotPassword}">Zabudol som heslo</a>
+                    </div>
+                    <form id="form-login" class="form" th:action="@{/login}" role="form" method="post" accept-charset="UTF-8">
+                        <div class="row control-group">
+                            <div class="form-group">
+                                <label class="sr-only" for="inputEmail">Email</label>
+                                <input name="username" type="text" class="form-control" id="inputEmail" placeholder="Email" required='required'/>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group">
+                                <label class="sr-only" for="inputPassword">Heslo</label>
+                                <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Heslo" required="required"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-block">Prihlásiť sa</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="col-xs-12">
+                        <div class="createAccount text-center">
+                            <a href="" th:href="@{/register}">Vytvoriť účet</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="form-group">
-                    <label class="sr-only" for="inputEmail">Email</label>
-                    <input name="username" type="text" class="form-control" id="inputEmail" placeholder="Email" required='required'/>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="inputPassword">Heslo</label>
-                    <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Heslo" required='required'/>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-block">Prihlásiť sa</button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div th:if="${param.error}" class="alert alert-danger alert-dismissable" >
-                    <p>
-                        <i class="icon fa fa-ban"></i> <span th:text="#{error.login_failed}">Nesprávne.</span>
-                    </p>
-                </div>
-                <div th:if="${param.expired}" class="alert alert-warning alert-dismissable" >
-                    <p><i class="icon fa fa-info"></i> <span th:text="#{warning.logout_expired}">Neaktivita.</span></p>
-                </div>
-                <div th:if="${param.logout}" class="alert alert-info alert-dismissable" >
-                    <p><i class="icon fa fa-info"></i> <span th:text="#{info.logout_success}">Odhlásenie.</span></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="createAccount">
-                    <a href="" th:href="@{/register}">Vytvoriť účet</a>
-                </div>
-            </div>
-        </div>
-    </form>
-
-
-
+    </div>
 </div>
-
 
 </body>
 </html>

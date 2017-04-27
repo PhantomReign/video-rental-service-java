@@ -16,6 +16,7 @@
 }
 
 .img-card {
+  position: relative;
   width: 80%;
   background-color: $font-color-primary;
   -webkit-box-shadow: 0 0 5px 3px rgba(0,0,0,0.45);
@@ -50,6 +51,23 @@
   img {
     width: 100%;
   }
+}
+
+.discs-remaining {
+  right: 0;
+  width: 30px;
+}
+
+.glyphicon {
+  top: 2px !important;
+}
+
+.available-tag {
+  color: $font-color-tag-available;
+}
+
+.not-available-tag {
+  color: $font-color-tag-not-available;
 }
 
 .blu-ray-tag {

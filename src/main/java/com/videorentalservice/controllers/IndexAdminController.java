@@ -6,10 +6,12 @@ import com.videorentalservice.controllers.abstracts.AbstractBaseController;
 import com.videorentalservice.models.Order;
 import com.videorentalservice.models.QOrder;
 import com.videorentalservice.services.OrderService;
+import com.videorentalservice.utilities.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -22,6 +24,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  * Created by Rave on 27.04.2017.
  */
 @Controller
+@Secured({SecurityUtility.MANAGE_ORDERS, SecurityUtility.MANAGE_USERS, SecurityUtility.MANAGE_GENRES,
+        SecurityUtility.MANAGE_CATEGORIES, SecurityUtility.MANAGE_DISC, SecurityUtility.MANAGE_PERMISSIONS,
+        SecurityUtility.MANAGE_ROLES})
 public class IndexAdminController extends AbstractBaseController {
 
     private OrderService orderService;

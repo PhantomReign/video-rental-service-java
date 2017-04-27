@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +30,6 @@ public class Disc extends AbstractModelClass {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
-    /*@ManyToOne
-    @JoinColumn(name="order_id")
-    private Order order;*/
 
     @ManyToMany(mappedBy="discs")
     private List<Order> orders = new ArrayList<>();
@@ -58,7 +55,7 @@ public class Disc extends AbstractModelClass {
     private BigDecimal price;
 
     @NotNull
-    private BigDecimal itemCount;
+    private BigInteger itemCount;
 
     private Boolean available;
 
@@ -183,18 +180,17 @@ public class Disc extends AbstractModelClass {
     // AVAILABILITY
     public Boolean getAvailable() {
         return itemCount.intValue() > 0;
-//        return true;
     }
 
     public void setAvailable(Boolean available) {
         this.available = available;
     }
 
-    public BigDecimal getItemCount() {
+    public BigInteger getItemCount() {
         return itemCount;
     }
 
-    public void setItemCount(BigDecimal itemCount) {
+    public void setItemCount(BigInteger itemCount) {
         this.itemCount = itemCount;
     }
 }

@@ -41,6 +41,10 @@ hr {
   font-weight: 400;
 }
 
+.contact-height {
+  height: 489px;
+}
+
 form .row {
   margin: 0;
 }
@@ -48,12 +52,6 @@ form .row {
 .form-container {
   display: table;
   width: 100%;
-}
-.form-container .form-this {
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  padding: 0 35%;
 }
 
 .form-control {
@@ -120,6 +118,14 @@ form .row {
   height: 33px;
 }
 
+.alert {
+  border-radius: 0 !important;
+}
+
+.box-auth {
+  margin-top: 150px !important;
+}
+
 .table tbody tr td, .table tbody tr th, .table tfoot tr td, .table tfoot tr th {
   vertical-align: middle;
 }
@@ -161,6 +167,7 @@ form .row {
 }
 
 .img-card {
+  position: relative;
   width: 80%;
   background-color: #404040;
   -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.45);
@@ -193,12 +200,29 @@ form .row {
   width: 100%;
 }
 
+.discs-remaining {
+  right: 0;
+  width: 30px;
+}
+
+.glyphicon {
+  top: 2px !important;
+}
+
+.available-tag {
+  color: #9ddc16;
+}
+
+.not-available-tag {
+  color: #e92a3e;
+}
+
 .blu-ray-tag {
   color: #0096d5;
 }
 
 .dvd-tag {
-  color: #cddc39;
+  color: #dcdc53;
 }
 
 .year-tag {
@@ -304,9 +328,9 @@ form .row {
   margin-bottom: 0;
 }
 
-.contact-inner {
-  height: 420px;
-  border: 1px solid #202f40;
+#googleMap {
+  height: 408px;
+  width: 100%;
 }
 
 .no-js #loader {

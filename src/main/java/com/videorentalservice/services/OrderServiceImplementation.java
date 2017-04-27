@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,15 +55,20 @@ public class OrderServiceImplementation implements OrderService {
 
         List<Disc> discs = orderObject.getDiscs();
         List<Disc> persistedDiscs = new ArrayList<>();
-
+        Disc updatedDisc = null;
         if(discs != null){
             for (Disc disc : discs) {
                 if(disc.getId() != null)
                 {
-                    persistedDiscs.add(discRepository.findOne(disc.getId()));
+                    updatedDisc = discRepository.findOne(disc.getId());
+                    if (updatedDisc.getAvailable()){
+                        updatedDisc.setItemCount(updatedDisc.getItemCount().subtract(BigInteger.ONE));
+                        persistedDiscs.add(updatedDisc);
+                    }
                 }
             }
         }
+
         orderObject.setDiscs(persistedDiscs);
 
         return orderRepository.save(orderObject);
@@ -71,6 +77,24 @@ public class OrderServiceImplementation implements OrderService {
     @Override
     public Order update(Order orderObject) {
         Order persistedOrder = getById(orderObject.getId());
+
+        List<Disc> persistedDiscs = persistedOrder.getDiscs();
+        List<Disc> newPersistedDiscs = new ArrayList<>();
+        Disc updatedDisc = null;
+
+        if(persistedDiscs != null && orderObject.getStatus().equals("Vrátená")){
+            for (Disc disc : persistedDiscs) {
+                if(disc.getId() != null)
+                {
+                    updatedDisc = discRepository.findOne(disc.getId());
+                    updatedDisc.setItemCount(updatedDisc.getItemCount().add(BigInteger.ONE));
+                    newPersistedDiscs.add(updatedDisc);
+                }
+            }
+            persistedOrder.setDiscs(newPersistedDiscs);
+        }
+
+
         persistedOrder.setStatus(orderObject.getStatus());
         return orderRepository.save(persistedOrder);
     }
