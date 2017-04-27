@@ -48,12 +48,6 @@ public class SecurityController extends AbstractBaseController {
         return "security/forbidden";
     }
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin(){
-        return "adminIndex";
-    }
-
-
     @RequestMapping(value="/forgotPassword", method= RequestMethod.GET)
     public String forgotPassword()
     {

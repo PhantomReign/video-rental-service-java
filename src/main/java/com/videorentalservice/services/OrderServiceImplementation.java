@@ -53,19 +53,26 @@ public class OrderServiceImplementation implements OrderService {
     public Order save(Order orderObject) {
 
         List<Disc> discs = orderObject.getDiscs();
-        List<Disc> persistentDiscs = new ArrayList<>();;
-        for (Disc d : discs) {
-            persistentDiscs.add(discRepository.getOne(d.getId()));
-        }
+        List<Disc> persistedDiscs = new ArrayList<>();
 
-        orderObject.setDiscs(persistentDiscs);
+        if(discs != null){
+            for (Disc disc : discs) {
+                if(disc.getId() != null)
+                {
+                    persistedDiscs.add(discRepository.findOne(disc.getId()));
+                }
+            }
+        }
+        orderObject.setDiscs(persistedDiscs);
 
         return orderRepository.save(orderObject);
     }
 
     @Override
     public Order update(Order orderObject) {
-        return orderRepository.save(orderObject);
+        Order persistedOrder = getById(orderObject.getId());
+        persistedOrder.setStatus(orderObject.getStatus());
+        return orderRepository.save(persistedOrder);
     }
 
     @Override

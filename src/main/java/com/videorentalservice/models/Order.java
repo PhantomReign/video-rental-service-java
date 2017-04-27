@@ -29,10 +29,7 @@ public class Order extends AbstractModelClass {
     @Column(nullable=false, unique=true)
     private String orderNumber;
     @Column(nullable=false)
-//    @NotEmpty
     private BigDecimal price;
-
-    private BigDecimal penalty;
 
     private BigDecimal total_days;
 
@@ -46,8 +43,15 @@ public class Order extends AbstractModelClass {
     @JoinColumn(name="user_id")
     private User user;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="order")
-    private List<Disc> discs;
+    //@OneToMany(cascade=CascadeType.ALL, mappedBy="order")
+    //private List<Disc> discs;
+
+    @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(
+            name="order_disc",
+            joinColumns={@JoinColumn(name="ORDER_ID", referencedColumnName="ID")},
+            inverseJoinColumns={@JoinColumn(name="DISC_ID", referencedColumnName="ID")})
+    private List<Disc> discs = new ArrayList<>();
 
     public String getStatus() {
         return status;
@@ -76,14 +80,6 @@ public class Order extends AbstractModelClass {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public BigDecimal getPenalty() {
-        return penalty;
-    }
-
-    public void setPenalty(BigDecimal penalty) {
-        this.penalty = penalty;
     }
 
     public List<Disc> getDiscs() {

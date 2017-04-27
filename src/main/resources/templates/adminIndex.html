@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorator="layout/adminLayout">
@@ -8,7 +9,90 @@
     <title></title>
 </head>
 <body>
+<div layout:fragment="content">
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Zoznam nových objednávok</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <div class="form-group">
+                            <form name="filterForm" th:action="@{/admin}">
+
+                                <div class="row">
+                                    <div class="col-sm-4 col-sm-offset-4">
+                                        <div class="form-search form-horizontal search-form input-group text-center">
+                                            <input class="form-control" th:value="${#httpServletRequest.getParameter('orderNumber')}" type="text" name="orderNumber" placeholder="Hľadať objednávku podľa čísla..." />
+
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><a sd:pagination-sort="id">Id</a></th>
+                            <th><a sd:pagination-sort="orderNumber">Číslo objednávky</a></th>
+                            <th><a sd:pagination-sort="price">Cena</a></th>
+                            <th><a sd:pagination-sort="fromDate">Od</a></th>
+                            <th><a sd:pagination-sort="toDate">Do</a></th>
+                            <th><a sd:pagination-sort="status">Status</a></th>
+
+                            <th><em class="fa fa-info-circle"></em></th>
+                            <th><em class="fa fa-cog"></em></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${newOrders}">
+                            <td th:text="${order.id}">Id</td>
+                            <td th:text="${order.orderNumber}">Číslo objednávky</td>
+                            <td th:text="${order.price}  + ' €'">Cena</td>
+                            <td th:text="${order.getFromDate()}">Datum</td>
+                            <td th:text="${order.getToDate()}">Datum</td>
+                            <td th:text="${order.status}">Status</td>
+
+                            <td>
+                                <a class="btn btn-default" th:href="${'/admin/order/show/' + order.id}"><em class="fa fa-info"></em></a>
+                            </td>
+                            <td>
+                                <a class="btn btn-default" th:href="${'/admin/order/edit/' + order.id}"><em class="fa fa-pencil"></em></a>
+                                <a class="btn btn-danger" th:href="${'/admin/order/delete/' + order.id}"><em class="fa fa-trash"></em></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="text-center" th:if="${#lists.toList(newOrders).isEmpty()}">
+                        <h5>
+                            Žiadne nové objednávky.
+                        </h5>
+                    </div>
+
+                    <nav class="text-center">
+                        <ul class="pagination" sd:pagination="full">
+                            <!-- Pagination created by the Thymeleaf Spring Data dialect, this content is just for mockup -->
+                            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

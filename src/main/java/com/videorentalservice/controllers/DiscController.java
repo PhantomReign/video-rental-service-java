@@ -1,6 +1,7 @@
 package com.videorentalservice.controllers;
 
 import com.querydsl.core.types.Predicate;
+import com.videorentalservice.controllers.abstracts.AbstractBaseController;
 import com.videorentalservice.models.Disc;
 import com.videorentalservice.services.CategoryService;
 import com.videorentalservice.services.DiscService;
@@ -25,7 +26,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Controller
 
-public class DiscController {
+public class DiscController extends AbstractBaseController {
     private DiscService discService;
     private GenreService genreService;
     private CategoryService categoryService;

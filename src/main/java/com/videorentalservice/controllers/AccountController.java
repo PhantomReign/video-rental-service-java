@@ -1,5 +1,6 @@
 package com.videorentalservice.controllers;
 
+import com.videorentalservice.controllers.abstracts.AbstractBaseController;
 import com.videorentalservice.models.User;
 import com.videorentalservice.services.UserService;
 import com.videorentalservice.validators.account.ContactInformationValidator;
@@ -20,7 +21,7 @@ import java.security.Principal;
  * Created by Rave on 23.04.2017.
  */
 @Controller
-public class AccountController {
+public class AccountController extends AbstractBaseController {
     private UserService userService;
 
     @Autowired

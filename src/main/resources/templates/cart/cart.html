@@ -5,58 +5,64 @@
       xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorator="layout/defaultLayout">
 <head lang="sk">
-    <title>Filmy</title>
+    <title>Košík</title>
 </head>
 <body>
 
 <div class="content-section" layout:fragment="content">
     <div class="container">
-        <div th:if="${not #lists.isEmpty(cart)}">
-            <h2>Zoznam položiek v košíku</h2>
-
-            <div class="row">
-                <a th:href="${'/order/checkout/'}">
-                    <button class="btn btn-success btn-block">Objednať</button>
-                </a>
+        <div class="box">
+            <div class="box-header text-center">
+                <h3 class="box-title">Zoznam položiek v košíku</h3>
             </div>
+            <div th:if="${not #lists.toList(cart).isEmpty()}">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-success" th:href="${'/order/checkout/'}">
+                                Objednať
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6" th:each="disc : ${cart}">
-                    <article class="card">
-                        <header class="title-header">
-                            <h3 class="text-center" th:text="${disc.title}">Názov</h3>
-                        </header>
-                        <div class="card-block">
-                            <div class="img-card">
-                                <p class="text-center" th:text="${disc.category.name}"
-                                   th:classappend="${disc.category.name} == 'DVD' ? dvd-tag : blu-ray-tag">Typ</p>
-                                <a th:href="${'/movie/show/' + disc.id}">
-                                    <img th:src="${disc.imageUrl}" th:alt="Movie + ${disc.title}"/>
-                                </a>
-                                <div class="btn-group">
-                                    <a th:href="${'/cart/remove/' + disc.id}" class="btn btn-danger btn-block">
-                                        <i class="fa fa-minus"></i> Odstrániť z košíka
+                <div class="box-body table-responsive no-padding">
+                    <div class="col-lg-3 col-md-3 col-sm-6" th:each="disc : ${cart}">
+                        <article class="card">
+                            <header class="title-header">
+                                <h4 class="text-center" th:text="${disc.title}">Názov</h4>
+                            </header>
+                            <div class="card-block">
+                                <div class="img-card center-block">
+                                    <p class="text-center" th:text="${disc.category.name}"
+                                       th:classappend="${disc.category.name} == 'DVD' ? dvd-tag : blu-ray-tag">Typ</p>
+                                    <a th:href="${'/movie/show/' + disc.id}">
+                                        <img src="" th:src="${disc.imageUrl}" th:alt="Movie + ${disc.title}"/>
                                     </a>
+                                    <div class="btn-group">
+                                        <a th:href="${'/cart/remove/' + disc.id}" class="btn btn-danger btn-block">
+                                            <i class="fa fa-minus"></i> Odstrániť z košíka
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center" th:if="${#lists.isEmpty(cart)}">
-            <h2>V košíku nemáte žiadne položky</h2>
+
+            <div class="row text-center" th:if="${#lists.toList(cart).isEmpty()}">
+                <h5>
+                    V košíku nemáte žiadne položky.
+                </h5>
+            </div>
+
         </div>
     </div>
 </div>
 
 </body>
 </html>
-
-
-
-
-
 
 
 

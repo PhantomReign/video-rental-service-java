@@ -30,9 +30,12 @@ public class Disc extends AbstractModelClass {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name="order_id")
-    private Order order;
+    private Order order;*/
+
+    @ManyToMany(mappedBy="discs")
+    private List<Order> orders = new ArrayList<>();
 
     @NotBlank
     private String title;
@@ -66,6 +69,15 @@ public class Disc extends AbstractModelClass {
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
+    }
+
+    // ORDERS
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     // Category

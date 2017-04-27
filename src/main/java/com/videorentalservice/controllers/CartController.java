@@ -1,6 +1,7 @@
 package com.videorentalservice.controllers;
 
 import com.querydsl.core.types.Predicate;
+import com.videorentalservice.controllers.abstracts.AbstractBaseController;
 import com.videorentalservice.models.Cart;
 import com.videorentalservice.models.Disc;
 import com.videorentalservice.services.CategoryService;
@@ -28,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 
-public class CartController {
+public class CartController extends AbstractBaseController {
 
     private DiscService discService;
 

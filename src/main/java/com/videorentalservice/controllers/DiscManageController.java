@@ -1,6 +1,7 @@
 package com.videorentalservice.controllers;
 
 import com.querydsl.core.types.Predicate;
+import com.videorentalservice.controllers.abstracts.AbstractBaseController;
 import com.videorentalservice.models.Disc;
 import com.videorentalservice.services.CategoryService;
 import com.videorentalservice.services.DiscService;
@@ -29,7 +30,7 @@ import java.util.List;
 
 @Controller
 @Secured(SecurityUtility.MANAGE_DISC)
-public class DiscManageController {
+public class DiscManageController extends AbstractBaseController {
 
     private DiscService discService;
     private CategoryService categoryService;

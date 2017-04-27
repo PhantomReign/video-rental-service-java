@@ -1,5 +1,6 @@
 package com.videorentalservice.controllers;
 
+import com.videorentalservice.controllers.abstracts.AbstractBaseController;
 import com.videorentalservice.controllers.abstracts.OrderNumberGenerator;
 import com.videorentalservice.models.Cart;
 import com.videorentalservice.models.Disc;
@@ -34,7 +35,7 @@ import java.util.Date;
 
 @Controller
 
-public class OrderController {
+public class OrderController extends AbstractBaseController {
 
     private DiscService discService;
     private UserService userService;
@@ -151,7 +152,7 @@ public class OrderController {
         objednavka.setFromDate(stats.getFromDate());
         objednavka.setDiscs(cart.getItems());
         objednavka.setPrice(stats.getPrice());
-        objednavka.setStatus(OrderStates.READY);
+        objednavka.setStatus(OrderStates.NEW);
         objednavka.setUser(userService.getByUserName(principal.getName()));
         objednavka.setOrderNumber(new OrderNumberGenerator().nextSessionId());
         objednavka.setTotal_days(stats.getTotal_days());

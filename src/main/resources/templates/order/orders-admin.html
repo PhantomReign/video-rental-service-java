@@ -5,7 +5,7 @@
       xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorator="layout/adminLayout">
 <head lang="sk">
-    <title>Právomoci</title>
+    <title>Objednávky</title>
 </head>
 <body>
 
@@ -16,18 +16,18 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Zoznam právomoci</h3>
+                    <h3 class="box-title">Zoznam objednávok</h3>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12 text-center">
                         <div class="form-group">
-                            <form name="filterForm" th:action="@{/admin/permissions}">
+                            <form name="filterForm" th:action="@{/admin/orders}">
 
                                 <div class="row">
                                     <div class="col-sm-4 col-sm-offset-4">
                                         <div class="form-search form-horizontal search-form input-group text-center">
-                                            <input class="form-control" th:value="${#httpServletRequest.getParameter('name')}" type="text" name="name" placeholder="Hľadať povolenie..." />
+                                            <input class="form-control" th:value="${#httpServletRequest.getParameter('orderNumber')}" type="text" name="orderNumber" placeholder="Hľadať objednávku podľa čísla..." />
 
                                             <span class="input-group-btn">
                                                 <button type="submit" class="btn"><i class="fa fa-search"></i></button>
@@ -45,26 +45,39 @@
                         <thead>
                         <tr>
                             <th><a sd:pagination-sort="id">Id</a></th>
-                            <th><a sd:pagination-sort="name">Meno</a></th>
+                            <th><a sd:pagination-sort="orderNumber">Číslo objednávky</a></th>
+                            <th><a sd:pagination-sort="price">Cena</a></th>
+                            <th><a sd:pagination-sort="fromDate">Od</a></th>
+                            <th><a sd:pagination-sort="toDate">Do</a></th>
+                            <th><a sd:pagination-sort="status">Status</a></th>
 
                             <th><em class="fa fa-info-circle"></em></th>
+                            <th><em class="fa fa-cog"></em></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="permission : ${permissions}">
-                            <td th:text="${permission.id}">Id</td>
-                            <td th:text="${permission.name}">Meno</td>
+                        <tr th:each="order : ${orders}">
+                            <td th:text="${order.id}">Id</td>
+                            <td th:text="${order.orderNumber}">Číslo objednávky</td>
+                            <td th:text="${order.price}  + ' €'">Cena</td>
+                            <td th:text="${order.getFromDate()}">Datum</td>
+                            <td th:text="${order.getToDate()}">Datum</td>
+                            <td th:text="${order.status}">Status</td>
 
                             <td>
-                                <a class="btn btn-default" th:href="${'/admin/permission/show/' + permission.id}"><em class="fa fa-info"></em></a>
+                                <a class="btn btn-default" th:href="${'/admin/order/show/' + order.id}"><em class="fa fa-info"></em></a>
+                            </td>
+                            <td>
+                                <a class="btn btn-default" th:href="${'/admin/order/edit/' + order.id}"><em class="fa fa-pencil"></em></a>
+                                <a class="btn btn-danger" th:href="${'/admin/order/delete/' + order.id}"><em class="fa fa-trash"></em></a>
                             </td>
                         </tr>
                         </tbody>
                     </table>
 
-                    <div class="text-center" th:if="${#lists.toList(permissions).isEmpty()}">
+                    <div class="text-center" th:if="${#lists.toList(orders).isEmpty()}">
                         <h5>
-                            Žiadna právomoc nie je k dispozícii.
+                            Žiadna objednávka nie je k dispozícii.
                         </h5>
                     </div>
 
