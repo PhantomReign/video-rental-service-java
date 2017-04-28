@@ -22,6 +22,8 @@ public class Category extends AbstractModelClass {
     @NotBlank
     private String name;
 
+    private String description;
+
     @OneToMany(mappedBy="category")
     private List<Disc> discs = new ArrayList<>();
 
@@ -31,6 +33,14 @@ public class Category extends AbstractModelClass {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Disc> getDiscs() {

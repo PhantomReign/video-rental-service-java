@@ -43,6 +43,7 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="#" th:href="@{/admin}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')">Administrovať</a></li>
                             <li><a href="#" th:href="@{/account}">Profil</a></li>
+                            <li><a href="#" th:href="@{/account/orders}">Objednávky</a></li>
                             <li><a href="#" th:href="@{/logout}">Odhlásiť sa</a></li>
                         </ul>
                     </div>

@@ -42,7 +42,7 @@
 
                 <div class="col-lg-9 col-md-9 col-sm-6 description">
                     <p th:text="${disc.description}">Description</p>
-                    <div class="text-center">
+                    <div class="text-center" th:if="${disc.videoUrl} != ''">
                         <iframe class="movie-frame" width="560" height="315" src="" th:src="@{//} + ${disc.videoUrl}" allowfullscreen="">
                         </iframe>
                     </div>

@@ -16,6 +16,8 @@ public class Permission extends AbstractModelClass {
     @Column(nullable=false, unique=true)
     private String name;
 
+    private String description;
+
     @ManyToMany(mappedBy="permissions", cascade= CascadeType.ALL)
     private List<Role> roles;
 
@@ -25,6 +27,14 @@ public class Permission extends AbstractModelClass {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Role> getRoles()

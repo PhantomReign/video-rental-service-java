@@ -19,6 +19,8 @@ public class Genre extends AbstractModelClass{
     @NotBlank
     private String name;
 
+    private String description;
+
     @ManyToMany(mappedBy="genres")
     private List<Disc> discs = new ArrayList<>();
 
@@ -28,6 +30,14 @@ public class Genre extends AbstractModelClass{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Disc> getDiscs() {

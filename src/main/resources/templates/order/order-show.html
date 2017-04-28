@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sd="http://www.thymeleaf.org/spring-data"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/defaultLayout">
+<head lang="sk">
+    <title>Detail objednávky</title>
+</head>
+<body>
+
+<div class="content-section" layout:fragment="content">
+
+    <div class="container">
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Informácie o objednávke</h3>
+            </div>
+            <div class="box-body">
+                <form class="form-horizontal col-sm-offset-3 col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Číslo objednávky:</label>
+                        <p class="form-control-static text-center" th:text="${order.orderNumber}">Id</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Cena:</label>
+                        <p class="form-control-static text-center" th:text="${order.price} + ' €'">Cena</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Od:</label>
+                        <p class="form-control-static text-center" th:text="${order.getFromDate()}">Od</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Do:</label>
+                        <p class="form-control-static text-center" th:text="${order.getToDate()}">Do</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Status:</label>
+                        <p class="form-control-static text-center" th:text="${order.status}">Status</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Filmy:</label>
+                        <p class="form-control-static text-center" th:each="movie : ${order.discs}" th:text="${movie.title}">Film</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

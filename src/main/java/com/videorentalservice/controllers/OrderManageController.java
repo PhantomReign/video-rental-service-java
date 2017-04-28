@@ -39,7 +39,7 @@ public class OrderManageController extends AbstractBaseController {
     }
 
     @RequestMapping(value = "/admin/orders", method = RequestMethod.GET)
-    public String listPermissions(Model model,
+    public String listOrders(Model model,
                                   @QuerydslPredicate(root = Order.class) Predicate predicate,
                                   @PageableDefault(sort = { "id", "orderNumber", "price", "fromDate", "toDate", "status" }, value = 10) Pageable pageable,
                                   @RequestParam MultiValueMap<String, String> parameters) {

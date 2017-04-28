@@ -29,6 +29,11 @@
                     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="text-red">Zlé dáta</p>
                 </div>
 
+                <div class="form-group">
+                    <label class="control-label">Popis</label>
+                    <textarea class="form-control" th:field="*{description}"></textarea>
+                </div>
+
                 <div class="box-footer text-center">
                     <button type="submit" class="btn btn-primary">Vytvoriť</button>
                 </div>

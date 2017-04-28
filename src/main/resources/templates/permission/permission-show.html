@@ -5,7 +5,7 @@
       xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorator="layout/adminLayout">
 <head lang="sk">
-    <title>Detail žánru</title>
+    <title>Detail právomoci</title>
 </head>
 <body>
 
@@ -13,33 +13,33 @@
 
     <div class="box box-warning">
         <div class="box-header with-border">
-            <h3 class="box-title">Detail žánru</h3>
+            <h3 class="box-title">Detail právomoci</h3>
         </div>
         <div class="box-body">
             <form class="form-horizontal col-sm-offset-3 col-sm-6">
                 <div class="form-group">
                     <label class="control-label">Id:</label>
-                    <p class="form-control-static" th:text="${genre.id}">Id</p>
+                    <p class="form-control-static" th:text="${permission.id}">Id</p>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Meno:</label>
-                    <p class="form-control-static" th:text="${genre.name}">Meno</p>
+                    <p class="form-control-static" th:text="${permission.name}">Meno</p>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Popis:</label>
-                    <p class="form-control-static" th:text="${genre.description}">Popis</p>
+                    <p class="form-control-static" th:text="${permission.description}">Popis</p>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Čas vytvorenia:</label>
-                    <p class="form-control-static" th:text="${genre.dateCreated}">Čas vytvorenia</p>
+                    <p class="form-control-static" th:text="${permission.dateCreated}">Datum</p>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Čas poslednej zmeny:</label>
-                    <p class="form-control-static" th:text="${genre.lastUpdated}">Čas zmeny</p>
+                    <p class="form-control-static" th:text="${permission.lastUpdated}">Datum</p>
                 </div>
             </form>
         </div>

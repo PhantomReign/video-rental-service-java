@@ -46,7 +46,7 @@
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('description')}? 'has-error'">
                     <label class="control-label">Popis<span class="povinna_polozka">*</span></label>
-                    <input type="text" class="form-control" th:field="*{description}"/>
+                    <textarea class="form-control" th:field="*{description}"></textarea>
                     <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:class="text-red">Zlé dáta</p>
                 </div>
 
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('videoUrl')}? 'has-error'">
-                    <label class="control-label">URL videa<span class="povinna_polozka">*</span></label>
+                    <label class="control-label">URL videa</label>
                     <input type="text" class="form-control" th:field="*{videoUrl}"/>
                     <p th:if="${#fields.hasErrors('videoUrl')}" th:errors="*{videoUrl}" th:class="text-red">Zlé dáta</p>
                 </div>
@@ -89,6 +89,12 @@
                     <label class="control-label">Cena<span class="povinna_polozka">*</span></label>
                     <input type="number" step="any" class="form-control" th:field="*{price}"/>
                     <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" th:class="text-red">Zlé dáta</p>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('itemCount')}? 'has-error'">
+                    <label class="control-label">Počet diskov<span class="povinna_polozka">*</span></label>
+                    <input type="number" step="1" class="form-control" th:field="*{itemCount}"/>
+                    <p th:if="${#fields.hasErrors('itemCount')}" th:errors="*{itemCount}" th:class="text-red">Zlé dáta</p>
                 </div>
 
                 <div class="form-group">

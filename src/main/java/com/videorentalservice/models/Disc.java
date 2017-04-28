@@ -47,17 +47,13 @@ public class Disc extends AbstractModelClass {
     private String imageUrl;
     @NotBlank
     private String imageBGUrl;
-    @NotBlank
     private String videoUrl;
     @NotNull
     private Integer year;
     @NotNull
     private BigDecimal price;
-
     @NotNull
     private BigInteger itemCount;
-
-    private Boolean available;
 
     // GENRES
     public List<Genre> getGenres() {
@@ -180,10 +176,6 @@ public class Disc extends AbstractModelClass {
     // AVAILABILITY
     public Boolean getAvailable() {
         return itemCount.intValue() > 0;
-    }
-
-    public void setAvailable(Boolean available) {
-        this.available = available;
     }
 
     public BigInteger getItemCount() {

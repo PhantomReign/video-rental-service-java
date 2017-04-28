@@ -13,6 +13,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,5 +47,11 @@ public class PermissionManageController extends AbstractBaseController {
         model.addAttribute("permissions", permissionService.findAll(predicate, pageable));
 
         return "permission/permissions";
+    }
+
+    @RequestMapping("admin/permission/show/{id}")
+    public String showRole(@PathVariable Integer id, Model model){
+        model.addAttribute("permission", permissionService.getById(id));
+        return "permission/permission-show";
     }
 }

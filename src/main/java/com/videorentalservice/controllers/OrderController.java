@@ -1,24 +1,25 @@
 package com.videorentalservice.controllers;
 
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.videorentalservice.controllers.abstracts.AbstractBaseController;
 import com.videorentalservice.controllers.abstracts.OrderNumberGenerator;
-import com.videorentalservice.models.Cart;
-import com.videorentalservice.models.Disc;
-import com.videorentalservice.models.Order;
-import com.videorentalservice.models.PreOrderStats;
+import com.videorentalservice.models.*;
 import com.videorentalservice.models.abstracts.OrderStates;
 import com.videorentalservice.services.DiscService;
 import com.videorentalservice.services.OrderService;
 import com.videorentalservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -28,6 +29,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Created by Rave on 18.02.2017.
@@ -54,6 +56,36 @@ public class OrderController extends AbstractBaseController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+
+    @RequestMapping(value = "/account/orders", method = RequestMethod.GET)
+    public String listUserOrders(Model model,
+                                  @QuerydslPredicate(root = Order.class) Predicate predicate, Principal principal,
+                                  @PageableDefault(sort = { "id", "orderNumber", "price", "fromDate", "toDate", "status" }, value = 10) Pageable pageable,
+                                  @RequestParam MultiValueMap<String, String> parameters) {
+
+        ServletUriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequest();
+        builder.replaceQueryParam("page");
+
+        User user = userService.getByUserName(principal.getName());
+        QOrder qOrder = QOrder.order;
+        BooleanExpression isUser = qOrder.user.eq(user);
+
+        model.addAttribute("orders", orderService.findAll(isUser, pageable));
+
+        return "order/orders";
+    }
+
+    @RequestMapping("account/order/show/{id}")
+    public String showOrderUser(@PathVariable Integer id, Model model, Principal principal){
+        User user = userService.getByUserName(principal.getName());
+        Order order = orderService.getById(id);
+        if (!Objects.equals(order.getUser().getId(), user.getId())) {
+            return "order/orders";
+        }
+        model.addAttribute("order", orderService.getById(id));
+        return "order/order-show";
     }
 
 

@@ -89,6 +89,7 @@ public class DiscServiceImplementation implements DiscService {
         persistedDisc.setOriginalSubTitle(discObject.getOriginalSubTitle());
         persistedDisc.setDescription(discObject.getDescription());
         persistedDisc.setPrice(discObject.getPrice());
+        persistedDisc.setItemCount(discObject.getItemCount());
         persistedDisc.setYear(discObject.getYear());
         persistedDisc.setGenres(discObject.getGenres());
         persistedDisc.setCategory(discObject.getCategory());
