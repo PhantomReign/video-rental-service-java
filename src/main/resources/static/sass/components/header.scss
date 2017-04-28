@@ -5,6 +5,9 @@
   display: table;
   position: relative;
   width: 100%;
+  height: -webkit-calc(100% - 183px);
+  height:    -moz-calc(100% - 183px);
+  height:         calc(100% - 183px);
   min-height: -webkit-calc(100% - 183px);
   min-height:    -moz-calc(100% - 183px);
   min-height:         calc(100% - 183px);

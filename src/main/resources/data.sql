@@ -119,3 +119,11 @@ insert into disc_genre(disc_id, genre_id) values
 (8,2),(8,3),
 (9,1),(9,3),(9,4);
 
+insert into orders(id, status, order_number, from_date, to_date, price, total_days, user_id, date_Created, last_Updated) values
+(1, 'Nová', 'apj0k2jh6n4ifssj0kdot8up8r', now(), DATEADD('DAY',1, NOW()), 0.70, 1.00, 3,  now(), now()),
+(2, 'Vrátená', 'bpj1k0jf5e7ifsuj0kdit8do7a', DATEADD('DAY',-1, NOW()), now(), 0.70, 1.00, 3,  now(), now());
+
+insert into order_disc(order_id, disc_id) values
+(1,5),
+(2,3);
+

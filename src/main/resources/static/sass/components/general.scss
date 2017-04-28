@@ -35,6 +35,9 @@ hr {
 }
 
 .content-section {
+  height: -webkit-calc(100% - 183px);
+  height:    -moz-calc(100% - 183px);
+  height:         calc(100% - 183px);
   min-height: -webkit-calc(100% - 183px);
   min-height:    -moz-calc(100% - 183px);
   min-height:         calc(100% - 183px);
