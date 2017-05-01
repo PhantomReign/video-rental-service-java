@@ -5,6 +5,7 @@ package com.videorentalservice.models.abstracts;
  */
 public class OrderStates {
     public static String NEW = "Nová";
+    public static String CANCELED = "Zrušená";
     public static String READY = "Pripravená";
     public static String BORROWED = "Zapožičaná";
     public static String RETURNED = "Vrátená";

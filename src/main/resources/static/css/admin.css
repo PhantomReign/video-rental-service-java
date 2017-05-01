@@ -16,6 +16,8 @@
 .img-card {
   position: relative;
   width: 80%;
+  max-width: 600px;
+  max-height: 900px;
   background-color: #404040;
   -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.45);
   -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.45);
@@ -248,7 +250,7 @@ form .row {
 }
 
 .box-auth {
-  margin-top: 150px !important;
+  margin-top: 60px !important;
 }
 
 .btn {
@@ -295,4 +297,13 @@ form .row {
 .table thead tr th:nth-last-child(2),
 .table thead tr td:nth-last-child(2) {
   text-align: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-btn {
+  display: block;
+  margin-bottom: 5px;
 }

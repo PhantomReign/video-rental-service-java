@@ -31,7 +31,7 @@ public class Disc extends AbstractModelClass {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany(mappedBy="discs")
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy="discs")
     private List<Order> orders = new ArrayList<>();
 
     @NotBlank

@@ -5,6 +5,7 @@ import com.querydsl.core.types.dsl.StringPath;
 import com.videorentalservice.models.Disc;
 import com.videorentalservice.models.QDisc;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
@@ -19,6 +20,10 @@ public interface DiscRepository extends JpaRepository<Disc, Integer>,
 
     Disc getByTitle(String name);
     Disc getByOriginalTitle(String name);
+
+    @Query("select coalesce(max(u.id), '0') from Disc u")
+    int findMaxId();
+
 
     @Override
     default public void customize(QuerydslBindings bindings, QDisc root) {

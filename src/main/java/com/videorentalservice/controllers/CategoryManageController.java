@@ -96,6 +96,13 @@ public class CategoryManageController extends AbstractBaseController {
     @RequestMapping("admin/category/delete/{id}")
     public String deleteCategory(@PathVariable Integer id,
                              RedirectAttributes redirectAttributes){
+
+        Category category = categoryService.getById(id);
+        if (!category.getDiscs().isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Túto kategóriu nie je možné vymazať.");
+            return "redirect:/admin/categories";
+        }
+
         categoryService.delete(id);
         redirectAttributes.addFlashAttribute("info", "Kategória bola úspešne vymazaná.");
         return "redirect:/admin/categories";

@@ -30,9 +30,7 @@ hr {
 }
 
 .content-section {
-  height: -webkit-calc(100% - 183px);
-  height: -moz-calc(100% - 183px);
-  height: calc(100% - 183px);
+  overflow: hidden;
   min-height: -webkit-calc(100% - 183px);
   min-height: -moz-calc(100% - 183px);
   min-height: calc(100% - 183px);
@@ -126,7 +124,7 @@ form .row {
 }
 
 .box-auth {
-  margin-top: 150px !important;
+  margin-top: 60px !important;
 }
 
 .table tbody tr td, .table tbody tr th, .table tfoot tr td, .table tfoot tr th {
@@ -172,6 +170,8 @@ form .row {
 .img-card {
   position: relative;
   width: 80%;
+  max-width: 600px;
+  max-height: 900px;
   background-color: #404040;
   -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.45);
   -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.45);

@@ -2,6 +2,7 @@ package com.videorentalservice.controllers;
 
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.videorentalservice.VRSException;
 import com.videorentalservice.controllers.abstracts.AbstractBaseController;
 import com.videorentalservice.controllers.abstracts.OrderNumberGenerator;
 import com.videorentalservice.models.*;
@@ -9,6 +10,7 @@ import com.videorentalservice.models.abstracts.OrderStates;
 import com.videorentalservice.services.DiscService;
 import com.videorentalservice.services.OrderService;
 import com.videorentalservice.services.UserService;
+import com.videorentalservice.services.common.EmailServiceImplementation;
 import com.videorentalservice.view.MyPdfView;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +26,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -48,6 +52,12 @@ public class OrderController extends AbstractBaseController {
     private OrderService orderService;
 
     @Autowired
+    private EmailServiceImplementation emailService;
+
+    @Autowired
+    private TemplateEngine templateEngine;
+
+    @Autowired
     public void setOrderService(OrderService orderService) {
         this.orderService = orderService;
     }
@@ -60,6 +70,25 @@ public class OrderController extends AbstractBaseController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+
+    private void sendOrderConfirmationEmail(Order order)
+    {
+        try {
+
+            // Prepare the evaluation context
+            final Context ctx = new Context();
+            ctx.setVariable("orderNumber", order.getOrderNumber());
+
+            // Create the HTML body using Thymeleaf
+            final String htmlContent = this.templateEngine.process("email/orderConfirmationEmail", ctx);
+
+            emailService.sendEmail(order.getUser().getEmail(),
+                    "Videopožičovňa Saturn - Prijatie objednávky",
+                    htmlContent);
+        } catch (VRSException ignored) {
+        }
     }
 
 
@@ -195,6 +224,8 @@ public class OrderController extends AbstractBaseController {
 
         // persist
         orderService.save(objednavka);
+        sendOrderConfirmationEmail(objednavka);
+
         model.addAttribute("order", objednavka);
         request.getSession().setAttribute("ORDER_STATS", null);
         request.getSession().setAttribute("CART_KEY", null);
@@ -210,12 +241,19 @@ public class OrderController extends AbstractBaseController {
     }
 
     @RequestMapping(value = "/order/downloadPdf/{id}", method = RequestMethod.GET)
-    public ModelAndView downloadPdf(@PathVariable Integer id) {
+    public ModelAndView downloadPdf(@PathVariable Integer id, Principal principal) {
+
+        User user = userService.getByUserName(principal.getName());
+        Order order = orderService.getById(id);
+        if (order == null) {
+            return new ModelAndView("security/forbidden");
+        } else {
+            if (!Objects.equals(order.getUser().getId(), user.getId())) {
+                return new ModelAndView("security/forbidden");
+            }
+        }
 
         Map<String, Object> model = new HashMap<>();
-
-        Order order = orderService.getById(id);
-
         model.put("order", order);
         return new ModelAndView(new MyPdfView(), model);
     }

@@ -51,6 +51,11 @@ public class DiscServiceImplementation implements DiscService {
     }
 
     @Override
+    public int findMaxId() {
+        return discRepository.findMaxId();
+    }
+
+    @Override
     public Page<Disc> findAll(Predicate predicate, Pageable pageable) {
         return discRepository.findAll(predicate, pageable);
     }

@@ -3,6 +3,7 @@ package com.videorentalservice.controllers;
 import com.videorentalservice.controllers.abstracts.AbstractBaseController;
 import com.videorentalservice.models.User;
 import com.videorentalservice.services.UserService;
+import com.videorentalservice.validators.UserUpdateValidator;
 import com.videorentalservice.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +29,9 @@ public class UserCreateController extends AbstractBaseController {
     private UserValidator userValidator;
 
     @Autowired
+    private UserUpdateValidator userUpdateValidator;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -47,6 +51,7 @@ public class UserCreateController extends AbstractBaseController {
                            RedirectAttributes redirectAttributes){
 
         userValidator.validate(user, result);
+        userUpdateValidator.validate(user, result);
         if(result.hasErrors()){
             return "security/register";
         }

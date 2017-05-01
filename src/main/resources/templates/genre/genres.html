@@ -67,7 +67,7 @@
                             </td>
                             <td>
                                 <a class="btn btn-default" th:href="${'/admin/genre/edit/' + genre.id}"><em class="fa fa-pencil"></em></a>
-                                <a class="btn btn-danger" th:href="${'/admin/genre/delete/' + genre.id}"><em class="fa fa-trash"></em></a>
+                                <a class="btn btn-danger" sec:authorize="hasRole('ROLE_SUPER_ADMIN')" th:href="${'/admin/genre/delete/' + genre.id}"><em class="fa fa-trash"></em></a>
                             </td>
                         </tr>
                         </tbody>

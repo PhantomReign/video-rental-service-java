@@ -97,6 +97,11 @@ public class GenreManageController extends AbstractBaseController {
     @RequestMapping("admin/genre/delete/{id}")
     public String deleteGenre(@PathVariable Integer id,
                              RedirectAttributes redirectAttributes){
+        Genre genre = genreService.getById(id);
+        if (!genre.getDiscs().isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Tento žáner nie je možné vymazať.");
+            return "redirect:/admin/genres";
+        }
         genreService.delete(id);
         redirectAttributes.addFlashAttribute("info", "Žáner bol úspešne vymazaný.");
         return "redirect:/admin/genres";

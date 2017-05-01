@@ -64,6 +64,7 @@ public class OrderManageController extends AbstractBaseController {
         status.add(OrderStates.READY);
         status.add(OrderStates.BORROWED);
         status.add(OrderStates.RETURNED);
+        status.add(OrderStates.CANCELED);
         return status;
     }
 
@@ -72,14 +73,6 @@ public class OrderManageController extends AbstractBaseController {
         model.addAttribute("order", orderService.getById(id));
         model.addAttribute("orderStatus", statusList());
         return "order/order-form-update";
-    }
-
-    @RequestMapping("admin/order/delete/{id}")
-    public String deleteOrder(@PathVariable Integer id,
-                             RedirectAttributes redirectAttributes){
-        orderService.delete(id);
-        redirectAttributes.addFlashAttribute("info", "Objednávka bola úspešne vymazaná.");
-        return "redirect:/admin/orders";
     }
 
     @RequestMapping(value = "/admin/order/edit/{id}", method = RequestMethod.POST)

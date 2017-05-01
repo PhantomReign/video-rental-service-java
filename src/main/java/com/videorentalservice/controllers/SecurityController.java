@@ -2,6 +2,7 @@ package com.videorentalservice.controllers;
 
 import com.videorentalservice.VRSException;
 import com.videorentalservice.controllers.abstracts.AbstractBaseController;
+import com.videorentalservice.models.Order;
 import com.videorentalservice.models.User;
 import com.videorentalservice.services.UserService;
 import com.videorentalservice.services.common.EmailServiceImplementation;
@@ -71,7 +72,7 @@ public class SecurityController extends AbstractBaseController {
             this.sendForgotPasswordEmail(email, resetPasswordUrl);
             redirectAttributes.addFlashAttribute("info", getMessage("info.password_reset_link_sent"));
         } catch (VRSException e) {
-            redirectAttributes.addFlashAttribute("info", e.getMessage());
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
         return "redirect:/login";
     }

@@ -148,20 +148,6 @@ public class MyPdfView extends AbstractPdfView {
         pTo.setAlignment(Element.ALIGN_CENTER);
         document.add(pTo);
 
-
-        Paragraph pStatusTit = new Paragraph();
-        pStatusTit.setFont(fontItalicBold);
-        pStatusTit.add("Stav:");
-        pStatusTit.setAlignment(Element.ALIGN_LEFT);
-        document.add(pStatusTit);
-
-        Paragraph pStatus = new Paragraph();
-        pStatus.setFont(fontRegular);
-        pStatus.add(order.getStatus());
-        pStatus.setAlignment(Element.ALIGN_CENTER);
-        document.add(pStatus);
-
-
         Paragraph pDiscTit = new Paragraph();
         pDiscTit.setFont(fontItalicBold);
         pDiscTit.add("Filmy:");

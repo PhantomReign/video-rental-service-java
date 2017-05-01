@@ -5,6 +5,7 @@ import com.videorentalservice.models.User;
 import com.videorentalservice.services.RoleService;
 import com.videorentalservice.services.UserService;
 import com.videorentalservice.utilities.SecurityUtility;
+import com.videorentalservice.validators.UserUpdateValidator;
 import com.videorentalservice.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -41,6 +42,9 @@ public class UserManageController extends AbstractBaseController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private UserUpdateValidator userUpdateValidator;
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -101,6 +105,8 @@ public class UserManageController extends AbstractBaseController {
                            RedirectAttributes redirectAttributes){
 
         userValidator.validate(user, result);
+        userUpdateValidator.validate(user, result);
+
         if(result.hasErrors()){
             return "user/user-form-create";
         }
@@ -113,6 +119,8 @@ public class UserManageController extends AbstractBaseController {
     public String updateUser(@Valid @ModelAttribute("user") User user,
                              BindingResult result,
                              RedirectAttributes redirectAttributes){
+
+        userUpdateValidator.validate(user, result);
         if(result.hasErrors()){
             return "user/user-form-update";
         }
@@ -124,6 +132,12 @@ public class UserManageController extends AbstractBaseController {
     @RequestMapping("admin/user/delete/{id}")
     public String deleteUser(@PathVariable Integer id,
                              RedirectAttributes redirectAttributes){
+
+        User user = userService.getById(id);
+        if (!user.getOrders().isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Tohoto užívateľa nie je možné vymazať.");
+            return "redirect:/admin/users";
+        }
         userService.delete(id);
         redirectAttributes.addFlashAttribute("info", "Užívateľ bol úspešne vymazaný.");
         return "redirect:/admin/users";

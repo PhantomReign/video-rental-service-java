@@ -8,4 +8,5 @@ import com.videorentalservice.models.Disc;
 public interface DiscService extends JpaService<Disc> {
     Disc getByTitle(String name);
     Disc getByOriginalTitle(String name);
+    int findMaxId();
 }

@@ -112,6 +112,11 @@ public class RoleManageController extends AbstractBaseController{
     @RequestMapping("admin/role/delete/{id}")
     public String deleteRole(@PathVariable Integer id,
                              RedirectAttributes redirectAttributes){
+        Role role = roleService.getById(id);
+        if (!role.getUsers().isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Túto rolu nie je možné vymazať.");
+            return "redirect:/admin/roles";
+        }
         roleService.delete(id);
         redirectAttributes.addFlashAttribute("info", "Rola bola úspešne vymazaná.");
         return "redirect:/admin/roles";
