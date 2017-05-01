@@ -21,7 +21,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Rave on 27.04.2017.
@@ -94,5 +93,4 @@ public class OrderManageController extends AbstractBaseController {
         redirectAttributes.addFlashAttribute("info", "Objednávka bola úspešne upravená.");
         return "redirect:/admin/orders";
     }
-
 }

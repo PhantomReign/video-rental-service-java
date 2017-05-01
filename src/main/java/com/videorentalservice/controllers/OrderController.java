@@ -9,6 +9,9 @@ import com.videorentalservice.models.abstracts.OrderStates;
 import com.videorentalservice.services.DiscService;
 import com.videorentalservice.services.OrderService;
 import com.videorentalservice.services.UserService;
+import com.videorentalservice.view.MyPdfView;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -20,6 +23,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -203,6 +207,17 @@ public class OrderController extends AbstractBaseController {
                           RedirectAttributes redirectAttributes,
                           Principal principal) {
         return "order/orderSummary";
+    }
+
+    @RequestMapping(value = "/order/downloadPdf/{id}", method = RequestMethod.GET)
+    public ModelAndView downloadPdf(@PathVariable Integer id) {
+
+        Map<String, Object> model = new HashMap<>();
+
+        Order order = orderService.getById(id);
+
+        model.put("order", order);
+        return new ModelAndView(new MyPdfView(), model);
     }
 
 }
