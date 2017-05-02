@@ -47,7 +47,7 @@ public class IndexAdminController extends AbstractBaseController {
         builder.replaceQueryParam("page");
 
         QOrder qOrder = QOrder.order;
-        BooleanExpression isNew = qOrder.status.eq("Nová");
+        BooleanExpression isNew = qOrder.status.eq("Prijatá");
         model.addAttribute("newOrders", orderService.findAll(isNew, pageable));
 
         return "adminIndex";

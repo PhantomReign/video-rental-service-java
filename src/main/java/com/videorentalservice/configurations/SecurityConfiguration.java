@@ -35,11 +35,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
-    }
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -47,14 +42,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
+        http.sessionManagement()
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true);
+
+        http.authorizeRequests()
 //                .antMatchers("/cart", "/cart/*").hasRole("ROLE_USER")
                 .antMatchers("/resources/**", "/webjars/**", "/js/**", "/images/**", "/css/**").permitAll()
-                .antMatchers("/", "/movies","/login", "/logout", "/movie/show/*", "/console/*", "/h2-console/**", "/forgotPassword", "/resetPassword", "/register", "/contact").permitAll()
+                .antMatchers("/", "/movies","/login", "/logout", "/movie/show/*", "/forgotPassword", "/resetPassword", "/register", "/contact").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
@@ -63,18 +60,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/forbidden");
 
-        http.sessionManagement()
-                .maximumSessions(1)
-                .maxSessionsPreventsLogin(true)
-                .expiredUrl("/login?expired");
-
         http.csrf().disable();
         http.headers().frameOptions().disable();
 
-    }
-
-    @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
     }
 }

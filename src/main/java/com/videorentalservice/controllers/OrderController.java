@@ -217,7 +217,7 @@ public class OrderController extends AbstractBaseController {
         objednavka.setFromDate(stats.getFromDate());
         objednavka.setDiscs(cart.getItems());
         objednavka.setPrice(stats.getPrice());
-        objednavka.setStatus(OrderStates.NEW);
+        objednavka.setStatus(OrderStates.RECEIVED);
         objednavka.setUser(userService.getByUserName(principal.getName()));
         objednavka.setOrderNumber(new OrderNumberGenerator().nextSessionId());
         objednavka.setTotal_days(stats.getTotal_days());

@@ -253,6 +253,10 @@ form .row {
   margin-top: 60px !important;
 }
 
+textarea {
+  resize: vertical;
+}
+
 .btn {
   border-radius: 0 !important;
 }

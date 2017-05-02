@@ -60,7 +60,7 @@ public class OrderManageController extends AbstractBaseController {
     @ModelAttribute("orderStatus")
     public ArrayList<String> statusList(){
         ArrayList<String> status = new ArrayList<>();
-        status.add(OrderStates.NEW);
+        status.add(OrderStates.RECEIVED);
         status.add(OrderStates.READY);
         status.add(OrderStates.BORROWED);
         status.add(OrderStates.RETURNED);

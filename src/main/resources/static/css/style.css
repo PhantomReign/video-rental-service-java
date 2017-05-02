@@ -127,6 +127,10 @@ form .row {
   margin-top: 60px !important;
 }
 
+textarea {
+  resize: vertical;
+}
+
 .table tbody tr td, .table tbody tr th, .table tfoot tr td, .table tfoot tr th {
   vertical-align: middle;
 }
